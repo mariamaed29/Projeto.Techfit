@@ -1,0 +1,563 @@
+<html lang="pt" data-bs-theme="dark" class="translated-ltr">
+    <link rel="stylesheet" href="pág.inicial.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+       
+    
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
+    <meta name="generator" content="Astro v5.13.2">
+    <title>Modelo de carrossel · Bootstrap v5.3</title>
+    <link rel="canonical" href="https://getbootstrap.com/docs/5.3/examples/carousel/">
+    <script src="/docs/5.3/assets/js/color-modes.js"></script>
+    <link href="/docs/5.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB">
+    <link rel="apple-touch-icon" href="/docs/5.3/assets/img/favicons/apple-touch-icon.png" sizes="180x180">
+    <link rel="icon" href="/docs/5.3/assets/img/favicons/favicon-32x32.png" sizes="32x32" type="image/png">
+    <link rel="icon" href="/docs/5.3/assets/img/favicons/favicon-16x16.png" sizes="16x16" type="image/png">
+    <link rel="manifest" href="/docs/5.3/assets/img/favicons/manifest.json">
+    <link rel="mask-icon" href="/docs/5.3/assets/img/favicons/safari-pinned-tab.svg" color="#712cf9">
+    <link rel="icon" href="/docs/5.3/assets/img/favicons/favicon.ico">
+    <meta name="theme-color" content="#712cf9">
+    <link href="carousel.css" rel="stylesheet">
+    <style>
+        .bd-placeholder-img {
+            font-size: 1.125rem;
+            text-anchor: middle;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            user-select: none
+        }
+
+        @media (min-width: 768px) {
+            .bd-placeholder-img-lg {
+                font-size: 3.5rem
+            }
+        }
+
+        .b-example-divider {
+            width: 100%;
+            height: 3rem;
+            background-color: #0000001a;
+            border: solid rgba(0, 0, 0, .15);
+            border-width: 1px 0;
+            box-shadow: inset 0 .5em 1.5em #0000001a, inset 0 .125em .5em #00000026
+        }
+
+        .b-example-vr {
+            flex-shrink: 0;
+            width: 1.5rem;
+            height: 100vh
+        }
+
+        .bi {
+            vertical-align: -.125em;
+            fill: currentColor
+        }
+
+        .nav-scroller {
+            position: relative;
+            z-index: 2;
+            height: 2.75rem;
+            overflow-y: hidden
+        }
+
+        .nav-scroller .nav {
+            display: flex;
+            flex-wrap: nowrap;
+            padding-bottom: 1rem;
+            margin-top: -1px;
+            overflow-x: auto;
+            text-align: center;
+            white-space: nowrap;
+            -webkit-overflow-scrolling: touch
+        }
+
+        .btn-bd-primary {
+            --bd-violet-bg: #712cf9;
+            --bd-violet-rgb: 112.520718, 44.062154, 249.437846;
+            --bs-btn-font-weight: 600;
+            --bs-btn-color: var(--bs-white);
+            --bs-btn-bg: var(--bd-violet-bg);
+            --bs-btn-border-color: var(--bd-violet-bg);
+            --bs-btn-hover-color: var(--bs-white);
+            --bs-btn-hover-bg: #6528e0;
+            --bs-btn-hover-border-color: #6528e0;
+            --bs-btn-focus-shadow-rgb: var(--bd-violet-rgb);
+            --bs-btn-active-color: var(--bs-btn-hover-color);
+            --bs-btn-active-bg: #5a23c8;
+            --bs-btn-active-border-color: #5a23c8
+        }
+
+        .bd-mode-toggle {
+            z-index: 1500
+        }
+
+        .bd-mode-toggle .bi {
+            width: 1em;
+            height: 1em
+        }
+
+        .bd-mode-toggle .dropdown-menu .active .bi {
+            display: block !important
+        }
+    </style>
+    <link type="text/css" rel="stylesheet" charset="UTF-8"
+        href="https://www.gstatic.com/_/translate_http/_/ss/k=translate_http.tr.pgV-E-68K-A.L.W.O/am=AMA/d=0/rs=AN8SPfo2HeflihKMbfgwV84pq3lzEm8ziw/m=el_main_css">
+</head>
+
+<body> <svg xmlns="http://www.w3.org/2000/svg" class="d-none">
+        <symbol id="check2" viewBox="0 0 16 16">
+            <path
+                d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0z">
+            </path>
+        </symbol>
+        <symbol id="circle-half" viewBox="0 0 16 16">
+            <path d="M8 15A7 7 0 1 0 8 1v14zm0 1A8 8 0 1 1 8 0a8 8 0 0 1 0 16z"></path>
+        </symbol>
+        <symbol id="moon-stars-fill" viewBox="0 0 16 16">
+            <path
+                d="M6 .278a.768.768 0 0 1 .08.858 7.208 7.208 0 0 0-.878 3.46c0 4.021 3.278 7.277 7.318 7.277.527 0 1.04-.055 1.533-.16a.787.787 0 0 1 .81.316.733.733 0 0 1-.031.893A8.349 8.349 0 0 1 8.344 16C3.734 16 0 12.286 0 7.71 0 4.266 2.114 1.312 5.124.06A.752.752 0 0 1 6 .278z">
+            </path>
+            <path
+                d="M10.794 3.148a.217.217 0 0 1 .412 0l.387 1.162c.173.518.579.924 1.097 1.097l1.162.387a.217.217 0 0 1 0 .412l-1.162.387a1.734 1.734 0 0 0-1.097 1.097l-.387 1.162a.217.217 0 0 1-.412 0l-.387-1.162A1.734 1.734 0 0 0 9.31 6.593l-1.162-.387a.217.217 0 0 1 0-.412l1.162-.387a1.734 1.734 0 0 0 1.097-1.097l.387-1.162zM13.863.099a.145.145 0 0 1 .274 0l.258.774c.115.346.386.617.732.732l.774.258a.145.145 0 0 1 0 .274l-.774.258a1.156 1.156 0 0 0-.732.732l-.258.774a.145.145 0 0 1-.274 0l-.258-.774a1.156 1.156 0 0 0-.732-.732l-.774-.258a.145.145 0 0 1 0-.274l.774-.258c.346-.115.617-.386.732-.732L13.863.1z">
+            </path>
+        </symbol>
+        <symbol id="sun-fill" viewBox="0 0 16 16">
+            <path
+                d="M8 12a4 4 0 1 0 0-8 4 4 0 0 0 0 8zM8 0a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 0zm0 13a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 13zm8-5a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2a.5.5 0 0 1 .5.5zM3 8a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2A.5.5 0 0 1 3 8zm10.657-5.657a.5.5 0 0 1 0 .707l-1.414 1.415a.5.5 0 1 1-.707-.708l1.414-1.414a.5.5 0 0 1 .707 0zm-9.193 9.193a.5.5 0 0 1 0 .707L3.05 13.657a.5.5 0 0 1-.707-.707l1.414-1.414a.5.5 0 0 1 .707 0zm9.193 2.121a.5.5 0 0 1-.707 0l-1.414-1.414a.5.5 0 0 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .707zM4.464 4.465a.5.5 0 0 1-.707 0L2.343 3.05a.5.5 0 1 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .708z">
+            </path>
+        </symbol>
+    </svg>
+    <div class="dropdown position-fixed bottom-0 end-0 mb-3 me-3 bd-mode-toggle"> <button
+            class="btn btn-bd-primary py-2 dropdown-toggle d-flex align-items-center" id="bd-theme" type="button"
+            aria-expanded="false" data-bs-toggle="dropdown" aria-label="Alternar tema (escuro)"> <svg
+                class="bi my-1 theme-icon-active" aria-hidden="true">
+                <use href="#moon-stars-fill"></use>
+            </svg> <span class="visually-hidden" id="bd-theme-text">
+                <font dir="auto" style="vertical-align: inherit;">
+                    <font dir="auto" style="vertical-align: inherit;">Alternar tema</font>
+                </font>
+            </span> </button>
+        <ul class="dropdown-menu dropdown-menu-end shadow" aria-labelledby="bd-theme-text">
+            <li> <button type="button" class="dropdown-item d-flex align-items-center" data-bs-theme-value="light"
+                    aria-pressed="false"> <svg class="bi me-2 opacity-50" aria-hidden="true">
+                        <use href="#sun-fill"></use>
+                    </svg>
+                    <font dir="auto" style="vertical-align: inherit;">
+                        <font dir="auto" style="vertical-align: inherit;">
+                            Luz
+                        </font>
+                    </font><svg class="bi ms-auto d-none" aria-hidden="true">
+                        <use href="#check2"></use>
+                    </svg>
+                </button> </li>
+            <li> <button type="button" class="dropdown-item d-flex align-items-center active" data-bs-theme-value="dark"
+                    aria-pressed="true"> <svg class="bi me-2 opacity-50" aria-hidden="true">
+                        <use href="#moon-stars-fill"></use>
+                    </svg>
+                    <font dir="auto" style="vertical-align: inherit;">
+                        <font dir="auto" style="vertical-align: inherit;">
+                            Escuro
+                        </font>
+                    </font><svg class="bi ms-auto d-none" aria-hidden="true">
+                        <use href="#check2"></use>
+                    </svg>
+                </button> </li>
+            <li> <button type="button" class="dropdown-item d-flex align-items-center" data-bs-theme-value="auto"
+                    aria-pressed="false"> <svg class="bi me-2 opacity-50" aria-hidden="true">
+                        <use href="#circle-half"></use>
+                    </svg>
+                    <font dir="auto" style="vertical-align: inherit;">
+                        <font dir="auto" style="vertical-align: inherit;">
+                            Auto
+                        </font>
+                    </font><svg class="bi ms-auto d-none" aria-hidden="true">
+                        <use href="#check2"></use>
+                    </svg>
+                </button> </li>
+        </ul>
+    </div>
+    <header data-bs-theme="dark">
+        <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+            <div class="container-fluid"> <a class="navbar-brand" href="#">
+                    <font dir="auto" style="vertical-align: inherit;">
+                        <font dir="auto" style="vertical-align: inherit;">Carrossel</font>
+                    </font>
+                </a> <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false"
+                    aria-label="Alternar navegação"> <span class="navbar-toggler-icon"></span> </button>
+                <div class="collapse navbar-collapse" id="navbarCollapse">
+                    <ul class="navbar-nav me-auto mb-2 mb-md-0">
+                        <li class="nav-item"> <a class="nav-link active" aria-current="page" href="#">
+                                <font dir="auto" style="vertical-align: inherit;">
+                                    <font dir="auto" style="vertical-align: inherit;">Lar</font>
+                                </font>
+                            </a> </li>
+                        <li class="nav-item"> <a class="nav-link" href="#">
+                                <font dir="auto" style="vertical-align: inherit;">
+                                    <font dir="auto" style="vertical-align: inherit;">Link</font>
+                                </font>
+                            </a> </li>
+                        <li class="nav-item"> <a class="nav-link disabled" aria-disabled="true">
+                                <font dir="auto" style="vertical-align: inherit;">
+                                    <font dir="auto" style="vertical-align: inherit;">Desabilitado</font>
+                                </font>
+                            </a> </li>
+                    </ul>
+                    <form class="d-flex" role="search"> <input class="form-control me-2" type="search"
+                            placeholder="Procurar" aria-label="Procurar"> <button class="btn btn-outline-success"
+                            type="submit">
+                            <font dir="auto" style="vertical-align: inherit;">
+                                <font dir="auto" style="vertical-align: inherit;">Procurar</font>
+                            </font>
+                        </button> </form>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <main>
+        <div id="myCarousel" class="carousel slide mb-6" data-bs-ride="carousel">
+            <div class="carousel-indicators"> <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="0"
+                    class="" aria-label="Slide 1"></button> <button type="button" data-bs-target="#myCarousel"
+                    data-bs-slide-to="1" aria-label="Slide 2" class=""></button> <button type="button"
+                    data-bs-target="#myCarousel" data-bs-slide-to="2" aria-label="Slide 3" class="active"
+                    aria-current="true"></button> </div>
+            <div class="carousel-inner">
+                <div class="carousel-item"> <svg aria-hidden="true" class="bd-placeholder-img " height="100%"
+                        preserveAspectRatio="xMidYMid slice" width="100%" xmlns="http://www.w3.org/2000/svg">
+                        <rect width="100%" height="100%" fill="var(--bs-secondary-color)"></rect>
+                    </svg>
+                    <div class="container">
+                        <div class="carousel-caption text-start">
+                            <h1>
+                                <font dir="auto" style="vertical-align: inherit;">
+                                    <font dir="auto" style="vertical-align: inherit;">Exemplo de título.</font>
+                                </font>
+                            </h1>
+                            <p class="opacity-75">
+                                <font dir="auto" style="vertical-align: inherit;">
+                                    <font dir="auto" style="vertical-align: inherit;">Algum conteúdo de espaço reservado
+                                        representativo para o primeiro slide do carrossel.</font>
+                                </font>
+                            </p>
+                            <p><a class="btn btn-lg btn-primary" href="#">
+                                    <font dir="auto" style="vertical-align: inherit;">
+                                        <font dir="auto" style="vertical-align: inherit;">Inscreva-se hoje</font>
+                                    </font>
+                                </a></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="carousel-item"> <svg aria-hidden="true" class="bd-placeholder-img " height="100%"
+                        preserveAspectRatio="xMidYMid slice" width="100%" xmlns="http://www.w3.org/2000/svg">
+                        <rect width="100%" height="100%" fill="var(--bs-secondary-color)"></rect>
+                    </svg>
+                    <div class="container">
+                        <div class="carousel-caption">
+                            <h1>
+                                <font dir="auto" style="vertical-align: inherit;">
+                                    <font dir="auto" style="vertical-align: inherit;">Outro exemplo de título.</font>
+                                </font>
+                            </h1>
+                            <p>
+                                <font dir="auto" style="vertical-align: inherit;">
+                                    <font dir="auto" style="vertical-align: inherit;">Algum conteúdo representativo de
+                                        espaço reservado para o segundo slide do carrossel.</font>
+                                </font>
+                            </p>
+                            <p><a class="btn btn-lg btn-primary" href="#">
+                                    <font dir="auto" style="vertical-align: inherit;">
+                                        <font dir="auto" style="vertical-align: inherit;">Saber mais</font>
+                                    </font>
+                                </a></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="carousel-item active"> <svg aria-hidden="true" class="bd-placeholder-img " height="100%"
+                        preserveAspectRatio="xMidYMid slice" width="100%" xmlns="http://www.w3.org/2000/svg">
+                        <rect width="100%" height="100%" fill="var(--bs-secondary-color)"></rect>
+                    </svg>
+                    <div class="container">
+                        <div class="carousel-caption text-end">
+                            <h1>
+                                <font dir="auto" style="vertical-align: inherit;">
+                                    <font dir="auto" style="vertical-align: inherit;">Mais uma para garantir.</font>
+                                </font>
+                            </h1>
+                            <p>
+                                <font dir="auto" style="vertical-align: inherit;">
+                                    <font dir="auto" style="vertical-align: inherit;">Algum conteúdo representativo de
+                                        espaço reservado para o terceiro slide deste carrossel.</font>
+                                </font>
+                            </p>
+                            <p><a class="btn btn-lg btn-primary" href="#">
+                                    <font dir="auto" style="vertical-align: inherit;">
+                                        <font dir="auto" style="vertical-align: inherit;">Navegar pela galeria</font>
+                                    </font>
+                                </a></p>
+                        </div>
+                    </div>
+                </div>
+            </div> <button class="carousel-control-prev" type="button" data-bs-target="#myCarousel"
+                data-bs-slide="prev"> <span class="carousel-control-prev-icon" aria-hidden="true"></span> <span
+                    class="visually-hidden">
+                    <font dir="auto" style="vertical-align: inherit;">
+                        <font dir="auto" style="vertical-align: inherit;">Anterior</font>
+                    </font>
+                </span> </button> <button class="carousel-control-next" type="button" data-bs-target="#myCarousel"
+                data-bs-slide="next"> <span class="carousel-control-next-icon" aria-hidden="true"></span> <span
+                    class="visually-hidden">
+                    <font dir="auto" style="vertical-align: inherit;">
+                        <font dir="auto" style="vertical-align: inherit;">Próximo</font>
+                    </font>
+                </span> </button>
+        </div> <!-- Marketing messaging and featurettes
+  ================================================== -->
+        <!-- Wrap the rest of the page in another container to center all the content. -->
+        <div class="container marketing"> <!-- Three columns of text below the carousel -->
+            <div class="row">
+                <div class="col-lg-4"> <svg aria-label="Espaço reservado" class="bd-placeholder-img rounded-circle"
+                        height="140" preserveAspectRatio="xMidYMid slice" role="img" width="140"
+                        xmlns="http://www.w3.org/2000/svg">
+                        <title>Placeholder</title>
+                        <rect width="100%" height="100%" fill="var(--bs-secondary-color)"></rect>
+                    </svg>
+                    <h2 class="fw-normal">
+                        <font dir="auto" style="vertical-align: inherit;">
+                            <font dir="auto" style="vertical-align: inherit;">Cabeçalho</font>
+                        </font>
+                    </h2>
+                    <p>
+                        <font dir="auto" style="vertical-align: inherit;">
+                            <font dir="auto" style="vertical-align: inherit;">Um pouco de conteúdo representativo para
+                                as três colunas de texto abaixo do carrossel. Esta é a primeira coluna.</font>
+                        </font>
+                    </p>
+                    <p><a class="btn btn-secondary" href="#">
+                            <font dir="auto" style="vertical-align: inherit;">
+                                <font dir="auto" style="vertical-align: inherit;">Ver detalhes »</font>
+                            </font>
+                        </a></p>
+                </div><!-- /.col-lg-4 -->
+                <div class="col-lg-4"> <svg aria-label="Espaço reservado" class="bd-placeholder-img rounded-circle"
+                        height="140" preserveAspectRatio="xMidYMid slice" role="img" width="140"
+                        xmlns="http://www.w3.org/2000/svg">
+                        <title>Placeholder</title>
+                        <rect width="100%" height="100%" fill="var(--bs-secondary-color)"></rect>
+                    </svg>
+                    <h2 class="fw-normal">
+                        <font dir="auto" style="vertical-align: inherit;">
+                            <font dir="auto" style="vertical-align: inherit;">Cabeçalho</font>
+                        </font>
+                    </h2>
+                    <p>
+                        <font dir="auto" style="vertical-align: inherit;">
+                            <font dir="auto" style="vertical-align: inherit;">Mais um conteúdo interessante e
+                                representativo. Desta vez, passamos para a segunda coluna.</font>
+                        </font>
+                    </p>
+                    <p><a class="btn btn-secondary" href="#">
+                            <font dir="auto" style="vertical-align: inherit;">
+                                <font dir="auto" style="vertical-align: inherit;">Ver detalhes »</font>
+                            </font>
+                        </a></p>
+                </div><!-- /.col-lg-4 -->
+                <div class="col-lg-4"> <svg aria-label="Espaço reservado" class="bd-placeholder-img rounded-circle"
+                        height="140" preserveAspectRatio="xMidYMid slice" role="img" width="140"
+                        xmlns="http://www.w3.org/2000/svg">
+                        <title>Placeholder</title>
+                        <rect width="100%" height="100%" fill="var(--bs-secondary-color)"></rect>
+                    </svg>
+                    <h2 class="fw-normal">
+                        <font dir="auto" style="vertical-align: inherit;">
+                            <font dir="auto" style="vertical-align: inherit;">Cabeçalho</font>
+                        </font>
+                    </h2>
+                    <p>
+                        <font dir="auto" style="vertical-align: inherit;">
+                            <font dir="auto" style="vertical-align: inherit;">E por último, a terceira coluna de
+                                conteúdo representativo do espaço reservado.</font>
+                        </font>
+                    </p>
+                    <p><a class="btn btn-secondary" href="#">
+                            <font dir="auto" style="vertical-align: inherit;">
+                                <font dir="auto" style="vertical-align: inherit;">Ver detalhes »</font>
+                            </font>
+                        </a></p>
+                </div><!-- /.col-lg-4 -->
+            </div><!-- /.row --> <!-- START THE FEATURETTES -->
+            <hr class="featurette-divider">
+            <div class="row featurette">
+                <div class="col-md-7">
+                    <h2 class="featurette-heading fw-normal lh-1">
+                        <font dir="auto" style="vertical-align: inherit;">
+                            <font dir="auto" style="vertical-align: inherit;">Primeiro título do featurette. </font>
+                        </font><span class="text-body-secondary">
+                            <font dir="auto" style="vertical-align: inherit;">
+                                <font dir="auto" style="vertical-align: inherit;">Vai te deixar de queixo caído.</font>
+                            </font>
+                        </span>
+                    </h2>
+                    <p class="lead">
+                        <font dir="auto" style="vertical-align: inherit;">
+                            <font dir="auto" style="vertical-align: inherit;">Um ótimo conteúdo provisório para o
+                                primeiro featurette aqui. Imagine uma prosa emocionante aqui.</font>
+                        </font>
+                    </p>
+                </div>
+                <div class="col-md-5"> <svg aria-label="Espaço reservado: 500x500"
+                        class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" height="500"
+                        preserveAspectRatio="xMidYMid slice" role="img" width="500" xmlns="http://www.w3.org/2000/svg">
+                        <title>Placeholder</title>
+                        <rect width="100%" height="100%" fill="var(--bs-secondary-bg)"></rect><text x="50%" y="50%"
+                            fill="var(--bs-secondary-color)" dy=".3em">500x500</text>
+                    </svg> </div>
+            </div>
+            <hr class="featurette-divider">
+            <div class="row featurette">
+                <div class="col-md-7 order-md-2">
+                    <h2 class="featurette-heading fw-normal lh-1">
+                        <font dir="auto" style="vertical-align: inherit;">
+                            <font dir="auto" style="vertical-align: inherit;">Ah, sim, é muito bom. </font>
+                        </font><span class="text-body-secondary">
+                            <font dir="auto" style="vertical-align: inherit;">
+                                <font dir="auto" style="vertical-align: inherit;">Veja você mesmo.</font>
+                            </font>
+                        </span>
+                    </h2>
+                    <p class="lead">
+                        <font dir="auto" style="vertical-align: inherit;">
+                            <font dir="auto" style="vertical-align: inherit;">Outro featurette? Claro. Mais conteúdo de
+                                espaço reservado aqui para dar uma ideia de como esse layout funcionaria com algum
+                                conteúdo real no lugar.</font>
+                        </font>
+                    </p>
+                </div>
+                <div class="col-md-5 order-md-1"> <svg aria-label="Espaço reservado: 500x500"
+                        class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" height="500"
+                        preserveAspectRatio="xMidYMid slice" role="img" width="500" xmlns="http://www.w3.org/2000/svg">
+                        <title>Placeholder</title>
+                        <rect width="100%" height="100%" fill="var(--bs-secondary-bg)"></rect><text x="50%" y="50%"
+                            fill="var(--bs-secondary-color)" dy=".3em">500x500</text>
+                    </svg> </div>
+            </div>
+            <hr class="featurette-divider">
+            <div class="row featurette">
+                <div class="col-md-7">
+                    <h2 class="featurette-heading fw-normal lh-1">
+                        <font dir="auto" style="vertical-align: inherit;">
+                            <font dir="auto" style="vertical-align: inherit;">E por último, este. </font>
+                        </font><span class="text-body-secondary">
+                            <font dir="auto" style="vertical-align: inherit;">
+                                <font dir="auto" style="vertical-align: inherit;">Xeque-mate.</font>
+                            </font>
+                        </span>
+                    </h2>
+                    <p class="lead">
+                        <font dir="auto" style="vertical-align: inherit;">
+                            <font dir="auto" style="vertical-align: inherit;">E sim, este é o último bloco de conteúdo
+                                representativo de espaço reservado. Novamente, não é para ser lido de fato, apenas para
+                                dar uma ideia melhor de como ficaria com algum conteúdo real. O seu conteúdo.</font>
+                        </font>
+                    </p>
+                </div>
+                <div class="col-md-5"> <svg aria-label="Espaço reservado: 500x500"
+                        class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" height="500"
+                        preserveAspectRatio="xMidYMid slice" role="img" width="500" xmlns="http://www.w3.org/2000/svg">
+                        <title>Placeholder</title>
+                        <rect width="100%" height="100%" fill="var(--bs-secondary-bg)"></rect><text x="50%" y="50%"
+                            fill="var(--bs-secondary-color)" dy=".3em">500x500</text>
+                    </svg> </div>
+            </div>
+            <hr class="featurette-divider"> <!-- /END THE FEATURETTES -->
+        </div><!-- /.container --> <!-- FOOTER -->
+        <footer class="container">
+            <p class="float-end"><a href="#">
+                    <font dir="auto" style="vertical-align: inherit;">
+                        <font dir="auto" style="vertical-align: inherit;">Voltar ao topo</font>
+                    </font>
+                </a></p>
+            <p>
+                <font dir="auto" style="vertical-align: inherit;">
+                    <font dir="auto" style="vertical-align: inherit;">© 2017–2025 Company, Inc. · </font>
+                </font><a href="#">
+                    <font dir="auto" style="vertical-align: inherit;">
+                        <font dir="auto" style="vertical-align: inherit;">Privacidade</font>
+                    </font>
+                </a>
+                <font dir="auto" style="vertical-align: inherit;">
+                    <font dir="auto" style="vertical-align: inherit;"> · </font>
+                </font><a href="#">
+                    <font dir="auto" style="vertical-align: inherit;">
+                        <font dir="auto" style="vertical-align: inherit;">Termos</font>
+                    </font>
+                </a>
+            </p>
+        </footer>
+    </main>
+    <script src="/docs/5.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+        class="astro-vvvwv3sm"></script>
+    <div id="goog-gt-tt" class="VIpgJd-yAWNEb-L7lbkb skiptranslate"
+        style="border-radius: 12px; margin: 0 0 0 -23px; padding: 0; font-family: 'Google Sans', Arial, sans-serif;"
+        data-id="">
+        <div id="goog-gt-vt" class="VIpgJd-yAWNEb-hvhgNd">
+            <div class="VIpgJd-yAWNEb-hvhgNd-Ud7fr"><img
+                    src="https://fonts.gstatic.com/s/i/productlogos/translate/v14/24px.svg" width="24" height="24"
+                    alt="">
+                <div class=" VIpgJd-yAWNEb-hvhgNd-IuizWc-i3jM8c " dir="ltr">Texto original</div>
+            </div>
+            <div class="VIpgJd-yAWNEb-hvhgNd-k77Iif">
+                <div id="goog-gt-original-text" class="VIpgJd-yAWNEb-nVMfcd-fmcmS VIpgJd-yAWNEb-hvhgNd-axAV1"></div>
+            </div>
+            <div class="VIpgJd-yAWNEb-hvhgNd-N7Eqid ltr">
+                <div class="VIpgJd-yAWNEb-hvhgNd-N7Eqid-B7I4Od ltr" dir="ltr">
+                    <div class="VIpgJd-yAWNEb-hvhgNd-UTujCb">Avalie a tradução</div>
+                    <div class="VIpgJd-yAWNEb-hvhgNd-eO9mKe">O feedback vai ser usado para ajudar a melhorar o Google
+                        Tradutor</div>
+                </div>
+                <div class="VIpgJd-yAWNEb-hvhgNd-xgov5 ltr"><button id="goog-gt-thumbUpButton" type="button"
+                        class="VIpgJd-yAWNEb-hvhgNd-bgm6sf" title="Tradução boa" aria-label="Tradução boa"
+                        aria-pressed="false"><span id="goog-gt-thumbUpIcon"><svg width="24" height="24"
+                                viewBox="0 0 24 24" focusable="false" class="VIpgJd-yAWNEb-hvhgNd-THI6Vb NMm5M">
+                                <path
+                                    d="M21 7h-6.31l.95-4.57.03-.32c0-.41-.17-.79-.44-1.06L14.17 0S7.08 6.85 7 7H2v13h16c.83 0 1.54-.5 1.84-1.22l3.02-7.05c.09-.23.14-.47.14-.73V9c0-1.1-.9-2-2-2zM7 18H4V9h3v9zm14-7l-3 7H9V8l4.34-4.34L12 9h9v2z">
+                                </path>
+                            </svg></span><span id="goog-gt-thumbUpIconFilled"><svg width="24" height="24"
+                                viewBox="0 0 24 24" focusable="false" class="VIpgJd-yAWNEb-hvhgNd-THI6Vb NMm5M">
+                                <path
+                                    d="M21 7h-6.31l.95-4.57.03-.32c0-.41-.17-.79-.44-1.06L14.17 0S7.08 6.85 7 7v13h11c.83 0 1.54-.5 1.84-1.22l3.02-7.05c.09-.23.14-.47.14-.73V9c0-1.1-.9-2-2-2zM5 7H1v13h4V7z">
+                                </path>
+                            </svg></span></button><button id="goog-gt-thumbDownButton" type="button"
+                        class="VIpgJd-yAWNEb-hvhgNd-bgm6sf" title="Tradução ruim" aria-label="Tradução ruim"
+                        aria-pressed="false"><span id="goog-gt-thumbDownIcon"><svg width="24" height="24"
+                                viewBox="0 0 24 24" focusable="false" class="VIpgJd-yAWNEb-hvhgNd-THI6Vb NMm5M">
+                                <path
+                                    d="M3 17h6.31l-.95 4.57-.03.32c0 .41.17.79.44 1.06L9.83 24s7.09-6.85 7.17-7h5V4H6c-.83 0-1.54.5-1.84 1.22l-3.02 7.05c-.09.23-.14.47-.14.73v2c0 1.1.9 2 2 2zM17 6h3v9h-3V6zM3 13l3-7h9v10l-4.34 4.34L12 15H3v-2z">
+                                </path>
+                            </svg></span><span id="goog-gt-thumbDownIconFilled"><svg width="24" height="24"
+                                viewBox="0 0 24 24" focusable="false" class="VIpgJd-yAWNEb-hvhgNd-THI6Vb NMm5M">
+                                <path
+                                    d="M3 17h6.31l-.95 4.57-.03.32c0 .41.17.79.44 1.06L9.83 24s7.09-6.85 7.17-7V4H6c-.83 0-1.54.5-1.84 1.22l-3.02 7.05c-.09.23-.14.47-.14.73v2c0 1.1.9 2 2 2zm16 0h4V4h-4v13z">
+                                </path>
+                            </svg></span></button></div>
+            </div>
+            <div id="goog-gt-votingHiddenPane" class="VIpgJd-yAWNEb-hvhgNd-aXYTce">
+                <form id="goog-gt-votingForm" action="//translate.googleapis.com/translate_voting?client=te_lib"
+                    method="post" target="votingFrame" class="VIpgJd-yAWNEb-hvhgNd-aXYTce"><input type="text" name="sl"
+                        id="goog-gt-votingInputSrcLang"><input type="text" name="tl"
+                        id="goog-gt-votingInputTrgLang"><input type="text" name="query"
+                        id="goog-gt-votingInputSrcText"><input type="text" name="gtrans"
+                        id="goog-gt-votingInputTrgText"><input type="text" name="vote" id="goog-gt-votingInputVote">
+                </form><iframe name="votingFrame" frameborder="0"></iframe>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
