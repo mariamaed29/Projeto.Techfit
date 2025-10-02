@@ -1,0 +1,146 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, sans-serif;
+}
+
+body {
+  background: #1d1f21;
+  color: white;
+}
+
+header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #fff;
+  padding: 10px 20px;
+}
+
+.logo img {
+  width: 70px;
+}
+
+nav ul {
+  display: flex;
+  list-style: none;
+  gap: 15px;
+}
+
+nav ul li a {
+  text-decoration: none;
+  background: #1e90ff;
+  padding: 8px 15px;
+  border-radius: 10px;
+  color: white;
+  font-weight: bold;
+  transition: 0.3s;
+}
+
+nav ul li a:hover {
+  background: #005bbb;
+}
+
+.perfil {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.notificacao {
+  width: 12px;
+  height: 12px;
+  background: limegreen;
+  border-radius: 50%;
+}
+
+.avatar {
+  width: 40px;
+  height: 40px;
+  background: black;
+  border: 2px solid #1e90ff;
+  border-radius: 50%;
+}
+
+main {
+  padding: 20px;
+}
+
+.conteudo .painel {
+  background: white;
+  border-radius: 15px;
+  height: 150px;
+  margin-bottom: 20px;
+}
+
+.ranking-progresso {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.ranking {
+  flex: 1;
+  text-align: center;
+}
+
+.podio {
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  gap: 10px;
+}
+
+.colocacao {
+  width: 70px;
+  height: 70px;
+  background: #c6ff00;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  font-weight: bold;
+  border: 3px solid black;
+}
+
+.primeiro { height: 120px; }
+.segundo { height: 90px; }
+.terceiro { height: 60px; }
+
+.progresso {
+  flex: 1;
+  background: white;
+  border-radius: 15px;
+  padding: 10px;
+  margin-left: 20px;
+  color: black;
+}
+
+.progresso h2 {
+  background: #c6ff00;
+  border-radius: 10px 10px 0 0;
+  text-align: center;
+  padding: 5px;
+}
+
+.progresso .dados {
+  display: flex;
+  justify-content: space-around;
+  padding: 15px;
+  font-weight: bold;
+}
+
+.minhas-medalhas {
+  text-align: center;
+}
+
+.minhas-medalhas h2 {
+  color: #c6ff00;
+  margin-bottom: 10px;
+}
+
+.minhas-medalhas .medalhas img {
+  width: 50px;
+  margin: 0 10px;
+}
