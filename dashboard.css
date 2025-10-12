@@ -1,4 +1,4 @@
-
+/* 
 :root {
   --azul: #007bff;    
   --preto: #000000;   
@@ -160,7 +160,7 @@ main {
 
 /* =============================================== */
 
-.table-responsive {
+/* .table-responsive {
   width: 100%;
   overflow-x: auto;
   margin-top: 80px;
@@ -184,4 +184,4 @@ color: var(--preto);
   margin-top: 20px;
   background-color: var(--branco);
 
-} */
+} */ 

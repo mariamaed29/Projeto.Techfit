@@ -1,120 +1,140 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <!-- 2: metadados obrigatórios para responsividade -->
+  <!-- 2: metadados obrigatórios para responsividade
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
-<!-- 3: link para o CSS do Bootstrap (CDN ou local) -->
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+3: link para o CSS do Bootstrap (CDN ou local) 
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
 
-<!-- 4: script do bootstrap bundle antes do fechamento do body -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+ 4: script do bootstrap bundle antes do fechamento do body 
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script> 
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">-->
+
+
   <title>Desafios - Dashboard</title>
   <link rel="stylesheet" href="dashboard.css">
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
 
 </head>
+
 <body class="body">
 
-  <!-- Navbar -->
-  <header class="navbar">
-    <div class="logo">
-      <img src="FOTOS/Logo_de_Força_e_Estrutura-removebg-preview.png" alt="Logo TF">
-    </div>
-    <nav>
-      <ul>
-        <li><a href="#">HOME</a></li>
-        <li><a href="#">PLANOS</a></li>
-        <li><a href="#">AULAS</a></li>
-        <li><a href="#">AVALIAÇÃO</a></li>
-        <li><a href="#">LOJA</a></li>
-        <li><a href="#">NUTRIÇÃO</a></li>
-        <li><a href="#">EVENTOS</a></li>
-      </ul>
+  <!-- Cabeçalho -->
+  <header>
+    <nav class="navbar navbar-expand-md navbar-light fixed-top bg-light">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="pág.inicial.html"><img src="FOTOS/logoNormal.png"
+            alt="Logo" width="30" height="auto"></a>
+
+
+        <div class="collapse navbar-collapse" id="navbarCollapse">
+          <ul class="navbar-nav me-auto mb-2 mb-md-0">
+            <li class="nav-item"><a class="nav-link active" href="#">HOME</a></li>
+            <li class="nav-item"><a class="nav-link active" href="#">PLANOS</a></li>
+            <li class="nav-item"><a class="nav-link active" href="#">AULAS</a></li>
+            <li class="nav-item"><a class="nav-link active" href="#">AVALIAÇÃO</a></li>
+            <li class="nav-item"><a class="nav-link active" href="#">LOJA</a></li>
+            <li class="nav-item"><a class="nav-link active" href="#">NUTRIÇÃO</a></li>
+            <li class="nav-item"><a class="nav-link active" href="#">EVENTOS</a></li>
+          </ul>
+        </div>
+      </div>
     </nav>
-    <div class="perfil">
-      <div class="notificacao"></div>
-      <img src="FOTOS/user.png" alt="Perfil">
+    <div class="notificacao">
+        <img src="FOTOS/notification_12730941.png" alt="notificacao" width="30" height="auto">
+      </div>
+
+     <div class="perfil">
+      <img src="FOTOS/userIcon.png" alt="Perfil" width="30" height="auto">
     </div>
   </header>
+<!-- FINAL CABEÇALHO -->
 
-  <!-- Conteúdo -->
-  <main class="conteudo">
-    <!-- Card principal -->
-    <section class="card-principal">
-      <div class="bloco"></div>
-    </section>
-
-    <section class="dashboard">
-      <!-- Pódio -->
-      <div class="podio">
-        <div class="medalhas-top">
-          <img src="FOTOS/medalha-ouro.png" alt="Ouro">
-          <img src="FOTOS/medalha-prata.png" alt="Prata">
-          <img src="FOTOS/medalha-bronze.png" alt="Bronze">
-        </div>
-        <div class="podio-box">
-          <div class="segundo">2</div>
-          <div class="primeiro">1</div>
-          <div class="terceiro">3</div>
-        </div>
-      </div>
-
-      <!-- Progresso -->
-      <div class="progresso">
-        <h2>PROGRESSO</h2>
-        <div class="tabela">
-          <div class="col">AULAS</div>
-          <div class="col">PONTOS</div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Minhas Medalhas -->
-    <section class="minhas-medalhas">
-      <h3>MINHAS MEDALHAS</h3>
-      <div class="medalhas-lista">
-        <img src="FOTOS/medalha-prata.png" alt="Medalha">
-        <img src="FOTOS/medalha-ouro.png" alt="Medalha">
-        <img src="FOTOS/medalha-ouro.png" alt="Medalha">
-      </div>
-    </section>
+  <!-- CARTAZ - CARROSEL -->
+  <main id="Cartaz">
+    <img src="/FOTOS/portaria.png" alt="portaria da academia">
   </main>
-<!-- <div class="container">
-  <div class="row">
-    <div class="col-4">Posiçao</div>
-    <div class="col-4">Aulas</div> 
-    <div class="col-4">Pontos</div>
-    <div id="colunas"></div>
+<!-- FINAL CARROSEL -->
 
+
+  <!-- RANKING -->
+  <section id="ranking">
+    <h3>RANKING</h3>
+    <ol>
+      <li>
+        <article id="primeiro">
+          <img src="/FOTOS/1.png" width="80px" height="auto">
+          <h4>Maria Eduarda</h4>
+          <p>100 Pontos</p>
+        </article>
+      </li>
+
+      <li>
+        <article id="segundo">
+          <img src="/FOTOS/2.png" width="70px" height="auto">
+          <h4>Marcos</h4>
+          <p>76 Pontos</p>
+        </article>
+      </li>
+
+      <li>
+        <article id="terceiro">
+          <img src="/FOTOS/3.png" width="60px" height="auto">
+          <h4>Rafael Souza</h4>
+          <p>59 Pontos</p>
+        </article>
+      </li>
+    </ol>
+  </section>
+<!-- FINAL RANKING -->
+
+
+<!-- TABELA PROGRESSO -->
+
+<section id="progresso">
+  <h3>MEU PROGRESSO</h3>
+
+  <div class="info-usuario">
+    <h4>Maria Eduarda</h4>
+    <p>Total de pontos: <span id="pontos">0</span></p>
+    <p>Aulas concluídas: <span id="aulas">0</span></p>
   </div>
-</div> -->
 
-<div class="table-responsive">
-  <table class="table table-hover table-striped">
-    <thead id="name-col">
-      <tr>
-        <th>Posiçao</th>
-        <th>Nome</th>
-        <th>Pontos</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td>1</td>
-        <td>Brenda</td>
-        <td>150</td>
-      </tr>
-      <tr>
-        <td>2</td>
-        <td>Maria</td>
-        <td>120</td>
-      </tr>
-    </tbody>
-  </table>
-</div>
+  <div class="barra-progresso">
+    <div id="progresso-preenchido"></div>
+  </div>
+  <p id="nivel">Nível: Iniciante</p>
+</section>
+
+<!-- FINAL PROGRESSO -->
+
+<section id="medalhas">
+  <h3>MINHAS MEDALHAS</h3>
+
+<ul>
+      <li>
+        <article id="meda1">
+          <img src="/FOTOS/1.png" width="50px" height="auto">
+        </article>
+      </li>
+
+      <li>
+        <article id="meda2">
+          <img src="/FOTOS/2.png" width="50px" height="auto">
+        </article>
+      </li>
+
+      <li>
+        <article id="meda3">
+          <img src="/FOTOS/2.png" width="50px" height="auto">
+        </article>
+      </li>
+    </ul>
+</section>
 
 </body>
 </html>
