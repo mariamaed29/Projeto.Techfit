@@ -4,15 +4,15 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <!-- 2: metadados obrigatórios para responsividade
-<meta name="viewport" content="width=device-width, initial-scale=1">
+  2: metadados obrigatórios para responsividade
+  <meta name="viewport" content="width=device-width, initial-scale=1">
 
-3: link para o CSS do Bootstrap (CDN ou local) 
+  3: link para o CSS do Bootstrap (CDN ou local)
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
 
- 4: script do bootstrap bundle antes do fechamento do body 
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script> 
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">-->
+  4: script do bootstrap bundle antes do fechamento do body
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 
 
   <title>Desafios - Dashboard</title>
@@ -27,8 +27,8 @@
   <header>
     <nav class="navbar navbar-expand-md navbar-light fixed-top bg-light">
       <div class="container-fluid">
-        <a class="navbar-brand" href="pág.inicial.html"><img src="FOTOS/logoNormal.png"
-            alt="Logo" width="30" height="auto"></a>
+        <a class="navbar-brand" href="pág.inicial.html"><img src="FOTOS/logoNormal.png" alt="Logo" width="30"
+            height="auto"></a>
 
 
         <div class="collapse navbar-collapse" id="navbarCollapse">
@@ -41,31 +41,56 @@
             <li class="nav-item"><a class="nav-link active" href="#">NUTRIÇÃO</a></li>
             <li class="nav-item"><a class="nav-link active" href="#">EVENTOS</a></li>
           </ul>
+
+
+          <div class="notificacao">
+            <img src="FOTOS/notification_12730941.png" alt="notificacao" width="30" height="auto">
+          </div>
+
+          <div class="perfil">
+            <img src="FOTOS/userIcon.png" alt="Perfil" width="30" height="auto">
+          </div>
         </div>
       </div>
     </nav>
-    <div class="notificacao">
-        <img src="FOTOS/notification_12730941.png" alt="notificacao" width="30" height="auto">
-      </div>
-
-     <div class="perfil">
-      <img src="FOTOS/userIcon.png" alt="Perfil" width="30" height="auto">
-    </div>
   </header>
-<!-- FINAL CABEÇALHO -->
+  <!-- FINAL CABEÇALHO -->
 
   <!-- CARTAZ - CARROSEL -->
   <main id="Cartaz">
+    <div id="c" class="carousel slide" data-bs-ride="carousel">
+  <div class="carousel-indicators">
+    <button data-bs-target="#c" data-bs-slide-to="0" class="active"></button>
+    <button data-bs-target="#c" data-bs-slide-to="1"></button>
+    <button data-bs-target="#c" data-bs-slide-to="2"></button>
+  </div>
+  <div class="carousel-inner">
+    <div class="carousel-item active"><img src="https://via.placeholder.com/1000x350?text=Slide+1" class="d-block w-100" alt=""><div class="carousel-caption d-none d-md-block"><h5>Legenda 1</h5><p>Descrição</p></div></div>
+    <div class="carousel-item"><img src="/FOTOS/banner1.png" class="d-block w-100" alt=""></div>
+    <div class="carousel-item"><img src="FOTOS/banner2.png" class="d-block w-100" alt=""></div>
+  </div>
+  <button class="carousel-control-prev" type="button" data-bs-target="#c" data-bs-slide="prev"><span class="carousel-control-prev-icon"></span></button>
+  <button class="carousel-control-next" type="button" data-bs-target="#c" data-bs-slide="next"><span class="carousel-control-next-icon"></span></button>
+</div>
     <img src="/FOTOS/portaria.png" alt="portaria da academia">
   </main>
-<!-- FINAL CARROSEL -->
+  <!-- FINAL CARROSEL -->
 
 
   <!-- RANKING -->
   <section id="ranking">
     <h3>RANKING</h3>
     <ol>
-      <li>
+      
+<li>
+        <article id="segundo">
+          <img src="/FOTOS/2.png" width="80px" height="auto">
+          <h4>Marcos</h4>
+          <p>76 Pontos</p>
+        </article>
+      </li>
+
+<li>
         <article id="primeiro">
           <img src="/FOTOS/1.png" width="80px" height="auto">
           <h4>Maria Eduarda</h4>
@@ -74,48 +99,41 @@
       </li>
 
       <li>
-        <article id="segundo">
-          <img src="/FOTOS/2.png" width="70px" height="auto">
-          <h4>Marcos</h4>
-          <p>76 Pontos</p>
-        </article>
-      </li>
-
-      <li>
         <article id="terceiro">
-          <img src="/FOTOS/3.png" width="60px" height="auto">
+          <img src="/FOTOS/3.png" width="80px" height="auto">
           <h4>Rafael Souza</h4>
           <p>59 Pontos</p>
         </article>
       </li>
     </ol>
+    
   </section>
-<!-- FINAL RANKING -->
+  <!-- FINAL RANKING -->
 
 
-<!-- TABELA PROGRESSO -->
+  <!-- TABELA PROGRESSO -->
 
-<section id="progresso">
-  <h3>MEU PROGRESSO</h3>
+  <section id="progresso">
+    <h3>MEU PROGRESSO</h3>
 
-  <div class="info-usuario">
-    <h4>Maria Eduarda</h4>
-    <p>Total de pontos: <span id="pontos">0</span></p>
-    <p>Aulas concluídas: <span id="aulas">0</span></p>
-  </div>
+    <div class="info-usuario">
+      <h4>Maria Eduarda</h4>
+      <p>Total de pontos: <span id="pontos">0</span></p>
+      <p>Aulas concluídas: <span id="aulas">0</span></p>
+    </div>
 
-  <div class="barra-progresso">
-    <div id="progresso-preenchido"></div>
-  </div>
-  <p id="nivel">Nível: Iniciante</p>
-</section>
+    <div class="barra-progresso">
+      <div id="progresso-preenchido"></div>
+    </div>
+    <p id="nivel">Nível: Iniciante</p>
+  </section>
 
-<!-- FINAL PROGRESSO -->
+  <!-- FINAL PROGRESSO -->
 
-<section id="medalhas">
-  <h3>MINHAS MEDALHAS</h3>
+  <section id="medalhas">
+    <h3>MINHAS MEDALHAS</h3>
 
-<ul>
+    <ul>
       <li>
         <article id="meda1">
           <img src="/FOTOS/1.png" width="50px" height="auto">
@@ -134,7 +152,8 @@
         </article>
       </li>
     </ul>
-</section>
+  </section>
 
 </body>
+
 </html>
