@@ -8,10 +8,24 @@
   --radius: 16px;
   --shadow: 0 8px 32px rgba(0, 0, 0, 0.25);
 }
+/* ==================================================
+   VARIÁVEIS CSS (:root)
+
+   Aqui definimos cores, raios de borda, sombras e
+   outras variáveis reutilizáveis. Usar variáveis
+   facilita ajustes globais de tema.
+================================================== */
 
 /* ==========================
    RESET E CONFIGURAÇÕES GERAIS
+   - Normaliza margens/paddings
+   - Define box-sizing global
+   - Define fonte padrão do projeto
+   Observação: o seletor `.body` abaixo é uma classe
+   (não a tag `<body>`). Use `.body` no HTML quando
+   quiser aplicar o fundo do painel principal.
 ========================== */
+/* Reset básico e tipografia */
 * {
   margin: 0;
   padding: 0;
@@ -20,6 +34,8 @@
 }
 
 .body {
+  /* Container principal: aplica cor de fundo e texto
+     ao wrapper que envolve o dashboard. */
   background: var(--fundo);
   color: var(--branco);
 }
@@ -81,6 +97,14 @@ nav ul li a:hover {
   border-radius: 50%;
 }
 
+/* Notas sobre o header:
+   - `header` usa flexbox para posicionar logo,
+     navegação e área de perfil.
+   - `.notificacao` é um indicador pequeno (ponto).
+   - `.avatar` representa a foto do usuário; usar
+     `border` para destaque.
+*/
+
 /* ==========================
    CONTEÚDO PRINCIPAL
 ========================== */
@@ -94,6 +118,10 @@ main {
   height: 150px;
   margin-bottom: 20px;
 }
+
+/* `.conteudo .painel` é um cartão branco usado para
+   agrupar informações principais — mantenha altura
+   e border-radius consistentes para coesão visual. */
 
 /* ==========================
    RANKING / PÓDIO
@@ -155,6 +183,14 @@ main {
   box-shadow: var(--shadow);
 }
 
+/* Observações sobre o ranking/pódio:
+   - `#primeiro`, `#segundo`, `#terceiro` representam
+     as posições do pódio com tamanhos diferentes para
+     destacar o primeiro colocado.
+   - `#ranking img` estiliza avatares com borda para
+     separá-los do background do cartão.
+*/
+
 #ranking article {
   display: flex;
   flex-direction: column;
@@ -164,11 +200,13 @@ main {
   box-sizing: border-box;
 }
 
+/* 
 #ranking img {
   border-radius: 50%;
   margin-bottom: 8px;
   border: 3px solid var(--branco);
-}
+} 
+*/
 
 #ranking h4 {
   margin: 5px 0 2px;
@@ -216,6 +254,12 @@ main {
   font-weight: bold;
 }
 
+/* Uso da barra de progresso:
+   - `#progresso-preenchido` começa com `width: 0%`.
+     Alterar o `width` via JS (por exemplo) anima a
+     barra devido ao `transition`.
+*/
+
 /* ==========================
    MEDALHAS
 ========================== */
@@ -246,6 +290,11 @@ main {
   transform: scale(1.2);
 }
 
+/* Notas sobre medalhas:
+   - As imagens representam medalhas conquistadas;
+     o `hover` aumenta levemente para feedback.
+*/
+
 /* ==========================
    RESPONSIVIDADE
 ========================== */
@@ -267,3 +316,9 @@ main {
     text-align: center;
   }
 }
+
+/* Responsividade: regras básicas para telas menores
+   - O ranking muda para coluna para evitar overflow
+   - A barra de progresso aumenta a largura relativa
+   - O header empilha os elementos para melhor leitura
+*/
