@@ -1,16 +1,18 @@
- 
 :root {
-  --azul: #007bff;    
-  --preto: #000000;   
-  --cinza: #2c2c2c;   
-  --branco: #ffffff;  
-  --verde: #a6ff00; 
-  --fundo: #22262A;  
+  --azul: #007bff;
+  --preto: #000000;
+  --cinza: #2c2c2c;
+  --branco: #ffffff;
+  --verde: #a6ff00;
+  --fundo: #22262A;
   --radius: 16px;
-  --shadow: 0 8px 32px rgba(0,0,0,0.25);
+  --shadow: 0 8px 32px rgba(0, 0, 0, 0.25);
 }
-/* {
 
+/* ==========================
+   RESET E CONFIGURAÇÕES GERAIS
+========================== */
+* {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
@@ -19,15 +21,19 @@
 
 .body {
   background: var(--fundo);
-  color: white;
+  color: var(--branco);
 }
 
+/* ==========================
+   CABEÇALHO E NAVEGAÇÃO
+========================== */
 header {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  background: #ffffff;
+  background: var(--branco);
   padding: 10px 20px;
+  box-shadow: var(--shadow);
 }
 
 .logo img {
@@ -42,10 +48,10 @@ nav ul {
 
 nav ul li a {
   text-decoration: none;
-  background: #1e90ff;
+  background: var(--azul);
   padding: 8px 15px;
   border-radius: 10px;
-  color: white;
+  color: var(--branco);
   font-weight: bold;
   transition: 0.3s;
 }
@@ -70,134 +76,38 @@ nav ul li a:hover {
 .avatar {
   width: 40px;
   height: 40px;
-  background: black;
-  border: 2px solid #1e90ff;
+  background: var(--preto);
+  border: 2px solid var(--azul);
   border-radius: 50%;
 }
 
+/* ==========================
+   CONTEÚDO PRINCIPAL
+========================== */
 main {
   padding: 20px;
 }
 
 .conteudo .painel {
-  background: white;
+  background: var(--branco);
   border-radius: 15px;
   height: 150px;
   margin-bottom: 20px;
 }
 
-.ranking-progresso {
-  display: flex;
-  justify-content: space-between;
-  margin-bottom: 20px;
-}
-
-.ranking {
-  flex: 1;
-  text-align: center;
-}
-
-.podio {
-  display: flex;
-  justify-content: center;
-  align-items: flex-end;
-  gap: 10px;
-}
-
-.colocacao {
-  width: 70px;
-  height: 70px;
-  background: #c6ff00;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 24px;
-  font-weight: bold;
-  border: 3px solid black;
-}
-
-.primeiro { height: 120px; }
-.segundo { height: 90px; }
-.terceiro { height: 60px; }
-
-.progresso {
-  flex: 1;
-  background: white;
-  border-radius: 15px;
-  padding: 10px;
-  margin-left: 20px;
-  color: black;
-}
-
-.progresso h2 {
-  background: #c6ff00;
-  border-radius: 10px 10px 0 0;
-  text-align: center;
-  padding: 5px;
-}
-
-.progresso .dados {
-  display: flex;
-  justify-content: space-around;
-  padding: 15px;
-  font-weight: bold;
-}
-
-.minhas-medalhas {
-  text-align: center;
-}
-
-.minhas-medalhas h2 {
-  color: #c6ff00;
-  margin-bottom: 10px;
-}
-
-.minhas-medalhas .medalhas img {
-  width: 50px;
-  margin: 0 10px;
-}
-
-
-.table-responsive {
-  width: 100%;
-  overflow-x: auto;
-  margin-top: 80px;
-  margin-left:auto;
-}
-
-
-.tr{
-display: flex;
-background-color: var(--verde);
-border-radius: var(--radius);
-box-shadow: var(--shadow);
-font-size: 30px;
-color: var(--preto);
-}
-
-.td {
-  display: flex;
-  flex-direction: column;
-  width: 90px;
-  margin-top: 20px;
-  background-color: var(--branco);
-
-}  
-*/
-
-.body {
-  background-color: var(--fundo);
-}
-
+/* ==========================
+   RANKING / PÓDIO
+========================== */
 #ranking {
   text-align: center;
-  font-family: sans-serif;
-  margin-top: 40px;
+  margin-top: 60px;
 }
 
 #ranking h3 {
   font-size: 24px;
   margin-bottom: 20px;
+  color: var(--verde);
+  text-shadow: 0 0 8px rgba(166, 255, 0, 0.5);
 }
 
 #ranking ol {
@@ -210,30 +120,39 @@ color: var(--preto);
   margin: 0;
 }
 
-/* Cada li ocupa uma parte do pódio */
 #ranking li {
   display: flex;
   flex-direction: column;
   align-items: center;
+  transition: transform 0.3s ease;
 }
 
-/* Alturas diferentes para o pódio */
+#ranking li:hover {
+  transform: scale(1.05);
+}
+
 #primeiro {
   background-color: gold;
   padding: 10px;
   height: 120px;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
 }
 
 #segundo {
   background-color: silver;
   padding: 10px;
   height: 100px;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
 }
 
 #terceiro {
   background-color: #cd7f32; /* Bronze */
   padding: 10px;
   height: 80px;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
 }
 
 #ranking article {
@@ -248,6 +167,7 @@ color: var(--preto);
 #ranking img {
   border-radius: 50%;
   margin-bottom: 8px;
+  border: 3px solid var(--branco);
 }
 
 #ranking h4 {
@@ -258,4 +178,92 @@ color: var(--preto);
 #ranking p {
   margin: 0;
   font-size: 12px;
+}
+
+/* ==========================
+   PROGRESSO
+========================== */
+#progresso {
+  text-align: center;
+  color: var(--branco);
+  margin-top: 40px;
+}
+
+#progresso h3 {
+  color: var(--verde);
+  margin-bottom: 20px;
+}
+
+.barra-progresso {
+  width: 80%;
+  margin: 0 auto;
+  background: var(--cinza);
+  border-radius: var(--radius);
+  height: 20px;
+  overflow: hidden;
+}
+
+#progresso-preenchido {
+  background: var(--verde);
+  height: 100%;
+  width: 0%;
+  border-radius: var(--radius);
+  transition: width 1s ease;
+}
+
+#nivel {
+  margin-top: 10px;
+  font-weight: bold;
+}
+
+/* ==========================
+   MEDALHAS
+========================== */
+#medalhas {
+  text-align: center;
+  margin-top: 50px;
+}
+
+#medalhas h3 {
+  color: var(--verde);
+  margin-bottom: 20px;
+}
+
+#medalhas ul {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  list-style: none;
+  padding: 0;
+}
+
+#medalhas img {
+  width: 50px;
+  transition: transform 0.3s ease;
+}
+
+#medalhas img:hover {
+  transform: scale(1.2);
+}
+
+/* ==========================
+   RESPONSIVIDADE
+========================== */
+@media (max-width: 768px) {
+  #ranking ol {
+    flex-direction: column;
+  }
+
+  #ranking li {
+    margin-bottom: 20px;
+  }
+
+  .barra-progresso {
+    width: 90%;
+  }
+
+  header {
+    flex-direction: column;
+    text-align: center;
+  }
 }
