@@ -111,7 +111,7 @@ a:hover {
 
 /* ========== CARROSSEL ========== */
 .carousel-inner img {
-  height: 50vh;
+  /* height: 50vh; */
   object-fit: cover;
   border-bottom: 3px solid var(--azul);
   filter: brightness(0.9);
@@ -144,12 +144,13 @@ a:hover {
 
 #ranking ol li:hover {
   transform: scale(1.05);
-  box-shadow: 0 0 15px var(--azul);
+  box-shadow: 0 0 15px var(--verde);
 }
 
 #ranking img {
-  border-radius: 50%;
-  border: 2px solid var(--azul);
+  width: 150px;
+  /* border-radius: 50%; */
+  /* border: 2px solid var(--azul); */
 }
 
 /* ========== PROGRESSO ========== */
@@ -174,7 +175,7 @@ a:hover {
 }
 
 #progresso-preenchido {
-  background: linear-gradient(90deg, var(--azul), var(--verde));
+  background: linear-gradient(var(--verde));
   height: 100%;
   width: 0%;
   border-radius: 10px;
@@ -190,7 +191,7 @@ a:hover {
 }
 
 #medalhas ul li img {
-  border: 2px solid var(--azul);
+
   border-radius: 50%;
   transition: transform 0.3s;
 }
@@ -217,3 +218,56 @@ a:hover {
     width: 140px;
   }
 }
+
+
+#desafios .card {
+  background: #2c2c2c;
+  color: white;
+  border-radius: 16px;
+  width: 250px;
+  transition: transform 0.3s;
+
+}
+#desafios .card:hover {
+  transform: scale(1.05);
+}
+
+/* ===== DESAFIOS ===== */
+#desafios {
+  text-align: center;
+  color: white;
+}
+
+#desafios .cards-container {
+  display: flex;
+  gap: 16px;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  padding: 16px;
+  justify-content: flex-start;
+}
+
+#desafios .cards-container::-webkit-scrollbar {
+  height: 8px;
+}
+
+#desafios .cards-container::-webkit-scrollbar-thumb {
+  background: #555;
+  border-radius: 10px;
+}
+
+#desafios .card {
+  background: var(--cinza, #2c2c2c);
+  color: white;
+  border: none;
+  border-radius: var(--radius, 16px);
+  min-width: 220px;
+  flex: 0 0 auto;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+#desafios .card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+

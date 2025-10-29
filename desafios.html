@@ -1,10 +1,11 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Academia - Dashboard</title>
+  <title>TecFit | Dashboard</title>
+
+  <link rel="icon" href="FOTOS/logoNormal.png" type="image/x-icon">
 
   <!-- Font Awesome -->
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
@@ -15,41 +16,36 @@
   <!-- CSS personalizado -->
   <link rel="stylesheet" href="dashboard.css">
 </head>
-
 <body class="body">
 
   <!-- ===== NAVBAR ===== -->
   <header>
-    <nav class="navbar navbar-expand-md navbar-light bg-light fixed-top shadow-sm">
+    <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top shadow-sm">
       <div class="container-fluid">
-
-        <!-- Logo -->
         <a class="navbar-brand d-flex align-items-center gap-2" href="#">
           <img src="FOTOS/logoNormal.png" alt="Logo Academia" width="40">
           <span><strong>TecFit</strong></span>
         </a>
 
-        <!-- Links principais -->
-        <ul class="navbar-nav me-auto mb-2 mb-md-0">
-          <li class="nav-item"><a class="nav-link active" href="#"><i class="fa-solid fa-house"></i> Início</a></li>
-          <li class="nav-item"><a class="nav-link" href="#"><i class="fa-solid fa-dumbbell"></i> Treinos</a></li>
-          <li class="nav-item"><a class="nav-link" href="#"><i class="fa-solid fa-medal"></i> Desafios</a></li>
-          <li class="nav-item"><a class="nav-link" href="#"><i class="fa-solid fa-trophy"></i> Ranking</a></li>
-          <li class="nav-item"><a class="nav-link" href="#"><i class="fa-solid fa-weight-hanging"></i> Planos</a></li>
-          <li class="nav-item"><a class="nav-link" href="#"><i class="fa-solid fa-phone"></i> Contato</a></li>
-        </ul>
+       <ul class="navbar-nav me-auto mb-2 mb-md-0">
+            <li class="nav-item"><a class="nav-link active" href="#"><i class="fa-solid fa-house"></i> Início</a></li>
+            <li class="nav-item"><a class="nav-link" href="planos.html"><i class="fa-solid fa-weight-hanging"></i> Planos</a></li>
+            <li class="nav-item"><a class="nav-link" href="aulas.html"><i class="fa-solid fa-person-running"></i> Aulas</a></li>
+            <li class="nav-item"><a class="nav-link" href="avaliacao.html"><i class="fa-solid fa-clipboard-check"></i> Avaliação</a></li>
+            <li class="nav-item"><a class="nav-link" href="loja.html"><i class="fa-solid fa-cart-shopping"></i> Loja</a></li>
+            <li class="nav-item"><a class="nav-link" href="nutricao.html"><i class="fa-solid fa-apple-whole"></i> Nutrição</a></li>
+            <li class="nav-item"><a class="nav-link" href="eventos.html"><i class="fa-solid fa-calendar-days"></i> Eventos</a></li>
+          </ul>
 
-        <!-- Botão do menu lateral -->
         <div class="navbar-extra">
           <button class="menu-btn" onclick="document.getElementById('menu').hidden ^= 1">
-            <i class="fa-solid fa-user-circle"></i>
+            <i class="fa-solid fa-user-circle fa-lg"></i>
           </button>
 
-          <!-- Menu dropdown -->
           <ul id="menu" class="menu" hidden>
-            <li><a href="#"><i class="fa-solid fa-user"></i> Perfil</a></li>
-            <li><a href="#"><i class="fa-solid fa-gear"></i> Configurações</a></li>
-            <li><a href="#"><i class="fa-solid fa-right-from-bracket"></i> Sair</a></li>
+            <li><a href="Perfil.html"><i class="fa-solid fa-user"></i> Perfil</a></li>
+            <li><a href="Perfil.html"><i class="fa-solid fa-gear"></i> Configurações</a></li>
+            <li><a href="pág.inicial.html"><i class="fa-solid fa-right-from-bracket"></i> Sair</a></li>
           </ul>
         </div>
       </div>
@@ -60,25 +56,18 @@
 
   <!-- ===== CARROSSEL ===== -->
   <main id="Cartaz" class="mt-5 pt-4">
-    <div id="carouselAcademia" class="carousel slide" data-bs-ride="carousel" data-bs-interval="3000">
-      <div class="carousel-indicators">
-        <button type="button" data-bs-target="#carouselAcademia" data-bs-slide-to="0" class="active"></button>
-        <button type="button" data-bs-target="#carouselAcademia" data-bs-slide-to="1"></button>
-        <button type="button" data-bs-target="#carouselAcademia" data-bs-slide-to="2"></button>
-      </div>
-
-      <div class="carousel-inner">
+    <div id="carouselAcademia" class="carousel slide" data-bs-ride="carousel" data-bs-interval="3500">
+      <div class="carousel-inner rounded shadow-lg">
         <div class="carousel-item active">
-          <img src="Novas_img/banner_desafio.png" class="d-block w-100" alt="Desafios da academia">
+          <img src="Novas_img/banner_desafio.png" class="d-block w-100" alt="Desafios">
         </div>
         <div class="carousel-item">
-          <img src="Novas_img/banne_luva_tam.png" class="d-block w-100" alt="Treino funcional">
+          <img src="Novas_img/banne_luva_tam.png" class="d-block w-100" alt="Funcional">
         </div>
         <div class="carousel-item">
           <img src="Novas_img/banner_com_peso.png" class="d-block w-100" alt="Musculação">
         </div>
       </div>
-
       <button class="carousel-control-prev" type="button" data-bs-target="#carouselAcademia" data-bs-slide="prev">
         <span class="carousel-control-prev-icon"></span>
       </button>
@@ -90,44 +79,77 @@
   <!-- ===== FIM CARROSSEL ===== -->
 
 
-  <!-- ===== RANKING ===== -->
-  <section id="ranking" class="container my-5 text-center">
-    <h3><i class="fa-solid fa-ranking-star"></i> RANKING</h3>
-    <ol class="list-unstyled d-flex justify-content-center gap-4 flex-wrap">
-      <li><article><img src="FOTOS/2.png" width="100"><h4>Marcos</h4><p>76 Pontos</p></article></li>
-      <li><article><img src="FOTOS/1.png" width="100"><h4>Maria Eduarda</h4><p>100 Pontos</p></article></li>
-      <li><article><img src="FOTOS/3.png" width="100"><h4>Rafael Souza</h4><p>59 Pontos</p></article></li>
-    </ol>
-  </section>
+  <!-- ===== DASHBOARD PRINCIPAL ===== -->
+  <section class="container my-5">
+    <div class="row g-4">
 
+      <!-- ===== RANKING ===== -->
+      <div class="col-12 col-lg-6">
+        <div class="card bg-dark text-white shadow-sm p-4 rounded-4">
+          <h3 class="text-center mb-4"><i class="fa-solid fa-ranking-star"></i> Ranking</h3>
+          <ol class="list-unstyled d-flex justify-content-center gap-4 flex-wrap">
+            <li><article><img src="FOTOS/2.png" width="100"><h5>Marcos</h5><p>76 pts</p></article></li>
+            <li><article><img src="FOTOS/1.png" width="100"><h5>Maria Eduarda</h5><p>100 pts</p></article></li>
+            <li><article><img src="FOTOS/3.png" width="100"><h5>Rafael</h5><p>59 pts</p></article></li>
+          </ol>
+        </div>
+      </div>
 
-  <!-- ===== PROGRESSO ===== -->
-  <section id="progresso" class="container my-5 text-center">
-    <h3><i class="fa-solid fa-chart-line"></i> MEU PROGRESSO</h3>
-    <div class="info-usuario">
-      <h4>Maria Eduarda</h4>
-      <p>Total de pontos: <span id="pontos">0</span></p>
-      <p>Aulas concluídas: <span id="aulas">0</span></p>
+      <!-- ===== PROGRESSO ===== -->
+      <div class="col-12 col-lg-6">
+        <div class="card bg-dark text-white shadow-sm p-4 rounded-4 text-center">
+          <h3><i class="fa-solid fa-chart-line"></i> Meu Progresso</h3>
+          <div class="info-usuario mt-3">
+            <h5>Maria Eduarda</h5>
+            <p>Total de pontos: <span id="pontos">100</span></p>
+            <p>Aulas concluídas: <span id="aulas">12</span></p>
+          </div>
+          <div class="barra-progresso bg-light rounded mt-3">
+            <div id="progresso-preenchido" class="bg-success" style="width: 75%; height: 20px;"></div>
+          </div>
+          <p id="nivel" class="mt-2">Nível: Intermediário</p>
+        </div>
+      </div>
+
     </div>
-    <div class="barra-progresso bg-light rounded mt-3">
-      <div id="progresso-preenchido" class="bg-success" style="width: 0%; height: 20px;"></div>
-    </div>
-    <p id="nivel" class="mt-2">Nível: Iniciante</p>
   </section>
 
 
   <!-- ===== MEDALHAS ===== -->
   <section id="medalhas" class="container my-5 text-center">
-    <h3><i class="fa-solid fa-medal"></i> MINHAS MEDALHAS</h3>
-    <ul class="list-unstyled d-flex justify-content-center gap-4 flex-wrap">
-      <li><img src="FOTOS/1.png" width="50"></li>
-      <li><img src="FOTOS/2.png" width="50"></li>
-      <li><img src="FOTOS/3.png" width="50"></li>
+    <h3><i class="fa-solid fa-medal"></i> Minhas Medalhas</h3>
+    <ul class="list-unstyled d-flex justify-content-center gap-4 flex-wrap mt-3">
+      <li><img src="FOTOS/1.png" width="60"></li>
+      <li><img src="FOTOS/2.png" width="60"></li>
+      <li><img src="FOTOS/3.png" width="60"></li>
     </ul>
   </section>
 
-  <!-- Bootstrap JS -->
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 
+  <!-- ===== DESAFIOS ===== -->
+  <section id="desafios" class="container my-5 text-center">
+    <h3><i class="fa-solid fa-dumbbell"></i> Desafios</h3>
+
+    <div class="d-flex justify-content-center gap-3 mt-3">
+      <button class="btn btn-success" id="btnTodos">Todos</button>
+      <button class="btn btn-primary" id="btnMeus">Meus</button>
+    </div>
+
+    <div id="listaDesafios" class="cards-container mt-4"></div>
+
+    <div class="mt-5 text-center">
+      <h4>💥 Meus Pontos: <span id="pontosUsuario">100</span></h4>
+      <button class="btn btn-warning mt-2" id="btnResgatar">🎁 Resgatar Recompensas</button>
+    </div>
+  </section>
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="text-center text-light py-4 bg-dark mt-5">
+    <p class="mb-0">© 2025 TecFit | Desenvolvido com 💪 e dedicação</p>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="dashboard.js"></script>
 </body>
 </html>

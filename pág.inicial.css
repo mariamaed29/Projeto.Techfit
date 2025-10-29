@@ -1,0 +1,105 @@
+/* ===========================
+   VARIÁVEIS DE CORES E ESTILO
+=========================== */
+:root {
+  --azul: #007bff;          /* cor primária */
+  --preto: #000000;
+  --cinza: #2c2c2c;
+  --branco: #ffffff;
+  --verde: #a6ff00;         /* destaque secundário */
+  --fundo: #22262A;
+  --radius: 16px;
+  --shadow: 0 8px 32px rgba(0, 0, 0, 0.25);
+}
+
+/* ===========================
+   ESTILO GLOBAL
+=========================== */
+body {
+  background-color: var(--fundo);
+  color: var(--branco);
+  font-family: "Poppins", sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+h2, h3, h4 {
+  color: var(--azul);
+  font-weight: 600;
+}
+
+/* ===========================
+   NAVBAR
+=========================== */
+.navbar a {
+  color: var(--preto) !important;
+  transition: color 0.3s;
+}
+
+.navbar a:hover {
+  color: var(--verde) !important;
+}
+
+/* ===========================
+   CARROSSEL
+=========================== */
+.carousel-caption h1 {
+  color: var(--verde);
+  text-shadow: 0 0 8px #000;
+}
+
+.carousel-caption p {
+  text-shadow: 0 0 5px #000;
+}
+
+/* ===========================
+   CARDS
+=========================== */
+.card {
+  border: 2px solid var(--verde);
+  border-radius: var(--radius);
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.card:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 15px var(--verde);
+}
+
+/* ===========================
+   BOTÕES
+=========================== */
+.btn-success {
+  background-color: var(--verde);
+  border: none;
+  color: var(--preto);
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.btn-success:hover {
+  background-color: #baff3c;
+  color: var(--preto);
+}
+
+/* ===========================
+   SEÇÃO HISTÓRIA
+=========================== */
+.historia {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  background-color: var(--cinza);
+  border: 2px solid var(--verde);
+  border-radius: var(--radius);
+  margin: 50px auto;
+  padding: 30px;
+  max-width: 900px;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.historia:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 15px var(--verde);
+}
