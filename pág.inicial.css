@@ -94,7 +94,7 @@ h2, h3, h4 {
   border: 2px solid var(--verde);
   border-radius: var(--radius);
   margin: 50px auto;
-  padding: 30px;
+  padding: 10px;
   max-width: 900px;
   transition: transform 0.3s, box-shadow 0.3s;
 }
@@ -153,6 +153,7 @@ p{
   .bloco.invertido {
     flex-direction: column;
     text-align: center;
+    transition: transform 0.3s;
   }
 
   .bloco img {
@@ -163,4 +164,6 @@ p{
 
 .bloco:hover{
   border: 2px solid var(--azul);
+  border-radius: var(--radius);
+  transform: scale(1.02);
 }
