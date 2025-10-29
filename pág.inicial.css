@@ -103,3 +103,64 @@ h2, h3, h4 {
   transform: scale(1.05);
   box-shadow: 0 0 15px var(--verde);
 }
+
+p{
+  color: var(--branco);
+}
+
+.imagens {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  padding: 40px;
+  border: 5px solid var(--verde);
+  border-radius: var(--radius);
+  background-color: var(--cinza);
+}
+
+.bloco {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+  /* opacity: 0.5; */
+  /* background-color: var(--azul); */
+  /* border-radius: 25px; */
+  
+}
+
+.bloco img {
+  width: 40%;
+  max-width: 400px;
+  border-radius: var(--radius);
+  box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+}
+
+.bloco p {
+  flex: 1;
+  color: #fff; /* mude se o fundo for claro */
+  font-size: 1.1rem;
+  line-height: 1.6;
+}
+
+/* Inverte o lado da imagem */
+.bloco.invertido {
+  flex-direction: row-reverse;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+  .bloco,
+  .bloco.invertido {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .bloco img {
+    width: 100%;
+  }
+}
+
+
+.bloco:hover{
+  border: 2px solid var(--azul);
+}
