@@ -27,4 +27,10 @@ class UserModel {
         $sql = "INSERT INTO usuarios (nome, email, senha) VALUES ('$nome', '$email', '$senhaHash')";
         return $conn->query($sql);
     }
+    public function buscarTodos() {
+    global $conn;
+    $result = $conn->query("SELECT id, nome, email, tipo FROM usuarios");
+    return $result->fetch_all(MYSQLI_ASSOC);
+}
+
 }

@@ -22,3 +22,11 @@ if ($uri == "/cadastro" && $_SERVER["REQUEST_METHOD"] == "POST") {
 
 // Se nenhuma rota bater
 echo "Rota não encontrada: $uri";
+
+if ($uri == "/admin/usuarios") {
+    require_once __DIR__ . "/../controllers/AdminController.php";
+    $admin = new AdminController();
+    $admin->listarUsuarios();
+    exit;
+}
+
