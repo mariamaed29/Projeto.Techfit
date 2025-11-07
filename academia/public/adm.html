@@ -2,17 +2,40 @@
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
+    <link rel="stylesheet" href="adm.css">
     <title>Painel Administrativo</title>
 </head>
 <body>
-
+  <div class="dashboard-container">
     <h1>Painel Administrativo</h1>
     <p>Bem-vindo, administrador!</p>
 
-    <a href="/admin/usuarios">Gerenciar Usuários</a><br>
-    <a href="/admin/produtos">Gerenciar Loja</a><br>
-    <a href="/admin/planos">Gerenciar Planos</a><br>
-    <a href="/logout">Sair</a>
+    <div class="cards">
+      <div class="card">
+        <div class="icon">👤</div>
+        <h2>Gerenciar Usuários</h2>
+        <a href="/admin/usuarios">Abrir</a>
+      </div>
 
+      <div class="card">
+        <div class="icon">🛒</div>
+        <h2>Gerenciar Loja</h2>
+        <a href="/admin/produtos">Abrir</a>
+      </div>
+
+      <div class="card">
+        <div class="icon">📄</div>
+        <h2>Gerenciar Planos</h2>
+        <a href="/admin/planos">Abrir</a>
+      </div>
+
+      <div class="card logout">
+        <div class="icon">🚪</div>
+        <h2>Sair</h2>
+        <a href="/logout">Logout</a>
+      </div>
+    </div>
+  </div>
 </body>
+
 </html>

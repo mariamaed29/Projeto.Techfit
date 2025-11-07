@@ -1,0 +1,133 @@
+/* ADMIN-DASH.css */
+
+/* Paleta e variáveis */
+:root {
+  --azul: #007bff;
+  --preto: #000000;
+  --cinza: #2c2c2c;
+  --branco: #ffffff;
+  --verde: #a6ff00;
+  --radius: 16px;
+  --shadow: 0 8px 32px rgba(0,0,0,0.25);
+}
+
+/* Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Segoe UI", Roboto, sans-serif;
+}
+html, body {
+  height: 100%;
+}
+
+/* Fundo */
+body {
+  background: var(--cinza);
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 50px 20px;
+}
+
+/* Container principal */
+.dashboard-container {
+  width: 100%;
+  max-width: 900px;
+}
+
+/* Título */
+.dashboard-container h1 {
+  font-size: 2.5rem;
+  color: var(--preto);
+  font-weight: 900;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+/* Subtítulo */
+.dashboard-container p {
+  font-size: 1.1rem;
+  color: var(--preto);
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+/* Grid de cards */
+.cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 25px;
+}
+
+/* Card individual */
+.card {
+  background: rgba(255,255,255,0.9);
+  backdrop-filter: blur(10px);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 30px 20px;
+  text-align: center;
+  transition: transform 0.3s, box-shadow 0.3s;
+  cursor: pointer;
+}
+
+/* Hover nos cards */
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 36px rgba(0,0,0,0.3);
+}
+
+/* Ícones ou destaque do card */
+.card .icon {
+  font-size: 2.5rem;
+  color: var(--azul);
+  margin-bottom: 15px;
+}
+
+/* Título do card */
+.card h2 {
+  font-size: 1.2rem;
+  color: var(--preto);
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+
+/* Botão ou link dentro do card */
+.card a {
+  display: inline-block;
+  margin-top: 10px;
+  padding: 10px 18px;
+  border-radius: 30px;
+  background: var(--azul);
+  color: var(--branco);
+  text-decoration: none;
+  font-weight: bold;
+  transition: background 0.3s, transform 0.2s;
+}
+.card a:hover {
+  background: #0056b3;
+  transform: translateY(-2px);
+}
+
+/* Card especial para logout */
+.card.logout a {
+  background: #ff4d4d;
+}
+.card.logout a:hover {
+  background: #e60000;
+}
+
+/* Responsividade */
+@media (max-width: 600px) {
+  .dashboard-container h1 {
+    font-size: 2rem;
+  }
+  .card {
+    padding: 25px 15px;
+  }
+  .card a {
+    padding: 8px 14px;
+  }
+}
