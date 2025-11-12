@@ -56,6 +56,7 @@ h2, h3, h4 {
    CARDS
 =========================== */
 .card {
+  background-color: #22262A;
   border: 2px solid var(--verde);
   border-radius: var(--radius);
   transition: transform 0.3s, box-shadow 0.3s;
@@ -167,3 +168,79 @@ p{
   border-radius: var(--radius);
   transform: scale(1.02);
 } 
+
+/* === SEÇÃO DE PLANOS === */
+section.container {
+  scroll-margin-top: 80px; /* melhora navegação se tiver menu fixo */
+}
+
+section h2 {
+  color: var(--verde, #a6ff00);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  text-shadow: 0 0 8px rgba(166, 255, 0, 0.6);
+}
+
+/* Layout geral */
+.card {
+  background: rgba(20, 20, 20, 0.95);
+  border: 1px solid var(--verde, #a6ff00);
+  border-radius: var(--radius, 16px);
+  transition: all 0.3s ease;
+  padding: 2rem 1rem;
+  color: #fff;
+  box-shadow: 0 0 15px rgba(0, 255, 0, 0.1);
+}
+
+/* Efeito hover com brilho verde */
+.card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 0 25px rgba(0, 255, 0, 0.4);
+  border-color: var();
+}
+
+/* Ícones */
+.card i {
+  text-shadow: 0 0 10px rgba(0, 255, 0, 0.5);
+}
+
+/* Nome do plano */
+.card h4 {
+  color: var(--verde, #a6ff00);
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+  text-shadow: 0 0 6px rgba(166, 255, 0, 0.5);
+}
+
+/* Preço */
+.card strong {
+  color: var(--verde, #a6ff00);
+  font-size: 1.1rem;
+}
+
+/* Texto secundário */
+.card p,
+.card li {
+  color: #cfcfcf;
+}
+
+/* Lista interna */
+.card ul {
+  margin-top: 10px;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+  section.container {
+    padding: 0 1rem;
+  }
+
+  .card {
+    padding: 1.5rem;
+  }
+
+  .card i {
+    font-size: 2rem;
+  }
+}

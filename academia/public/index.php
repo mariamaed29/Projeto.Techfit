@@ -30,3 +30,45 @@ if ($uri == "/admin/usuarios") {
     exit;
 }
 
+if ($uri == "/admin/produtos") {
+    require_once __DIR__ . "/../controllers/ProductController.php";
+    $c = new ProductController();
+    $c->listar();
+}
+
+if ($uri == "/admin/produtos/novo") {
+    require_once __DIR__ . "/../controllers/ProductController.php";
+    $c = new ProductController();
+    $c->novo();
+}
+
+if ($uri == "/admin/produtos/criar") {
+    require_once __DIR__ . "/../controllers/ProductController.php";
+    $c = new ProductController();
+    $c->criar();
+}
+
+if ($uri == "/admin/produtos/editar") {
+    require_once __DIR__ . "/../controllers/ProductController.php";
+    $c = new ProductController();
+    $c->editarForm($_GET['id']);
+}
+
+if ($uri == "/admin/produtos/salvar") {
+    require_once __DIR__ . "/../controllers/ProductController.php";
+    $c = new ProductController();
+    $c->editarSalvar();
+}
+
+if ($uri == "/admin/produtos/deletar") {
+    require_once __DIR__ . "/../controllers/ProductController.php";
+    $c = new ProductController();
+    $c->deletar($_GET['id']);
+}
+if ($uri == "/api/produtos") {
+    require_once __DIR__ . "/../models/ProductModel.php";
+    $m = new ProductModel();
+    header('Content-Type: application/json');
+    echo json_encode($m->buscarTodos());
+    exit;
+}

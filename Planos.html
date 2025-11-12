@@ -34,19 +34,17 @@
 
         <div class="collapse navbar-collapse" id="navbarCollapse">
           <ul class="navbar-nav me-auto mb-2 mb-md-0">
-            <li class="nav-item"><a class="nav-link active" href="#"><i class="fa-solid fa-house"></i> Início</a></li>
-            <li class="nav-item"><a class="nav-link" href="Planos.html"><i class="fa-solid fa-weight-hanging"></i> Planos</a></li>
-            <li class="nav-item"><a class="nav-link" href="aulas.html"><i class="fa-solid fa-person-running"></i> Aulas</a></li>
-            <!-- <li class="nav-item"><a class="nav-link" href="avaliacao.html"><i class="fa-solid fa-clipboard-check"></i> Avaliação</a></li> -->
-            <li class="nav-item"><a class="nav-link" href="/academia/public/loja.html"><i class="fa-solid fa-cart-shopping"></i> Loja</a></li>
-            <!-- <li class="nav-item"><a class="nav-link" href="nutricao.html"><i class="fa-solid fa-apple-whole"></i> Nutrição</a></li> -->
-            <li class="nav-item"><a class="nav-link" href="desafios.html"><i class="fa-solid fa-calendar-days"></i> Eventos</a></li>
-          </ul>
 
-          <form class="d-flex" role="search">
-            <input class="form-control me-2 bg-dark text-light border-success" type="search" placeholder="Procurar">
-            <button class="btn btn-success" type="submit">Buscar</button>
-          </form>
+            <li class="nav-item"><a class="nav-link active" href="#"><i class="fa-solid fa-house"></i> Início</a></li>
+
+            <li class="nav-item"><a class="nav-link" href="Planos.html"><i class="fa-solid fa-weight-hanging"></i> Planos</a></li>
+
+            <li class="nav-item"><a class="nav-link" href="aulas.html"><i class="fa-solid fa-person-running"></i> Treino</a></li>
+
+            <li class="nav-item"><a class="nav-link" href="/academia/public/loja.html"><i class="fa-solid fa-cart-shopping"></i> Loja</a></li>
+
+            <li class="nav-item"><a class="nav-link" href="desafios.html"><i class="fa-solid fa-calendar-days"></i> Desafios</a></li>
+          </ul>
         </div>
       </div>
     </nav>
@@ -60,22 +58,22 @@
         <!-- data-bs-interval="4000" -->
       <div class="carousel-inner rounded-4 shadow-lg">
         <div class="carousel-item active">
-          <img src="Novas_img/banner_Luva.png" class="d-block w-100" alt="TechFit">
+          <img src="https://github.com/mariamaed29/Projeto.Techfit/blob/main/Novas_img/banne_luva_tam.png?raw=true" class="d-block w-100" alt="TechFit">
           <div class="carousel-caption">
 
-            <a href="planos.html" class="btn btn-success btn-lg">Comece Agora</a>
+            <a href="#Planos" class="btn btn-success btn-lg">Comece Agora</a>
           </div>
         </div>
         <div class="carousel-item">
-          <img src="Novas_img/banner_desafio.png" class="d-block w-100" alt="Planos">
+          <img src="https://github.com/mariamaed29/Projeto.Techfit/blob/main/Novas_img/banner_desafio.png?raw=true" class="d-block w-100" alt="Planos">
           <div class="carousel-caption">
-            <a href="planos.html" class="btn btn-success btn-lg">Ver Desafios</a>
+            <a href="../../desafios.html" class="btn btn-success btn-lg">Ver Desafios</a>
           </div>
         </div>
         <div class="carousel-item">
-          <img src="Novas_img/banner_com_peso.png" class="d-block w-100" alt="Eventos">
+          <img src="https://github.com/mariamaed29/Projeto.Techfit/blob/main/Novas_img/banner_com_peso.png?raw=true" class="d-block w-100" alt="Eventos">
           <div class="carousel-caption">
-            <a href="dashboard.html#desafios" class="btn btn-success btn-lg">Ver Planos</a>
+            <a href="#Planos" class="btn btn-success btn-lg">Ver Planos</a>
           </div>
         </div>
       </div>
@@ -90,51 +88,100 @@
   </main>
   <!-- ===== FIM CARROSSEL ===== -->
   <!-- ===== SESSÃO DESTAQUES ===== -->
-  <section class="container my-5 text-center">
-    <h2 class="mb-4"><i class="fa-solid fa-fire-flame-curved text-success"></i> Nossos Planos</h2>
+  <section id="Planos" class="container my-5 text-center text-light">
+  <h2 class="mb-5 fw-bold">
+    <i class="fa-solid fa-fire-flame-curved text-success"></i> Nossos Planos
+  </h2>
 
-    <div class="row g-4">
-      <div class="col-md-4">
-        <div class="card bg-dark border-success h-100 p-3">
-          <i class="fa-solid fa-dumbbell fa-3x text-success mb-3"></i>
-          <h4>TecFit Start</h4>
-          <p>Iniciantes	Mensal <strong>R$129,90</strong></p>
-          <p>Acesso livre</p>
-          <p>Avaliação Física Inicial</p>
-        </div>
+  <div class="row g-4 justify-content-center">
+    <!-- Plano 1 -->
+    <div class="col-md-6 col-lg-4">
+      <div class="card bg-dark border border-success shadow-lg h-100 p-4 rounded-4">
+        <i class="fa-solid fa-dumbbell fa-3x text-success mb-3"></i>
+        <h4 class="fw-bold text-success">TecFit Start</h4>
+        <p class="mb-1 text-secondary">Iniciantes</p>
+        <p class="mb-2"><strong>R$129,90/mês</strong></p>
+        <ul class="list-unstyled small">
+          <li>Acesso livre</li>
+          <li>Avaliação física inicial</li>
+        </ul>
       </div>
-
-      <div class="col-md-4">
-        <div class="card bg-dark border-success h-100 p-3">
-          <i class="fa-solid fa-apple-whole fa-3x text-success mb-3"></i>
-          <h4>TecFit Plus</h4>
-          <p>Intermediários	Trimestral <strong>$109,90/mês</strong></p>
-          <p>Treino personalizado</p>
-          <p>1 bioimpedância</p>
-        </div>
-      </div>
-
-      <div class="col-md-4">
-        <div class="card bg-dark border-success h-100 p-3">
-          <i class="fa-solid fa-medal fa-3x text-success mb-3"></i>
-          <h4>TecFit Premium</h4>
-          <p>Avançados e frequentes	Semestral	<strong>R$99,90/mês</strong></p>
-          <p>Personal online</p>
-          <p>2 avaliações, prioridade em horários</p>
-        </div>
-      </div>
-
-<div class="col-md-4">
-        <div class="card bg-dark border-success h-100 p-3">
-          <i class="fa-solid fa-medal fa-3x text-success mb-3"></i>
-          <h4>TecFit Black</h4>
-          <p>Alunos comprometidos / elite	Anual	<strong>R$89,90/mês</strong></p>
-          <p>Tudo incluso + Mimos exclusivos (Camiseta, Eventos, Nutricionista Parceiro)</p>
-        </div>
-      </div>
-
     </div>
-  </section>
+
+    <!-- Plano 2 -->
+    <div class="col-md-6 col-lg-4">
+      <div class="card bg-dark border border-success shadow-lg h-100 p-4 rounded-4">
+        <i class="fa-solid fa-apple-whole fa-3x text-success mb-3"></i>
+        <h4 class="fw-bold text-success">TecFit Plus</h4>
+        <p class="mb-1 text-secondary">Intermediários</p>
+        <p class="mb-2"><strong>R$109,90/mês</strong> (Trimestral)</p>
+        <ul class="list-unstyled small">
+          <li>Treino personalizado</li>
+          <li>1 bioimpedância</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Plano 3 -->
+    <div class="col-md-6 col-lg-4">
+      <div class="card bg-dark border border-success shadow-lg h-100 p-4 rounded-4">
+        <i class="fa-solid fa-medal fa-3x text-success mb-3"></i>
+        <h4 class="fw-bold text-success">TecFit Premium</h4>
+        <p class="mb-1 text-secondary">Avançados e frequentes</p>
+        <p class="mb-2"><strong>R$99,90/mês</strong> (Semestral)</p>
+        <ul class="list-unstyled small">
+          <li>Personal online</li>
+          <li>2 avaliações</li>
+          <li>Prioridade em horários</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Plano 4 -->
+    <div class="col-md-6 col-lg-4">
+      <div class="card bg-dark border border-success shadow-lg h-100 p-4 rounded-4">
+        <i class="fa-solid fa-crown fa-3x text-success mb-3"></i>
+        <h4 class="fw-bold text-success">TecFit Black</h4>
+        <p class="mb-1 text-secondary">Alunos comprometidos / elite</p>
+        <p class="mb-2"><strong>R$89,90/mês</strong> (Anual)</p>
+        <ul class="list-unstyled small">
+          <li>Tudo incluso</li>
+          <li>Mimos exclusivos (camiseta, eventos, nutricionista parceiro)</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Plano 5 -->
+    <div class="col-md-6 col-lg-4">
+      <div class="card bg-dark border border-success shadow-lg h-100 p-4 rounded-4">
+        <i class="fa-solid fa-people-group fa-3x text-success mb-3"></i>
+        <h4 class="fw-bold text-success">TecFit Family</h4>
+        <p class="mb-1 text-secondary">Famílias ou casais</p>
+        <p class="mb-2"><strong>R$249,90/mês</strong> (Até 3 pessoas)</p>
+        <ul class="list-unstyled small">
+          <li>Descontos progressivos por membro</li>
+          <li>Treinos em grupo personalizados</li>
+          <li>Acesso a eventos familiares</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Plano 6 -->
+    <div class="col-md-6 col-lg-4">
+      <div class="card bg-dark border border-success shadow-lg h-100 p-4 rounded-4">
+        <i class="fa-solid fa-briefcase fa-3x text-success mb-3"></i>
+        <h4 class="fw-bold text-success">TecFit Corporate</h4>
+        <p class="mb-1 text-secondary">Empresas e equipes</p>
+        <p class="mb-2"><strong>R$79,90/mês</strong> por funcionário</p>
+        <ul class="list-unstyled small">
+          <li>Plano corporativo com CNPJ</li>
+          <li>Avaliação anual gratuita</li>
+          <li>Parceria com RH e relatórios mensais</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
 
 
   <!-- ===== RODAPÉ ===== -->
