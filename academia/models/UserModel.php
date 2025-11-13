@@ -1,36 +1,84 @@
 <?php
-require_once __DIR__ . "/../core/db.php";
+require_once __DIR__ . '/../core/db.php';
 
 class UserModel {
-
+    private $conn;
+    
+    public function __construct() {
+        $this->conn = Database::getInstance()->getConnection();
+    }
+    
     public function login($email, $senha) {
-        global $conn;
-
-        $email = $conn->real_escape_string($email);
-        $sql = "SELECT * FROM usuarios WHERE email='$email'";
-        $result = $conn->query($sql);
-
-        if ($result->num_rows > 0) {
-            $user = $result->fetch_assoc();
-            if (password_verify($senha, $user['senha'])) {
-                return $user;
+        try {
+            $stmt = $this->conn->prepare("SELECT * FROM usuarios WHERE email = ?");
+            $stmt->bind_param("s", $email);
+            $stmt->execute();
+            $result = $stmt->get_result();
+            
+            if ($result->num_rows > 0) {
+                $user = $result->fetch_assoc();
+                
+                if (password_verify($senha, $user['senha'])) {
+                    unset($user['senha']);
+                    return $user;
+                }
             }
+            
+            return false;
+        } catch (Exception $e) {
+            error_log("Erro no login: " . $e->getMessage());
+            return false;
         }
-        return false;
     }
-
+    
     public function cadastrar($nome, $email, $senha) {
-        global $conn;
-
-        $senhaHash = password_hash($senha, PASSWORD_DEFAULT);
-
-        $sql = "INSERT INTO usuarios (nome, email, senha) VALUES ('$nome', '$email', '$senhaHash')";
-        return $conn->query($sql);
+        try {
+            // Verifica se email já existe
+            $stmt = $this->conn->prepare("SELECT id FROM usuarios WHERE email = ?");
+            $stmt->bind_param("s", $email);
+            $stmt->execute();
+            $result = $stmt->get_result();
+            
+            if ($result->num_rows > 0) {
+                return ['success' => false, 'message' => 'Email já cadastrado'];
+            }
+            
+            $senhaHash = password_hash($senha, PASSWORD_DEFAULT);
+            $stmt = $this->conn->prepare("INSERT INTO usuarios (nome, email, senha, tipo) VALUES (?, ?, ?, 'cliente')");
+            $stmt->bind_param("sss", $nome, $email, $senhaHash);
+            
+            if ($stmt->execute()) {
+                return ['success' => true, 'message' => 'Cadastrado com sucesso'];
+            } else {
+                return ['success' => false, 'message' => 'Erro ao cadastrar'];
+            }
+        } catch (Exception $e) {
+            error_log("Erro no cadastro: " . $e->getMessage());
+            return ['success' => false, 'message' => 'Erro no sistema'];
+        }
     }
+    
     public function buscarTodos() {
-    global $conn;
-    $result = $conn->query("SELECT id, nome, email, tipo FROM usuarios");
-    return $result->fetch_all(MYSQLI_ASSOC);
+        try {
+            $stmt = $this->conn->prepare("SELECT id, nome, email, tipo, created_at FROM usuarios ORDER BY id DESC");
+            $stmt->execute();
+            $result = $stmt->get_result();
+            return $result->fetch_all(MYSQLI_ASSOC);
+        } catch (Exception $e) {
+            error_log("Erro ao buscar usuários: " . $e->getMessage());
+            return [];
+        }
+    }
+    
+    public function deletar($id) {
+        try {
+            $stmt = $this->conn->prepare("DELETE FROM usuarios WHERE id = ?");
+            $stmt->bind_param("i", $id);
+            return $stmt->execute();
+        } catch (Exception $e) {
+            error_log("Erro ao deletar: " . $e->getMessage());
+            return false;
+        }
+    }
 }
-
-}
+?>

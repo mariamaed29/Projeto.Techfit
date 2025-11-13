@@ -1,74 +1,115 @@
 <?php
-require_once __DIR__ . '/../controllers/UserController.php';
+session_start();
+date_default_timezone_set('America/Sao_Paulo');
 
-$controller = new UserController();
+// Exibe erros em desenvolvimento
+ini_set('display_errors', 1);
+error_reporting(E_ALL);
+
+// Autoload
+spl_autoload_register(function ($class) {
+    $paths = [
+        __DIR__ . '/../controllers/',
+        __DIR__ . '/../models/',
+        __DIR__ . '/../core/'
+    ];
+    
+    foreach ($paths as $path) {
+        $file = $path . $class . '.php';
+        if (file_exists($file)) {
+            require_once $file;
+            return;
+        }
+    }
+});
+
 $uri = parse_url($_SERVER["REQUEST_URI"], PHP_URL_PATH);
+$method = $_SERVER["REQUEST_METHOD"];
 
-// Se alguém acessar "/", redireciona para Login.html
-if ($uri == "/") {
+// Raiz
+if ($uri === "/") {
     header("Location: /Login.html");
     exit;
 }
 
-if ($uri == "/login" && $_SERVER["REQUEST_METHOD"] == "POST") {
+// Login
+if ($uri === "/login" && $method === "POST") {
+    $controller = new UserController();
     $controller->login();
-    exit;
 }
 
-if ($uri == "/cadastro" && $_SERVER["REQUEST_METHOD"] == "POST") {
+// Cadastro
+if ($uri === "/cadastro" && $method === "POST") {
+    $controller = new UserController();
     $controller->cadastro();
-    exit;
 }
 
-// Se nenhuma rota bater
-echo "Rota não encontrada: $uri";
-
-if ($uri == "/admin/usuarios") {
-    require_once __DIR__ . "/../controllers/AdminController.php";
-    $admin = new AdminController();
-    $admin->listarUsuarios();
-    exit;
+// Logout
+if ($uri === "/logout") {
+    $controller = new UserController();
+    $controller->logout();
 }
 
-if ($uri == "/admin/produtos") {
-    require_once __DIR__ . "/../controllers/ProductController.php";
-    $c = new ProductController();
-    $c->listar();
+// API Produtos
+if ($uri === "/api/produtos") {
+    $controller = new ProductController();
+    $controller->listarJson();
 }
 
-if ($uri == "/admin/produtos/novo") {
-    require_once __DIR__ . "/../controllers/ProductController.php";
-    $c = new ProductController();
-    $c->novo();
+// Rotas Admin
+if (strpos($uri, '/admin') === 0) {
+    if (!isset($_SESSION['user']) || $_SESSION['user']['tipo'] !== 'admin') {
+        http_response_code(403);
+        die("Acesso negado! <a href='/Login.html'>Fazer login</a>");
+    }
+    
+    if ($uri === "/admin/usuarios") {
+        $controller = new AdminController();
+        $controller->listarUsuarios();
+        exit;
+    }
+    
+    if ($uri === "/admin/usuarios/deletar" && isset($_GET['id'])) {
+        $controller = new AdminController();
+        $controller->deletarUsuario($_GET['id']);
+    }
+    
+    if ($uri === "/admin/produtos") {
+        $controller = new ProductController();
+        $controller->listar();
+        exit;
+    }
+    
+    if ($uri === "/admin/produtos/novo") {
+        $controller = new ProductController();
+        $controller->novo();
+        exit;
+    }
+    
+    if ($uri === "/admin/produtos/criar" && $method === "POST") {
+        $controller = new ProductController();
+        $controller->criar();
+    }
+    
+    if ($uri === "/admin/produtos/editar" && isset($_GET['id'])) {
+        $controller = new ProductController();
+        $controller->editarForm($_GET['id']);
+        exit;
+    }
+    
+    if ($uri === "/admin/produtos/salvar" && $method === "POST") {
+        $controller = new ProductController();
+        $controller->editarSalvar();
+    }
+    
+    if ($uri === "/admin/produtos/deletar" && isset($_GET['id'])) {
+        $controller = new ProductController();
+        $controller->deletar($_GET['id']);
+    }
 }
 
-if ($uri == "/admin/produtos/criar") {
-    require_once __DIR__ . "/../controllers/ProductController.php";
-    $c = new ProductController();
-    $c->criar();
-}
-
-if ($uri == "/admin/produtos/editar") {
-    require_once __DIR__ . "/../controllers/ProductController.php";
-    $c = new ProductController();
-    $c->editarForm($_GET['id']);
-}
-
-if ($uri == "/admin/produtos/salvar") {
-    require_once __DIR__ . "/../controllers/ProductController.php";
-    $c = new ProductController();
-    $c->editarSalvar();
-}
-
-if ($uri == "/admin/produtos/deletar") {
-    require_once __DIR__ . "/../controllers/ProductController.php";
-    $c = new ProductController();
-    $c->deletar($_GET['id']);
-}
-if ($uri == "/api/produtos") {
-    require_once __DIR__ . "/../models/ProductModel.php";
-    $m = new ProductModel();
-    header('Content-Type: application/json');
-    echo json_encode($m->buscarTodos());
-    exit;
-}
+// 404
+http_response_code(404);
+echo "<h1>404 - Página não encontrada</h1>";
+echo "<p>Rota: <strong>{$uri}</strong></p>";
+echo "<a href='/'>Voltar</a>";
