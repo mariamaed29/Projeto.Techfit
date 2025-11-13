@@ -88,7 +88,7 @@ class UserController {
                 header("Location: /pág.inicial.html");
             }
 
-        } else {
+        } else { 
             echo "Email ou senha incorretos.";
         }
     }
