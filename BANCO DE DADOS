@@ -1,0 +1,36 @@
+CREATE DATABASE IF NOT EXISTS academia CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+USE academia;
+
+-- Tabela de usuários
+CREATE TABLE IF NOT EXISTS usuarios (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    nome VARCHAR(100) NOT NULL,
+    email VARCHAR(100) NOT NULL UNIQUE,
+    senha VARCHAR(255) NOT NULL,
+    tipo ENUM('admin', 'cliente') DEFAULT 'cliente',
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- Tabela de produtos
+CREATE TABLE IF NOT EXISTS produtos (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    nome VARCHAR(100) NOT NULL,
+    preco DECIMAL(10, 2) NOT NULL,
+    descricao TEXT,
+    imagem VARCHAR(255),
+    categoria VARCHAR(50),
+    estoque INT DEFAULT 0,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- Criar admin (Email: admin@tecfit.com | Senha: admin123)
+INSERT INTO usuarios (nome, email, senha, tipo) VALUES 
+('Admin TecFit', 'admin@tecfit.com', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'admin');
+
+-- Inserir produtos de exemplo
+INSERT INTO produtos (nome, preco, descricao, imagem, categoria, estoque) VALUES
+('Regata Masculina', 99.90, 'Regata de treino masculina respirável', '../../ROUPAS/regata.png', 'roupas', 50),
+('Top Feminino', 49.90, 'Top Feminino leve e confortável', '../../ROUPAS/top.png', 'roupas', 30),
+('Whey Protein 80%', 109.90, 'Whey Protein - Sabor Baunilha', '../../ROUPAS/whey_baunilha.png', 'suplementos', 20);
