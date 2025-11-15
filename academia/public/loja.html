@@ -1,6 +1,11 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-<head><meta charset="UTF-8"><title>Loja</title></head>
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="loja.css">
+    <title>Loja</title>
+
+</head>
 <body>
 
 <h1>Loja da Academia</h1>
@@ -17,7 +22,7 @@ fetch('/api/produtos')
                 <img src="${p.imagem}" width="100"><br>
                 <b>${p.nome}</b><br>
                 R$ ${p.preco}<br>
-                ${p.descricao}
+                ${p.descricao}<br>
             </div>
         `;
     });

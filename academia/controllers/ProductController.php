@@ -61,6 +61,7 @@ class ProductController {
         $descricao = $_POST['descricao'] ?? '';
         $imagem = $_POST['imagem'] ?? '';
         
+        
         if ($this->model->editar($id, $nome, $preco, $descricao, $imagem)) {
             header("Location: /admin/produtos?msg=editado");
         } else {

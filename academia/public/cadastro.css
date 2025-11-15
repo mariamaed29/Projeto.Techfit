@@ -1,3 +1,4 @@
+
 /* CADASTRO.css */
 
 /* Paleta */
@@ -111,3 +112,15 @@ a {
 }
 
 a:hover { text-decoration:underline; }
+
+
+.logo img {
+  width: 100px;
+  height: auto;
+  display: flex;
+  align-content: center;
+  position:sticky;
+  justify-items: center;
+  margin-left: 35%;
+
+}

@@ -27,10 +27,40 @@ CREATE TABLE IF NOT EXISTS produtos (
 
 -- Criar admin (Email: admin@tecfit.com | Senha: admin123)
 INSERT INTO usuarios (nome, email, senha, tipo) VALUES 
-('Admin TecFit', 'admin@tecfit.com', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'admin');
+('Brenda', 'testeServidor@tecfit.com', '123456', 'admin');
+
+INSERT INTO usuarios (nome, email, senha, tipo) VALUES 
+('Duda', 'testeServidor2@tecfit.com', '123456', 'admin');
 
 -- Inserir produtos de exemplo
+
 INSERT INTO produtos (nome, preco, descricao, imagem, categoria, estoque) VALUES
-('Regata Masculina', 99.90, 'Regata de treino masculina respirável', '../../ROUPAS/regata.png', 'roupas', 50),
-('Top Feminino', 49.90, 'Top Feminino leve e confortável', '../../ROUPAS/top.png', 'roupas', 30),
-('Whey Protein 80%', 109.90, 'Whey Protein - Sabor Baunilha', '../../ROUPAS/whey_baunilha.png', 'suplementos', 20);
+('Regata Masculina', 99.90, 'Regata de treino masculina em tecido leve e respirável (tom de cinza claro), ideal para absorver o suor e proporcionar total liberdade de movimento.', 'https://github.com/mariamaed29/Projeto.Techfit/blob/main/ROUPAS/regata.png', 'roupas', 50),
+
+('Top Feminino', 49.90, 'Top Feminino feito em tecido leve e respirável, ideal para absorver o suor e proporcionar total liberdade de movimento.', 'https://github.com/mariamaed29/Projeto.Techfit/blob/main/ROUPAS/top.png', 'roupas', 50),
+
+('Bermuda Masculina de Treino', 89.90, 'Bermuda esportiva em tom de cinza chumbo com detalhes vibrantes.', 'https://github.com/mariamaed29/Projeto.Techfit/blob/main/ROUPAS/bermuda.png', 'roupas', 50),
+
+('Conjunto Fitness Feminino (Top e Legging)', 99.99, 'Conjunto de top e legging em tecido mescla cinza de alta performance.', 'https://github.com/mariamaed29/Projeto.Techfit/blob/main/ROUPAS/conjunto.png', 'roupas', 50),
+
+('Camiseta Masculina Esportiva', 65.90, 'Camiseta de treino masculina em tecido leve e respirável (tom de cinza escuro), ideal para absorver o suor e proporcionar total liberdade de movimento.', 'https://github.com/mariamaed29/Projeto.Techfit/blob/main/ROUPAS/camisa.png', 'roupas', 50),
+
+('Luvas de Treino', 39.90, 'Luvas de treino ergonômicas em preto e cinza com detalhes em branco, projetadas para oferecer máxima aderência, conforto e proteção durante os exercícios.', 'https://github.com/mariamaed29/Projeto.Techfit/blob/main/ROUPAS/luva.png', 'acessorios', 50),
+
+('Mochila Esportiva', 149.90, 'Mochila esportiva robusta na cor preta, design moderno e funcional, perfeita para transportar equipamentos de treino e itens pessoais.', 'https://github.com/mariamaed29/Projeto.Techfit/blob/main/ROUPAS/mochila.png', 'acessorios', 50),
+
+('Coqueteleira TechFit', 99.90, 'Coqueteleira TechFit criada para quem busca praticidade nos treinos.', 'https://github.com/mariamaed29/Projeto.Techfit/blob/main/ROUPAS/coqueteleira.png', 'acessorios', 50),
+
+('Barra de Proteína - Morango', 12.90, 'Barra de proteína com 20g por unidade. Recheio natural de morango com chocolate ao leite.', 'https://github.com/mariamaed29/Projeto.Techfit/blob/main/ROUPAS/barra_morango.png', 'suplementos', 50),
+
+('Barra de Proteína - Chocolate & Pistache', 12.90, 'Versão premium com 20g de proteína por unidade. Cobertura de chocolate e pistache.', 'https://github.com/mariamaed29/Projeto.Techfit/blob/main/ROUPAS/barra_pistache.png', 'suplementos', 50),
+
+('Barra Proteica – Sabor Baunilha', 12.90, 'Barra proteica com 20g por unidade, sabor suave de baunilha, recheio cremoso e cobertura de chocolate branco.', 'https://github.com/mariamaed29/Projeto.Techfit/blob/main/ROUPAS/barra_baunilha.png', 'suplementos', 50),
+
+('Barra Proteica – Sabor Chocolate & Morango', 12.90, 'Barra de proteína com 20g por unidade. Recheio de morango com chocolate ao leite.', 'https://github.com/mariamaed29/Projeto.Techfit/blob/main/ROUPAS/barra_chocolate.png', 'suplementos', 50),
+
+('Garrafa TechFit Premium', 73.90, 'Garrafa TechFit com design moderno em preto fosco, trava de segurança e acabamento em azul e verde neon.', 'https://github.com/mariamaed29/Projeto.Techfit/blob/main/ROUPAS/garrafa.png', 'acessorios', 50),
+
+('Creatina Monohidratada TechFit (300g)', 109.90, 'Creatina 100% pura para aumento de força, potência e desempenho, com alta absorção.', 'https://github.com/mariamaed29/Projeto.Techfit/blob/main/ROUPAS/creatina_normal.png', 'suplementos', 50),
+
+('Whey Protein 80% – Baunilha', 109.90, 'Whey com 80% de proteína pura, 5.2g de BCAAs e sabor de baunilha.', 'https://github.com/mariamaed29/Projeto.Techfit/blob/main/ROUPAS/whey_baunilha.png', 'suplementos', 50);
