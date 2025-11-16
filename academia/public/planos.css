@@ -390,18 +390,18 @@ section h2 {
   color: #fff;
   box-shadow: 0 0 15px rgba(0, 255, 0, 0.1);
 }
-
+/* 
 /* Efeito hover com brilho verde */
 .card:hover {
   transform: translateY(-10px);
   box-shadow: 0 0 25px rgba(0, 255, 0, 0.4);
   border-color: var();
-}
+} */
 
-/* Ícones */
+/* Ícones
 .card i {
-  text-shadow: 0 0 10px rgba(0, 255, 0, 0.5);
-}
+  text-shadow: 0 0 10px var(--azul);
+} */
 
 /* Nome do plano */
 .card h4 {
@@ -441,4 +441,18 @@ section h2 {
   .card i {
     font-size: 2rem;
   }
+}
+
+#assinar {
+  padding: 7px 40px;
+  background-color: var(--azul);
+  color: var(--branco);
+  border-radius: var(--radius) ;
+  border: 1px var(--preto);
+}
+
+
+#assinar:hover {
+  background-color: var(--verde);
+  color:var(--preto) ;
 }
