@@ -18,7 +18,7 @@ class UserModel {
             if ($result->num_rows > 0) {
                 $user = $result->fetch_assoc();
                 
-                if (password_verify($senha, $user['senha'])) {
+                if ($senha === $user['senha']) {
                     unset($user['senha']);
                     return $user;
                 }
@@ -43,7 +43,7 @@ class UserModel {
                 return ['success' => false, 'message' => 'Email já cadastrado'];
             }
             
-            $senhaHash = password_hash($senha, PASSWORD_DEFAULT);
+            $senhaHash = $senha;
             $stmt = $this->conn->prepare("INSERT INTO usuarios (nome, email, senha, tipo) VALUES (?, ?, ?, 'cliente')");
             $stmt->bind_param("sss", $nome, $email, $senhaHash);
             
