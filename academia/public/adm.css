@@ -24,7 +24,8 @@ html, body {
 
 /* Fundo */
 body {
-  background-image: -webkit-image-set();
+background:#1d1d1dc2;
+backdrop-filter: blur(10px);
   display: flex;
   justify-content: center;
   align-items: flex-start;
@@ -35,15 +36,20 @@ body {
 .dashboard-container {
   width: 100%;
   max-width: 900px;
+  background-color: var(--cinza);
+  padding: 120px 30px;
+  border-radius: var(--radius);
 }
 
 /* Título */
 .dashboard-container h1 {
   font-size: 2.5rem;
-  color: var(--azul);
+  color: var(--verde);
   font-weight: 900;
   margin-bottom: 20px;
   text-align: center;
+  
+
 }
 
 /* Subtítulo */
@@ -52,6 +58,7 @@ body {
   color: var(--preto);
   text-align: center;
   margin-bottom: 40px;
+ color: var(--azul);
 }
 
 /* Grid de cards */
@@ -105,10 +112,12 @@ body {
   text-decoration: none;
   font-weight: bold;
   transition: background 0.3s, transform 0.2s;
+  
 }
 .card a:hover {
   background: #0056b3;
   transform: translateY(-2px);
+  
 }
 
 
@@ -136,10 +145,20 @@ a {
   text-decoration: none;
   font-weight: bold;
   transition: background 0.3s, transform 0.2s;
+  
 }
 
 /* Card especial para logout */
 
 .logout a:hover {
   background: #e60000;
+  color: var(--preto);
+text-shadow:
+0 0 5px var(#e60000),
+0 0 10px var(#e60000),
+0 0 20px var(#e60000),
+0 0 30px var(#e60000),
+0 0 40px var(#e60000),
+0 0 50px var(#e60000);
+  
 }
