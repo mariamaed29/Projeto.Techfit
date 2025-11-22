@@ -1,11 +1,34 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="https://github.com/mariamaed29/Projeto.Techfit/blob/main/FOTOS/logoNormal.png?raw=true" type="image/x-icon">
+    <link rel="stylesheet" href="Assinar.css">
     <title>Assinar</title>
 </head>
 <body>
     
+        <form action="/Assinar" method="post">
+        <input type="text" name="nome" placeholder="Nome completo" required>
+        <input type="number" name="telefone" placeholder="Telefone" required>
+        <input type="email" name="email" placeholder="Email" required>
+        <input type="number" name="cpf" placeholder="CPF" required>
+        <input type="number" name="cartao" placeholder="Numero do Cartão" required>
+        <input type="number" name="digito" placeholder="Codigo de Segurança" required>
+        <input type="date" name="data" placeholder="Data de Vencimento" required>
+        <select name="planos" required>
+        <option value="">Selecione o Plano</option>
+        <option value="Start">TechFit Start - 129,90/mês</option>
+        <option value="Plus">TechFit Plus - 109,90/mês (Trimestral)</option>
+        <option value="Premium">TechFit Premium - 99,90/mês (Semestral)</option>
+        <option value="Black">TechFit Black - 89,90/mês (Anual)</option>
+        <option value="Family">TechFit Family - 249,90/mês (Até 3 pessoas)</option>
+        <option value="Corporate">TechFit Corporate - 79,90/mês por funcionário</option>
+</select>
+
+        <button type="submit">Assinar Plano</button>
+    </form>
+
 </body>
 </html>
