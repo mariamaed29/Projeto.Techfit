@@ -1,6 +1,10 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-<head><meta charset="UTF-8"><title>Produtos</title></head>
+  <link rel="shortcut icon" href="https://github.com/mariamaed29/Projeto.Techfit/blob/main/FOTOS/logoNormal.png?raw=true" type="image/x-icon">
+<head>
+  <meta charset="UTF-8">
+<title>Produtos</title>
+</head>
 <style>  
 :root {
   --azul: #007bff;

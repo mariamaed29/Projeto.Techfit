@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="https://github.com/mariamaed29/Projeto.Techfit/blob/main/FOTOS/logoNormal.png?raw=true" type="image/x-icon">
+    <title>Loading...</title>
+</head>
+<body>
+<style>
+:root {
+  --azul: #007bff;
+  --preto: #000000;
+  --cinza: #2c2c2c;
+  --branco: #ffffff;
+  --verde: #a6ff00;
+  --radius: 16px;
+  --shadow: 0 8px 32px rgba(0,0,0,0.25);
+}
+
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+section{
+    display: flex;
+    height: 100vh;
+    width: 100%;
+    background:var(--cinza);
+    align-items: center;
+    justify-content: center;
+}
+section .dots span{
+    position: absolute;
+    height: 35px;
+    width: 35px;
+    background: var(--verde);
+    border-radius: 50%;
+    transform: rotate(calc(var(--i)* (360deg / 15))) translateY(100px);
+    animation: animate 1.5s linear infinite;
+    animation-delay: calc(var(--i) * 0.1s);
+    opacity: 0;
+}
+@keyframes animate{
+    0%{
+        opacity: 1;
+    }
+    100%{
+        opacity: 0;
+    }
+}
+</style>
+<div>
+<section>
+        <div class="dots">
+            <span style="--i:1;"></span>
+            <span style="--i:2;"></span>
+            <span style="--i:3;"></span>
+            <span style="--i:4;"></span>
+            <span style="--i:5;"></span>
+            <span style="--i:6;"></span>
+            <span style="--i:7;"></span>
+            <span style="--i:8;"></span>
+            <span style="--i:9;"></span>
+            <span style="--i:10;"></span>
+            <span style="--i:11;"></span>
+            <span style="--i:12;"></span>
+            <span style="--i:13;"></span>
+            <span style="--i:14;"></span>
+            <span style="--i:15;"></span>
+            
+        </div>
+       
+    </section>
+    </div>
+</body>
+</html>
