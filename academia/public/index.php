@@ -73,7 +73,21 @@ if (strpos($uri, '/admin') === 0) {
         $controller = new AdminController();
         $controller->deletarUsuario($_GET['id']);
     }
+
+        if ($uri === "/admin/usuarios/editar" && isset($_GET['id'])) {
+        $controller = new AdminController();
+        $controller->editarUsuarioForm(id: $_GET['id']);
+        exit;
+    }
     
+    if ($uri === "/admin/usuarios/salvar" && $method === "POST") {
+        $controller = new AdminController();
+        $controller->editarUsuarioSalvar();
+    }
+    
+    
+// =========================================================================
+// Rotas Produtos
     if ($uri === "/admin/produtos") {
         $controller = new ProductController();
         $controller->listar();

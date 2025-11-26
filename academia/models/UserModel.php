@@ -70,6 +70,38 @@ class UserModel {
         }
     }
     
+    public function buscarPorId($id) {
+        try {
+            $stmt = $this->conn->prepare("SELECT id, nome, email, tipo FROM usuarios WHERE id = ?");
+            $stmt->bind_param("i", $id);
+            $stmt->execute();
+            $result = $stmt->get_result();
+            return $result->fetch_assoc();
+        } catch (Exception $e) {
+            error_log("Erro ao buscar usuário: " . $e->getMessage());
+            return null;
+        }
+    }
+    
+    public function editar($id, $nome, $email, $tipo, $senha = '') {
+        try {
+            // Se a senha foi fornecida, atualiza com senha
+            if (!empty($senha)) {
+                $stmt = $this->conn->prepare("UPDATE usuarios SET nome=?, email=?, tipo=?, senha=? WHERE id=?");
+                $stmt->bind_param("ssssi", $nome, $email, $tipo, $senha, $id);
+            } else {
+                // Se não, mantém a senha atual
+                $stmt = $this->conn->prepare("UPDATE usuarios SET nome=?, email=?, tipo=? WHERE id=?");
+                $stmt->bind_param("sssi", $nome, $email, $tipo, $id);
+            }
+            
+            return $stmt->execute();
+        } catch (Exception $e) {
+            error_log("Erro ao editar usuário: " . $e->getMessage());
+            return false;
+        }
+    }
+    
     public function deletar($id) {
         try {
             $stmt = $this->conn->prepare("DELETE FROM usuarios WHERE id = ?");
