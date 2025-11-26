@@ -1,5 +1,12 @@
 RewriteEngine On
 
+# Define o diretório base
+RewriteBase /
+
+# Permite acesso a arquivos reais (CSS, JS, imagens, HTML)
+RewriteCond %{REQUEST_FILENAME} -f
+RewriteRule ^ - [L]
+
 # Redireciona tudo para index.php exceto arquivos existentes
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
