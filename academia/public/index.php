@@ -120,6 +120,41 @@ if (strpos($uri, '/admin') === 0) {
         $controller = new ProductController();
         $controller->deletar($_GET['id']);
     }
+
+// =========================================================================
+// Rotas Planos
+    if ($uri === "/admin/planos") {
+        $controller = new PlanoController();
+        $controller->listar();
+        exit;
+    }
+    
+    if ($uri === "/admin/planos/novo") {
+        $controller = new PlanoController();
+        $controller->novo();
+        exit;
+    }
+    
+    if ($uri === "/admin/planos/criar" && $method === "POST") {
+        $controller = new PlanoController();
+        $controller->criar();
+    }
+    
+    if ($uri === "/admin/planos/editar" && isset($_GET['id'])) {
+        $controller = new PlanoController();
+        $controller->editarForm($_GET['id']);
+        exit;
+    }
+    
+    if ($uri === "/admin/planos/salvar" && $method === "POST") {
+        $controller = new PlanoController();
+        $controller->editarSalvar();
+    }
+    
+    if ($uri === "/admin/planos/deletar" && isset($_GET['id'])) {
+        $controller = new PlanoController();
+        $controller->deletar($_GET['id']);
+    }
 }
 
 // 404
