@@ -3,7 +3,7 @@
   <link rel="shortcut icon" href="https://github.com/mariamaed29/Projeto.Techfit/blob/main/FOTOS/logoNormal.png?raw=true" type="image/x-icon">
 <head>
   <meta charset="UTF-8">
-<title>Produtos</title>
+<title>Planos</title>
 </head>
 <style>  
 :root {
@@ -104,22 +104,21 @@ a:hover {
 
 <body>
 
-<h1>Gerenciar Produtos</h1>
-<a href="/admin/produtos/novo">+ Novo Produto</a><br><br>
+<h1>Gerenciar Planos</h1>
+<a href="/admin/planos/novo">+ Novo Produto</a><br><br>
 
 <table border="1" cellpadding="6">
-<tr><th>ID</th><th>Nome</th><th>Preço</th><th>Descrição</th><th>Imagem</th><th>Ações</th></tr>
+<tr><th>ID</th><th>Titulo</th><th>Valor</th><th>Beneficios</th><th>Ações</th></tr>
 
-<?php foreach ($produtos as $p): ?>
+<?php foreach ($planos as $p): ?>
 <tr>
     <td><?= $p['id'] ?></td>
-    <td><?= $p['nome'] ?></td>
-    <td>R$ <?= number_format($p['preco'], 2, ',', '.') ?></td>
-    <td><?= $p['descricao'] ?></td>
-    <td><img src="<?= $p['imagem'] ?>" width="60"></td>
+    <td><?= $p['titulo'] ?></td>
+    <td>R$ <?= number_format($p['valor'], 2, ',', '.') ?></td>
+    <td><?= $p['beneficio'] ?></td>
     <td>
-        <a href="/admin/produtos/editar?id=<?= $p['id'] ?>">✏️</a>
-        <a  href="/admin/produtos/deletar?id=<?= $p['id'] ?>" onclick="return confirm('Excluir produto?')">🗑</a>
+        <a href="/admin/planos/editar?id=<?= $p['id'] ?>">✏️</a>
+        <a  href="/admin/planos/deletar?id=<?= $p['id'] ?>" onclick="return confirm('Excluir plano?')">🗑</a>
     </td>
 </tr>
 <?php endforeach; ?>

@@ -48,7 +48,7 @@ class PlanoController {
             die("Produto não encontrado!");
         }
         
-        include __DIR__ . '/../views/admin/editarPlano.php';
+        include __DIR__ . '/../views/admin/editarPlanos.php';
     }
     
     public function editarSalvar() {
