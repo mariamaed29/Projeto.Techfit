@@ -28,7 +28,7 @@ class PlanosModel {
             $result = $stmt->get_result();
             return $result->fetch_assoc();
         } catch (Exception $e) {
-            error_log("Erro ao buscar planos: " . $e->getMessage());
+            error_log("Erro ao buscar plano: " . $e->getMessage());
             return null;
         }
     }
@@ -36,7 +36,7 @@ class PlanosModel {
     public function criar($titulo, $valor, $beneficios) {
         try {
             $stmt = $this->conn->prepare("INSERT INTO planos (titulo, valor, beneficios) VALUES (?, ?, ?)");
-            $stmt->bind_param("sdss", $titulo, $valor, $beneficios);
+            $stmt->bind_param("sds", $titulo, $valor, $beneficios);
             return $stmt->execute();
         } catch (Exception $e) {
             error_log("Erro ao criar plano: " . $e->getMessage());
@@ -47,7 +47,7 @@ class PlanosModel {
     public function editar($id, $titulo, $valor, $beneficios) {
         try {
             $stmt = $this->conn->prepare("UPDATE planos SET titulo=?, valor=?, beneficios=? WHERE id=?");
-            $stmt->bind_param("sdssi", $titulo, $valor, $beneficios, $id);
+            $stmt->bind_param("sdsi", $titulo, $valor, $beneficios, $id);
             return $stmt->execute();
         } catch (Exception $e) {
             error_log("Erro ao editar plano: " . $e->getMessage());

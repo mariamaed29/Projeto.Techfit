@@ -10,7 +10,9 @@ class PlanoController {
     
     private function requireAdmin() {
         if (!isset($_SESSION['user']) || $_SESSION['user']['tipo'] !== 'admin') {
-            die("Acesso negado! <a href='/Login.html'>Fazer login</a>");
+            $_SESSION['erro'] = "Acesso negado!";
+            header("Location: /Login.html");
+            exit;
         }
     }
     
@@ -28,24 +30,62 @@ class PlanoController {
     public function criar() {
         $this->requireAdmin();
         
-        $titulo = $_POST['titulo'] ?? '';
-        $valor = $_POST['valor'] ?? 0;
-        $beneficio = $_POST['beneficio'] ?? '';
+        if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
+            header("Location: /admin/planos/novo");
+            exit;
+        }
         
+        // Pega os dados do formulário
+        $titulo = trim($_POST['titulo'] ?? '');
+        $valor = $_POST['valor'] ?? 0;
+        $beneficio = trim($_POST['beneficio'] ?? '');
+        
+        // Validações simples
+        if (empty($titulo)) {
+            $_SESSION['erro'] = "O título é obrigatório!";
+            header("Location: /admin/planos/novo");
+            exit;
+        }
+        
+        if ($valor <= 0) {
+            $_SESSION['erro'] = "O valor deve ser maior que zero!";
+            header("Location: /admin/planos/novo");
+            exit;
+        }
+        
+        if (empty($beneficio)) {
+            $_SESSION['erro'] = "Os benefícios são obrigatórios!";
+            header("Location: /admin/planos/novo");
+            exit;
+        }
+        
+        // Tenta criar o plano
         if ($this->model->criar($titulo, $valor, $beneficio)) {
-            header("Location: /admin/planos?msg=criado");
+            $_SESSION['sucesso'] = "Plano criado com sucesso!";
+            header("Location: /admin/planos");
         } else {
-            die("Erro ao criar plano!");
+            $_SESSION['erro'] = "Erro ao criar plano!";
+            header("Location: /admin/planos/novo");
         }
         exit;
     }
     
     public function editarForm($id) {
         $this->requireAdmin();
+        
+        // Valida o ID
+        if (!is_numeric($id) || $id <= 0) {
+            $_SESSION['erro'] = "ID inválido!";
+            header("Location: /admin/planos");
+            exit;
+        }
+        
         $produto = $this->model->buscarPorId($id);
         
         if (!$produto) {
-            die("Produto não encontrado!");
+            $_SESSION['erro'] = "Plano não encontrado!";
+            header("Location: /admin/planos");
+            exit;
         }
         
         include __DIR__ . '/../views/admin/editarPlanos.php';
@@ -54,16 +94,49 @@ class PlanoController {
     public function editarSalvar() {
         $this->requireAdmin();
         
+        if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
+            header("Location: /admin/planos");
+            exit;
+        }
+        
+        // Pega os dados do formulário
         $id = $_POST['id'] ?? 0;
-        $titulo = $_POST['titulo'] ?? '';
+        $titulo = trim($_POST['titulo'] ?? '');
         $valor = $_POST['valor'] ?? 0;
-        $beneficio = $_POST['beneficio'] ?? '';
+        $beneficio = trim($_POST['beneficio'] ?? '');
         
+        // Validações simples
+        if (!is_numeric($id) || $id <= 0) {
+            $_SESSION['erro'] = "ID inválido!";
+            header("Location: /admin/planos");
+            exit;
+        }
         
+        if (empty($titulo)) {
+            $_SESSION['erro'] = "O título é obrigatório!";
+            header("Location: /admin/planos/editar?id=$id");
+            exit;
+        }
+        
+        if ($valor <= 0) {
+            $_SESSION['erro'] = "O valor deve ser maior que zero!";
+            header("Location: /admin/planos/editar?id=$id");
+            exit;
+        }
+        
+        if (empty($beneficio)) {
+            $_SESSION['erro'] = "Os benefícios são obrigatórios!";
+            header("Location: /admin/planos/editar?id=$id");
+            exit;
+        }
+        
+        // Tenta editar o plano
         if ($this->model->editar($id, $titulo, $valor, $beneficio)) {
-            header("Location: /admin/planos?msg=editado");
+            $_SESSION['sucesso'] = "Plano editado com sucesso!";
+            header("Location: /admin/planos");
         } else {
-            die("Erro ao editar produto!");
+            $_SESSION['erro'] = "Erro ao editar plano!";
+            header("Location: /admin/planos/editar?id=$id");
         }
         exit;
     }
@@ -71,17 +144,27 @@ class PlanoController {
     public function deletar($id) {
         $this->requireAdmin();
         
-        if ($this->model->deletar($id)) {
-            header("Location: /admin/planos?msg=deletado");
-        } else {
-            die("Erro ao deletar plano!");
+        // Valida o ID
+        if (!is_numeric($id) || $id <= 0) {
+            $_SESSION['erro'] = "ID inválido!";
+            header("Location: /admin/planos");
+            exit;
         }
+        
+        // Tenta deletar o plano
+        if ($this->model->deletar($id)) {
+            $_SESSION['sucesso'] = "Plano deletado com sucesso!";
+        } else {
+            $_SESSION['erro'] = "Erro ao deletar plano!";
+        }
+        
+        header("Location: /admin/planos");
         exit;
     }
     
     public function listarJson() {
         $planos = $this->model->buscarTodos();
-        header('Content-Type: application/json');
+        header('Content-Type: application/json; charset=utf-8');
         echo json_encode($planos);
         exit;
     }
