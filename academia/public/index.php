@@ -55,6 +55,11 @@ if ($uri === "/api/produtos") {
     $controller = new ProductController();
     $controller->listarJson();
 }
+// Processar Assinatura
+if ($uri === "/Assinar" && $method === "POST") {
+    $controller = new AssinaturaController();
+    $controller->processar();
+}
 
 // Rotas Admin
 if (strpos($uri, '/admin') === 0) {
@@ -120,13 +125,17 @@ if (strpos($uri, '/admin') === 0) {
         $controller = new ProductController();
         $controller->deletar($_GET['id']);
     }
+    if ($uri === "/api/planos") {
+    $controller = new PlanoController();
+    $controller->listarJson();
+}
 
 // =========================================================================
 // Rotas Planos
-    if ($uri === "/admin/planos") {
-        $controller = new PlanoController();
-        $controller->listar();
-        exit;
+if ($uri === "/api/planos") {
+    $controller = new PlanoController();
+    $controller->listarJson();
+    exit;
     }
     
     if ($uri === "/admin/planos/novo") {
@@ -155,6 +164,7 @@ if (strpos($uri, '/admin') === 0) {
         $controller = new PlanoController();
         $controller->deletar($_GET['id']);
     }
+
 }
 
 // 404

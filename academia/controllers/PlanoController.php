@@ -37,10 +37,10 @@ class PlanoController {
         
         // Pega os dados do formulário
         $titulo = trim($_POST['titulo'] ?? '');
-        $valor = $_POST['valor'] ?? 0;
-        $beneficio = trim($_POST['beneficio'] ?? '');
+        $valor = floatval($_POST['valor'] ?? 0);
+        $beneficios = trim($_POST['beneficios'] ?? ''); // CORRIGIDO: era 'beneficio'
         
-        // Validações simples
+        // Validações
         if (empty($titulo)) {
             $_SESSION['erro'] = "O título é obrigatório!";
             header("Location: /admin/planos/novo");
@@ -53,14 +53,14 @@ class PlanoController {
             exit;
         }
         
-        if (empty($beneficio)) {
+        if (empty($beneficios)) {
             $_SESSION['erro'] = "Os benefícios são obrigatórios!";
             header("Location: /admin/planos/novo");
             exit;
         }
         
         // Tenta criar o plano
-        if ($this->model->criar($titulo, $valor, $beneficio)) {
+        if ($this->model->criar($titulo, $valor, $beneficios)) {
             $_SESSION['sucesso'] = "Plano criado com sucesso!";
             header("Location: /admin/planos");
         } else {
@@ -80,9 +80,9 @@ class PlanoController {
             exit;
         }
         
-        $produto = $this->model->buscarPorId($id);
+        $plano = $this->model->buscarPorId($id); // CORRIGIDO: era $produto
         
-        if (!$produto) {
+        if (!$plano) {
             $_SESSION['erro'] = "Plano não encontrado!";
             header("Location: /admin/planos");
             exit;
@@ -100,13 +100,13 @@ class PlanoController {
         }
         
         // Pega os dados do formulário
-        $id = $_POST['id'] ?? 0;
+        $id = intval($_POST['id'] ?? 0);
         $titulo = trim($_POST['titulo'] ?? '');
-        $valor = $_POST['valor'] ?? 0;
-        $beneficio = trim($_POST['beneficio'] ?? '');
+        $valor = floatval($_POST['valor'] ?? 0);
+        $beneficios = trim($_POST['beneficios'] ?? ''); // CORRIGIDO
         
-        // Validações simples
-        if (!is_numeric($id) || $id <= 0) {
+        // Validações
+        if ($id <= 0) {
             $_SESSION['erro'] = "ID inválido!";
             header("Location: /admin/planos");
             exit;
@@ -124,14 +124,14 @@ class PlanoController {
             exit;
         }
         
-        if (empty($beneficio)) {
+        if (empty($beneficios)) {
             $_SESSION['erro'] = "Os benefícios são obrigatórios!";
             header("Location: /admin/planos/editar?id=$id");
             exit;
         }
         
         // Tenta editar o plano
-        if ($this->model->editar($id, $titulo, $valor, $beneficio)) {
+        if ($this->model->editar($id, $titulo, $valor, $beneficios)) {
             $_SESSION['sucesso'] = "Plano editado com sucesso!";
             header("Location: /admin/planos");
         } else {
@@ -165,7 +165,7 @@ class PlanoController {
     public function listarJson() {
         $planos = $this->model->buscarTodos();
         header('Content-Type: application/json; charset=utf-8');
-        echo json_encode($planos);
+        echo json_encode($planos, JSON_UNESCAPED_UNICODE);
         exit;
     }
 }

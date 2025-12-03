@@ -81,4 +81,152 @@
         }
 
         form label .required {
-            color: #dc
+            color: #dc3545;
+        }
+
+        form input,
+        form textarea {
+            width: 100%;
+            padding: 12px;
+            border-radius: 10px;
+            border: 2px solid var(--azul);
+            font-size: 1rem;
+            outline: none;
+            transition: 0.3s;
+            background: #f7f7f7;
+        }
+
+        form textarea {
+            height: 120px;
+            resize: vertical;
+            font-family: inherit;
+        }
+
+        form input:focus,
+        form textarea:focus {
+            border-color: var(--verde);
+            background: #ffffff;
+        }
+
+        .helper-text {
+            font-size: 0.85rem;
+            color: #6c757d;
+            margin-top: -12px;
+            margin-bottom: 18px;
+        }
+
+        form button {
+            width: 100%;
+            padding: 14px;
+            border: none;
+            border-radius: 12px;
+            background: var(--azul);
+            color: var(--branco);
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        form button:hover {
+            background: var(--verde);
+            color: var(--preto);
+            transform: scale(1.03);
+        }
+
+        .btn-voltar {
+            display: inline-block;
+            margin-top: 25px;
+            padding: 12px 22px;
+            border-radius: 30px;
+            background: #6c757d;
+            color: var(--branco);
+            font-weight: bold;
+            text-decoration: none;
+            box-shadow: var(--shadow);
+            transition: 0.3s;
+        }
+
+        .btn-voltar:hover {
+            background: #5a6268;
+            transform: scale(1.05);
+        }
+
+        .example {
+            background: #e7f3ff;
+            border-left: 4px solid var(--azul);
+            padding: 10px;
+            margin-top: 8px;
+            border-radius: 4px;
+            font-size: 0.9rem;
+            color: #004085;
+        }
+    </style>
+</head>
+<body>
+
+<h1>➕ Novo Plano</h1>
+
+<?php if (isset($_SESSION['erro'])): ?>
+    <div class="alert alert-error">
+        ❌ <?= htmlspecialchars($_SESSION['erro']) ?>
+    </div>
+    <?php unset($_SESSION['erro']); ?>
+<?php endif; ?>
+
+<form action="/admin/planos/criar" method="post">
+    <div class="form-group">
+        <label for="titulo">
+            Título do Plano <span class="required">*</span>
+        </label>
+        <input 
+            type="text" 
+            id="titulo" 
+            name="titulo" 
+            placeholder="Ex: Plano Mensal, Plano Anual"
+            required
+            maxlength="100"
+        >
+    </div>
+
+    <div class="form-group">
+        <label for="valor">
+            Valor (R$) <span class="required">*</span>
+        </label>
+        <input 
+            type="number" 
+            id="valor" 
+            name="valor" 
+            step="0.01" 
+            min="0.01"
+            placeholder="Ex: 99.90"
+            required
+        >
+    </div>
+
+    <div class="form-group">
+        <label for="beneficios">
+            Benefícios <span class="required">*</span>
+        </label>
+        <textarea 
+            id="beneficios" 
+            name="beneficios" 
+            placeholder="Liste os benefícios do plano..."
+            required
+        ></textarea>
+        <div class="example">
+            <strong>💡 Exemplo:</strong><br>
+            - Acesso ilimitado à academia<br>
+            - Aulas de musculação<br>
+            - Avaliação física mensal<br>
+            - Área de cardio
+        </div>
+    </div>
+
+    <button type="submit">💾 Criar Plano</button>
+</form>
+
+<a href="/admin/planos" class="btn-voltar">⬅️ Voltar</a>
+
+</body>
+</html>

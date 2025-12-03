@@ -33,6 +33,7 @@ class PlanosModel {
         }
     }
     
+    // ✅ CORRIGIDO: campo 'beneficios' (não 'beneficio')
     public function criar($titulo, $valor, $beneficios) {
         try {
             $stmt = $this->conn->prepare("INSERT INTO planos (titulo, valor, beneficios) VALUES (?, ?, ?)");
@@ -44,6 +45,7 @@ class PlanosModel {
         }
     }
     
+    // ✅ CORRIGIDO: campo 'beneficios' (não 'beneficio')
     public function editar($id, $titulo, $valor, $beneficios) {
         try {
             $stmt = $this->conn->prepare("UPDATE planos SET titulo=?, valor=?, beneficios=? WHERE id=?");

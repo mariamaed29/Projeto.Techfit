@@ -1,7 +1,7 @@
 RewriteEngine On
 
 # Define o diretório base
-RewriteBase /
+RewriteBase 
 
 # Permite acesso a arquivos reais (CSS, JS, imagens, HTML)
 RewriteCond %{REQUEST_FILENAME} -f
@@ -17,3 +17,19 @@ AddDefaultCharset UTF-8
 
 # Desabilita listagem de diretórios
 Options -Indexes
+
+# Planos
+/admin/planos → PlanoController::listar()
+/admin/planos/novo → PlanoController::novo()
+/admin/planos/criar → PlanoController::criar()
+/admin/planos/editar?id=X → PlanoController::editarForm($id)
+/admin/planos/salvar → PlanoController::editarSalvar()
+/admin/planos/deletar?id=X → PlanoController::deletar($id)
+
+# Produtos
+/admin/produtos → ProductController::listar()
+/admin/produtos/novo → ProductController::novo()
+/admin/produtos/criar → ProductController::criar()
+/admin/produtos/editar?id=X → ProductController::editarForm($id)
+/admin/produtos/salvar → ProductController::editarSalvar()
+/admin/produtos/deletar?id=X → ProductController::deletar($id)

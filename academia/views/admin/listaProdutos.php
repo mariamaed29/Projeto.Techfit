@@ -224,7 +224,7 @@
 <?php endif; ?>
 
 <div class="actions-bar">
-    <a href="/admin/planos/novo" class="btn btn-primary">➕ Novo Plano</a>
+    <a href="/admin/produtos/novo" class="btn btn-primary">➕ Novo Plano</a>
     <a href="/adm.html" class="btn btn-secondary">← Voltar ao Painel</a>
 </div>
 

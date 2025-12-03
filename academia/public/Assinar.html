@@ -4,31 +4,230 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="shortcut icon" href="https://github.com/mariamaed29/Projeto.Techfit/blob/main/FOTOS/logoNormal.png?raw=true" type="image/x-icon">
-    <link rel="stylesheet" href="Assinar.css">
-    <title>Assinar</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+    <title>Assinar Plano</title>
+    <style>
+        body {
+            background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        form {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            padding: 40px;
+            border-radius: 20px;
+            border: 2px solid #007bff;
+            max-width: 500px;
+            width: 100%;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+        }
+
+        h1 {
+            color: #a6ff00;
+            text-align: center;
+            margin-bottom: 30px;
+            font-weight: 900;
+        }
+
+        input, select {
+            width: 100%;
+            padding: 12px;
+            margin: 10px 0;
+            border: 2px solid #007bff;
+            border-radius: 10px;
+            background: rgba(255, 255, 255, 0.1);
+            color: #fff;
+            font-size: 1rem;
+        }
+
+        input::placeholder {
+            color: #aaa;
+        }
+
+        input:focus, select:focus {
+            outline: none;
+            border-color: #a6ff00;
+            background: rgba(255, 255, 255, 0.15);
+        }
+
+        button {
+            width: 100%;
+            padding: 14px;
+            margin-top: 20px;
+            background: #007bff;
+            color: white;
+            border: none;
+            border-radius: 12px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        button:hover {
+            background: #a6ff00;
+            color: #000;
+            transform: scale(1.05);
+        }
+
+        .loading {
+            text-align: center;
+            color: #a6ff00;
+            padding: 10px;
+        }
+
+        .plano-info {
+            background: rgba(166, 255, 0, 0.1);
+            padding: 15px;
+            border-radius: 8px;
+            margin: 15px 0;
+            border: 1px solid #a6ff00;
+            display: none;
+        }
+
+        .plano-info h3 {
+            color: #a6ff00;
+            margin-bottom: 10px;
+        }
+
+        .plano-info p {
+            color: #fff;
+            margin: 5px 0;
+        }
+
+        select option {
+            background: #2d2d2d;
+            color: #fff;
+        }
+    </style>
 </head>
 <body>
-    
-        <form action="/Assinar" method="post">
-        <input type="text" name="nome" placeholder="Nome completo" required>
-        <input type="number" name="telefone" placeholder="Telefone" required>
-        <input type="email" name="email" placeholder="Email" required>
-        <input type="number" name="cpf" placeholder="CPF" required>
-        <input type="number" name="cartao" placeholder="Numero do Cartão" required>
-        <input type="number" name="digito" placeholder="Codigo de Segurança" required>
-        <input type="date" name="data" placeholder="Data de Vencimento" required>
-        <select name="planos" required>
-        <option value="">Selecione o Plano</option>
-        <option value="Start">TechFit Start - 129,90/mês</option>
-        <option value="Plus">TechFit Plus - 109,90/mês (Trimestral)</option>
-        <option value="Premium">TechFit Premium - 99,90/mês (Semestral)</option>
-        <option value="Black">TechFit Black - 89,90/mês (Anual)</option>
-        <option value="Family">TechFit Family - 249,90/mês (Até 3 pessoas)</option>
-        <option value="Corporate">TechFit Corporate - 79,90/mês por funcionário</option>
-</select>
 
-        <button type="submit">Assinar Plano</button>
-    </form>
+<form action="/Assinar" method="post" id="formAssinar">
+    <h1>🏋️ Assinar Plano</h1>
+    
+    <input type="text" name="nome" placeholder="Nome completo" required>
+    <input type="tel" name="telefone" placeholder="Telefone" required>
+    <input type="email" name="email" placeholder="Email" required>
+    <input type="text" name="cpf" placeholder="CPF" maxlength="14" required>
+    
+    <div id="loading-planos" class="loading">
+        <div class="spinner-border spinner-border-sm text-success"></div>
+        Carregando planos...
+    </div>
+    
+    <select name="plano_id" id="selectPlano" required style="display: none;">
+        <option value="">Selecione o Plano</option>
+    </select>
+
+    <div id="plano-info" class="plano-info"></div>
+    
+    <h3 style="color: #007bff; margin-top: 25px;">💳 Dados do Cartão</h3>
+    
+    <input type="text" name="cartao" placeholder="Número do Cartão" maxlength="19" required>
+    <input type="text" name="digito" placeholder="Código de Segurança (CVV)" maxlength="4" required>
+    <input type="month" name="validade" placeholder="Validade (MM/AA)" required>
+    
+    <button type="submit">✅ Confirmar Assinatura</button>
+</form>
+
+<script>
+// Máscara para CPF
+document.querySelector('input[name="cpf"]').addEventListener('input', function(e) {
+    let value = e.target.value.replace(/\D/g, '');
+    value = value.replace(/(\d{3})(\d)/, '$1.$2');
+    value = value.replace(/(\d{3})(\d)/, '$1.$2');
+    value = value.replace(/(\d{3})(\d{1,2})$/, '$1-$2');
+    e.target.value = value;
+});
+
+// Máscara para cartão
+document.querySelector('input[name="cartao"]').addEventListener('input', function(e) {
+    let value = e.target.value.replace(/\D/g, '');
+    value = value.replace(/(\d{4})(?=\d)/g, '$1 ');
+    e.target.value = value;
+});
+
+// Carregar planos do banco
+const loading = document.getElementById('loading-planos');
+const select = document.getElementById('selectPlano');
+const planoInfo = document.getElementById('plano-info');
+
+// Verificar se há plano pré-selecionado na URL
+const urlParams = new URLSearchParams(window.location.search);
+const planoIdUrl = urlParams.get('plano_id');
+
+fetch('/api/planos')
+    .then(response => response.json())
+    .then(planos => {
+        loading.style.display = 'none';
+        select.style.display = 'block';
+
+        if (planos.length === 0) {
+            select.innerHTML = '<option value="">Nenhum plano disponível</option>';
+            return;
+        }
+
+        planos.forEach(plano => {
+            const valorFormatado = parseFloat(plano.valor).toLocaleString('pt-BR', {
+                style: 'currency',
+                currency: 'BRL'
+            });
+            
+            const option = document.createElement('option');
+            option.value = plano.id;
+            option.textContent = `${plano.titulo} - ${valorFormatado}/mês`;
+            option.dataset.plano = JSON.stringify(plano);
+            
+            // Pré-selecionar se veio da URL
+            if (planoIdUrl && plano.id == planoIdUrl) {
+                option.selected = true;
+            }
+            
+            select.appendChild(option);
+        });
+
+        // Se veio com plano pré-selecionado, mostrar informações
+        if (planoIdUrl) {
+            mostrarInfoPlano();
+        }
+    })
+    .catch(error => {
+        console.error('Erro:', error);
+        loading.innerHTML = '<span style="color: #ff4d4d;">Erro ao carregar planos</span>';
+    });
+
+// Mostrar informações do plano selecionado
+select.addEventListener('change', mostrarInfoPlano);
+
+function mostrarInfoPlano() {
+    const selectedOption = select.options[select.selectedIndex];
+    
+    if (selectedOption.value === '') {
+        planoInfo.style.display = 'none';
+        return;
+    }
+
+    const plano = JSON.parse(selectedOption.dataset.plano);
+    const valorFormatado = parseFloat(plano.valor).toLocaleString('pt-BR', {
+        style: 'currency',
+        currency: 'BRL'
+    });
+
+    planoInfo.style.display = 'block';
+    planoInfo.innerHTML = `
+        <h3>📋 ${plano.titulo}</h3>
+        <p><strong>Valor:</strong> ${valorFormatado}/mês</p>
+        <p><strong>Benefícios:</strong></p>
+        <small>${plano.beneficios.replace(/\n/g, '<br>')}</small>
+    `;
+}
+</script>
 
 </body>
 </html>

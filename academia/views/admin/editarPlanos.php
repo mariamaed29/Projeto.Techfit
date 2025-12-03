@@ -134,16 +134,16 @@
 <?php endif; ?>
 
 <form action="/admin/planos/salvar" method="post">
-    <input type="hidden" name="id" value="<?= htmlspecialchars($produto['id']) ?>">
+    <input type="hidden" name="id" value="<?= htmlspecialchars($plano['id']) ?>">
 
     <label for="titulo">Título *</label>
-    <input type="text" id="titulo" name="titulo" value="<?= htmlspecialchars($produto['titulo']) ?>" required>
+    <input type="text" id="titulo" name="titulo" value="<?= htmlspecialchars($plano['titulo']) ?>" required>
 
     <label for="valor">Valor (R$) *</label>
-    <input type="number" id="valor" name="valor" step="0.01" min="0.01" value="<?= htmlspecialchars($produto['valor']) ?>" required>
+    <input type="number" id="valor" name="valor" step="0.01" min="0.01" value="<?= htmlspecialchars($plano['valor']) ?>" required>
 
-    <label for="beneficio">Benefícios *</label>
-    <textarea id="beneficio" name="beneficio" required><?= htmlspecialchars($produto['beneficios']) ?></textarea>
+    <label for="beneficios">Benefícios *</label>
+    <textarea id="beneficios" name="beneficios" required><?= htmlspecialchars($plano['beneficios']) ?></textarea>
 
     <button type="submit">💾 Salvar Alterações</button>
 </form>
