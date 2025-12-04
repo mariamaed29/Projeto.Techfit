@@ -9,71 +9,119 @@
 <body>
 <style>
 :root {
-  --azul: #007bff;
-  --preto: #000000;
-  --cinza: #2c2c2c;
-  --branco: #ffffff;
-  --verde: #a6ff00;
-  --radius: 16px;
-  --shadow: 0 8px 32px rgba(0,0,0,0.25);
+    /* Cores e Estilos Neumorphism */
+    --fundo: #e0e5ec; /* Fundo principal, cinza claro */
+    --sombra-clara: #ffffff; /* Sombra para o efeito de relevo (luz) */
+    --sombra-escura: #a3b1c6; /* Sombra para o efeito de profundidade (escuridão) */
+    --principal: #a6ff00; /* Cor de destaque (Azul Vibrante) */
+    --texto: #2c2c2c; /* Cor do texto */
+    --radius: 16px;
 }
 
-
-*{
+* {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
-section{
+
+body {
+    background: var(--fundo);
+    font-family: Arial, sans-serif;
+}
+
+.loader-container {
     display: flex;
+    flex-direction: column;
     height: 100vh;
     width: 100%;
-    background:var(--cinza);
+    align-items: center;
+    justify-content: center;
+    /* Aplicando o efeito Neumorphism no container principal */
+    background: var(--fundo);
+    box-shadow: 10px 10px 20px var(--sombra-escura), 
+                -10px -10px 20px var(--sombra-clara);
+}
+
+.loading-text {
+    color: var(--texto);
+    font-size: 1.5rem;
+    margin-bottom: 30px;
+    animation: text-pulse 1.5s infinite alternate;
+}
+
+@keyframes text-pulse {
+    from {
+        opacity: 1;
+        transform: scale(1);
+    }
+    to {
+        opacity: 0.6;
+        transform: scale(0.98);
+    }
+}
+
+.dots {
+    position: relative;
+    height: 100px; /* Definindo uma altura para o círculo da animação */
+    width: 100px;
+    display: flex; /* Para centralizar os pontos dentro */
     align-items: center;
     justify-content: center;
 }
-section .dots span{
+
+.dots span {
     position: absolute;
-    height: 35px;
-    width: 35px;
-    background: var(--verde);
+    height: 15px; /* Tamanho do ponto reduzido para mais elegância */
+    width: 15px;
+    background: var(--principal);
     border-radius: 50%;
-    transform: rotate(calc(var(--i)* (360deg / 15))) translateY(100px);
-    animation: animate 1.5s linear infinite;
+    
+    /* Configuração da posição inicial: Rotação no centro e translação para fora */
+    transform: rotate(calc(var(--i) * (360deg / 15))) translateY(45px); /* Raio de 45px */
+    
+    /* Animação de rotação e pulso */
+    animation: dot-animate 1.5s ease-in-out infinite;
     animation-delay: calc(var(--i) * 0.1s);
-    opacity: 0;
+    opacity: 0.8;
 }
-@keyframes animate{
-    0%{
-        opacity: 1;
+
+@keyframes dot-animate {
+    0% {
+        transform: rotate(calc(var(--i) * (360deg / 15))) translateY(45px) scale(0.8);
+        box-shadow: 0 0 5px var(--principal);
     }
-    100%{
-        opacity: 0;
+    50% {
+        transform: rotate(calc(var(--i) * (360deg / 15))) translateY(50px) scale(1.1); /* Efeito de pulso e alongamento */
+        opacity: 1;
+        box-shadow: 0 0 15px var(--principal); /* Brilho */
+    }
+    100% {
+        transform: rotate(calc(var(--i) * (360deg / 15))) translateY(45px) scale(0.8);
+        opacity: 0.8;
+        box-shadow: 0 0 5px var(--principal);
     }
 }
 </style>
-<div>
-<section>
-        <div class="dots">
-            <span style="--i:1;"></span>
-            <span style="--i:2;"></span>
-            <span style="--i:3;"></span>
-            <span style="--i:4;"></span>
-            <span style="--i:5;"></span>
-            <span style="--i:6;"></span>
-            <span style="--i:7;"></span>
-            <span style="--i:8;"></span>
-            <span style="--i:9;"></span>
-            <span style="--i:10;"></span>
-            <span style="--i:11;"></span>
-            <span style="--i:12;"></span>
-            <span style="--i:13;"></span>
-            <span style="--i:14;"></span>
-            <span style="--i:15;"></span>
-            
-        </div>
-       
-    </section>
+
+<div class="loader-container">
+    <div class="loading-text">Carregando...</div>
+    <div class="dots">
+        <span style="--i:1;"></span>
+        <span style="--i:2;"></span>
+        <span style="--i:3;"></span>
+        <span style="--i:4;"></span>
+        <span style="--i:5;"></span>
+        <span style="--i:6;"></span>
+        <span style="--i:7;"></span>
+        <span style="--i:8;"></span>
+        <span style="--i:9;"></span>
+        <span style="--i:10;"></span>
+        <span style="--i:11;"></span>
+        <span style="--i:12;"></span>
+        <span style="--i:13;"></span>
+        <span style="--i:14;"></span>
+        <span style="--i:15;"></span>
     </div>
+</div>
 </body>
 </html>
