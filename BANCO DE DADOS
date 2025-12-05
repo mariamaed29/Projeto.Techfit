@@ -12,27 +12,90 @@ CREATE TABLE IF NOT EXISTS usuarios (
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Tabela de produtos
 CREATE TABLE IF NOT EXISTS produtos (
     id INT AUTO_INCREMENT PRIMARY KEY,
-    nome VARCHAR(100) NOT NULL,
-    preco DECIMAL(10, 2) NOT NULL,
+    nome VARCHAR(255) NOT NULL,
     descricao TEXT,
-    imagem VARCHAR(255),
-    categoria VARCHAR(50),
+    preco DECIMAL(10, 2) NOT NULL,
+    imagem VARCHAR(500),
     estoque INT DEFAULT 0,
+    ativo TINYINT(1) DEFAULT 1,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+-- Tabela de Planos
 CREATE TABLE IF NOT EXISTS planos (
     id INT AUTO_INCREMENT PRIMARY KEY,
-    titulo VARCHAR(100) NOT NULL,
+    titulo VARCHAR(255) NOT NULL,
     valor DECIMAL(10, 2) NOT NULL,
-    benficios VARCHAR(255) NOT NULL,
+    beneficios TEXT NOT NULL,
+    duracao ENUM('mensal', 'trimestral', 'semestral', 'anual') DEFAULT 'mensal',
+    ativo TINYINT(1) DEFAULT 1,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- Tabela de Assinaturas
+CREATE TABLE IF NOT EXISTS assinaturas (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    nome VARCHAR(255) NOT NULL,
+    telefone VARCHAR(20) NOT NULL,
+    email VARCHAR(255) NOT NULL,
+    cpf VARCHAR(14) NOT NULL,
+    plano_id INT NOT NULL,
+    cartao_mascarado VARCHAR(20),
+    digito_hash VARCHAR(255),
+    validade VARCHAR(7),
+    status ENUM('ativa', 'vencida', 'cancelada') DEFAULT 'ativa',
+    data_vencimento DATE NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    FOREIGN KEY (plano_id) REFERENCES planos(id) ON DELETE RESTRICT,
+    INDEX idx_email (email),
+    INDEX idx_status (status),
+    INDEX idx_vencimento (data_vencimento)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- Inserir planos de exemplo
+INSERT INTO planos (titulo, valor, beneficios, duracao) VALUES
+('TecFit Start', 129.90, 'Acesso livre\nAvaliação física inicial', 'mensal'),
+('TecFit Plus', 109.90, 'Treino personalizado\n1 bioimpedância', 'trimestral'),
+('TecFit Premium', 99.90, 'Personal online\n2 avaliações', 'semestral'),
+('TecFit Black', 89.90, 'Tudo incluso\nMimos exclusivos (camiseta, eventos, nutricionista)', 'anual'),
+('TecFit Family', 249.90, 'Até 3 pessoas\nDescontos progressivos\nTreinos em grupo', 'mensal'),
+('TecFit Corporate', 79.90, 'Plano corporativo\nAvaliação anual gratuita', 'mensal');
+
+-- Inserir produtos de exemplo
+INSERT INTO produtos (nome, descricao, preco, imagem, estoque) VALUES
+('Whey Protein 1kg', 'Proteína de alto valor biológico para ganho de massa muscular', 89.90, 'https://via.placeholder.com/300x200?text=Whey+Protein', 50),
+('Creatina 300g', 'Creatina monohidratada pura para aumento de força e performance', 59.90, 'https://via.placeholder.com/300x200?text=Creatina', 30),
+('BCAA 120 cápsulas', 'Aminoácidos essenciais para recuperação muscular', 49.90, 'https://via.placeholder.com/300x200?text=BCAA', 40),
+('Coqueteleira 600ml', 'Coqueteleira com misturador de mola', 19.90, 'https://via.placeholder.com/300x200?text=Coqueteleira', 100),
+('Luvas de Treino', 'Luvas acolchoadas para proteção durante treinos', 39.90, 'https://via.placeholder.com/300x200?text=Luvas', 60),
+('Camiseta TecFit', 'Camiseta dry-fit para treinos', 49.90, 'https://via.placeholder.com/300x200?text=Camiseta', 80);
+
+-- -- Tabela de produtos
+-- CREATE TABLE IF NOT EXISTS produtos (
+--     id INT AUTO_INCREMENT PRIMARY KEY,
+--     nome VARCHAR(100) NOT NULL,
+--     preco DECIMAL(10, 2) NOT NULL,
+--     descricao TEXT,
+--     imagem VARCHAR(255),
+--     categoria VARCHAR(50),
+--     estoque INT DEFAULT 0,
+--     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+--     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+-- ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- CREATE TABLE IF NOT EXISTS planos (
+--     id INT AUTO_INCREMENT PRIMARY KEY,
+--     titulo VARCHAR(100) NOT NULL,
+--     valor DECIMAL(10, 2) NOT NULL,
+--     benficios VARCHAR(255) NOT NULL,
+--     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+--     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+-- ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- Usuarios 
 INSERT INTO usuarios (nome, email, senha, tipo) VALUES 
@@ -41,13 +104,13 @@ INSERT INTO usuarios (nome, email, senha, tipo) VALUES
 INSERT INTO usuarios (nome, email, senha, tipo) VALUES 
 ('Duda', 'testeServidor2@tecfit.com', '123456', 'admin');
 
--- Planos
-INSERT INTO planos (titulo, valor, benficios) VALUES
-('Plano Básico', 99.90, 'Acesso à academia durante o horário comercial; Uso das áreas comuns; Participação em aulas de grupo básicas.'),
+-- -- Planos
+-- INSERT INTO planos (titulo, valor, benficios) VALUES
+-- ('Plano Básico', 99.90, 'Acesso à academia durante o horário comercial; Uso das áreas comuns; Participação em aulas de grupo básicas.'),
 
-('Plano Premium', 149.90, 'Acesso 24 horas à academia; Uso das áreas comuns e equipamentos premium; Participação em todas as aulas de grupo; Avaliação física trimestral.'),
+-- ('Plano Premium', 149.90, 'Acesso 24 horas à academia; Uso das áreas comuns e equipamentos premium; Participação em todas as aulas de grupo; Avaliação física trimestral.'),
 
-('Plano VIP', 199.90, 'Acesso 24 horas à academia; Uso ilimitado das áreas comuns e equipamentos premium; Participação em todas as aulas de grupo; Avaliação física mensal; Sessões de personal trainer quinzenais.');
+-- ('Plano VIP', 199.90, 'Acesso 24 horas à academia; Uso ilimitado das áreas comuns e equipamentos premium; Participação em todas as aulas de grupo; Avaliação física mensal; Sessões de personal trainer quinzenais.');
 
 -- produtos
 
@@ -81,3 +144,6 @@ INSERT INTO planos (titulo, valor, benficios) VALUES
 -- ('Creatina Monohidratada TechFit (300g)', 109.90, 'Creatina 100% pura para aumento de força, potência e desempenho, com alta absorção.', 'https://github.com/mariamaed29/Projeto.Techfit/blob/main/ROUPAS/creatina_normal.png', 'suplementos', 50),
 
 -- ('Whey Protein 80% – Baunilha', 109.90, 'Whey com 80% de proteína pura, 5.2g de BCAAs e sabor de baunilha.', 'https://github.com/mariamaed29/Projeto.Techfit/blob/main/ROUPAS/whey_baunilha.png', 'suplementos', 50);
+
+
+DROP DATABASE academia;

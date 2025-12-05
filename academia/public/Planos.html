@@ -126,7 +126,8 @@
     }
 
     // Carregar planos do banco de dados
-fetch('views/admin/listaPlanos.php')
+// PARA:
+fetch('/api/planos')
 
       .then(response => {
         if (!response.ok) throw new Error('Erro ao carregar planos');
