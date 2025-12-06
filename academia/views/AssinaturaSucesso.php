@@ -129,7 +129,7 @@
         <p style="margin-top: 10px;"><i class="fa-solid fa-info-circle"></i> Você receberá lembretes antes do vencimento</p>
     </div>
 
-    <a href="/página.inicial.html" class="btn-home">
+    <a href="public\pág.inicial.html" class="btn-home">
         <i class="fa-solid fa-house"></i> Voltar para Home
     </a>
 </div>
