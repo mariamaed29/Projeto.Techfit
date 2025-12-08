@@ -32,10 +32,13 @@ backdrop-filter: blur(10px);
   padding: 50px 20px;
 }
 
+
 /* Container principal */
 .dashboard-container {
   width: 100%;
-  max-width: 900px;
+  height: 100%;
+  max-height: 1300px;
+  max-width: 1300px;
   background-color: var(--cinza);
   padding: 120px 30px;
   border-radius: var(--radius);
@@ -49,7 +52,7 @@ backdrop-filter: blur(10px);
   margin-bottom: 20px;
   text-align: center;
   
-
+  
 }
 
 /* Subtítulo */
@@ -78,6 +81,7 @@ backdrop-filter: blur(10px);
   text-align: center;
   transition: transform 0.3s, box-shadow 0.3s;
   cursor: pointer;
+  word-spacing: 100dvb;
 }
 
 /* Hover nos cards */
@@ -149,6 +153,17 @@ a {
 }
 
 /* Card especial para logout */
+
+.logout {
+  text-align: center;
+  margin-top: 30px;
+}
+.cards .logout {
+  grid-column: 1 / -1;
+  justify-self: center;
+  text-align: center;
+  margin-top: 30px;
+}
 
 .logout a:hover {
   background: #e60000;
