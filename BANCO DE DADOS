@@ -146,4 +146,4 @@ INSERT INTO usuarios (nome, email, senha, tipo) VALUES
 -- ('Whey Protein 80% – Baunilha', 109.90, 'Whey com 80% de proteína pura, 5.2g de BCAAs e sabor de baunilha.', 'https://github.com/mariamaed29/Projeto.Techfit/blob/main/ROUPAS/whey_baunilha.png', 'suplementos', 50);
 
 
-DROP DATABASE academia;
+
