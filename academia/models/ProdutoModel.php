@@ -94,5 +94,24 @@ class ProdutoModel {
             return false;
         }
     }
-}
+
+      public function EstoqueATIVO($id, $quantidade) {
+        try {
+            $stmt = $this->conn->prepare("UPDATE produtos SET estoque = estoque - ? WHERE id = ? AND estoque >= ?");
+            $stmt->bind_param("iii", $quantidade, $id, $quantidade);
+           if ($stmt->execute() && $stmt->affected_rows > 0) {
+            $stmt= $this->conn->prepare("UPDATE PRODUTO SET ativo = 0 WHERE id=? AND estoque = 0");
+           $stmt->bind_param("i", $id);
+           $stmt->execute();
+              return true;
+
+        } 
+        return false;
+    }
+        catch (Exception $e) {
+            error_log("Erro ao atualizar estoque: " . $e->getMessage());
+            return false;
+        }
+        }
+    }
 ?>

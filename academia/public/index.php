@@ -173,7 +173,7 @@ if (strpos($uri, '/admin') === 0) {
         $controller->deletarProduto($_GET['id']);
         exit;
     }
-    
+
     // ===== PLANOS =====
     if ($uri === "/admin/planos") {
         $controller = new PlanoController();
