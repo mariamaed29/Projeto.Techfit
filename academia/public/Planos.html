@@ -14,11 +14,13 @@
 <body class="bg-dark text-light">
 
   <!-- NAVBAR -->
-  <header>
+
+    <header>
     <nav class="navbar navbar-expand-md navbar-light bg-light fixed-top shadow-sm">
       <div class="container-fluid">
         <a class="navbar-brand d-flex align-items-center gap-2" href="#">
-          <img src="https://github.com/mariamaed29/Projeto.Techfit/blob/main/FOTOS/logoNormal.png?raw=true" alt="Logo" width="40">
+          <img src="https://github.com/mariamaed29/Projeto.Techfit/blob/main/FOTOS/logoNormal.png?raw=true" alt="Logo"
+            width="40">
           <strong>TecFit</strong>
         </a>
 
@@ -28,17 +30,29 @@
 
         <div class="collapse navbar-collapse" id="navbarCollapse">
           <ul class="navbar-nav me-auto mb-2 mb-md-0">
-            <li class="nav-item"><a class="nav-link" href="pág.inicial.html"><i class="fa-solid fa-house"></i> Início</a></li>
-            <li class="nav-item"><a class="nav-link active" href="Planos.html"><i class="fa-solid fa-weight-hanging"></i> Planos</a></li>
-            <li class="nav-item"><a class="nav-link" href="treinos.html"><i class="fa-solid fa-person-running"></i> Treino</a></li>
-            <li class="nav-item"><a class="nav-link" href="loja.html"><i class="fa-solid fa-cart-shopping"></i> Loja</a></li>
-            <li class="nav-item"><a class="nav-link" href="desafios.html"><i class="fa-solid fa-calendar-days"></i> Desafios</a></li>
+            <li class="nav-item"><a class="nav-link" href="pág.inicial.html"><i class="fa-solid fa-house"></i>
+                Início</a></li>
+            <li class="nav-item"><a class="nav-link active" href="../../Planos.html"><i class="fa-solid fa-weight-hanging"></i>
+                Planos</a></li>
+            <li class="nav-item"><a class="nav-link" href="treinos.html"><i class="fa-solid fa-person-running"></i>
+                Treinos</a></li>
+            <li class="nav-item"><a class="nav-link" href="loja.html"><i class="fa-solid fa-cart-shopping"></i> Loja</a>
+            </li>
+            <li class="nav-item"><a class="nav-link" href="../../desafios.html"><i
+                  class="fa-solid fa-calendar-days"></i> Desafios</a>
+                </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/minhas-assinaturas">
+                <i class="fa-solid fa-file-contract"></i> Minhas Assinaturas
+              </a>
+            </li>
           </ul>
         </div>
       </div>
     </nav>
   </header>
 
+  
   <!-- CARROSSEL -->
   <main class="mt-5 pt-4">
     <div id="myCarousel" class="carousel slide" data-bs-ride="carousel">
@@ -126,7 +140,8 @@
     }
 
     // Carregar planos do banco de dados
-fetch('views/admin/listaPlanos.php')
+// PARA:
+fetch('/api/planos')
 
       .then(response => {
         if (!response.ok) throw new Error('Erro ao carregar planos');
