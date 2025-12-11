@@ -228,6 +228,7 @@ if (strpos($uri, '/admin') === 0) {
         $controller->renovarAssinatura($_GET['id']);
         exit;
     }
+<<<<<<< HEAD
 
     if ($uri === '/comprar' && $method === 'GET') {
     require_once __DIR__ . '/../controllers/VendaController.php';
@@ -284,10 +285,14 @@ if (preg_match('#^/admin/vendas/status/(\d+)$#', $uri, $matches) && $method === 
     require_once __DIR__ . '/../controllers/VendaController.php';
     $controller = new VendaController();
     $controller->atualizarStatus($matches[1]);
+=======
+if ($_GET['controller'] === 'admin' && $_GET['action'] === 'graficosUsuario') {
+    $controller = new RelatorioController();
+    $controller->graficoUsuarios();
+>>>>>>> 6ec342f47d6b3f96896dcfd09fb5101894120877
     exit;
 }
 }
-
 // ========== 404 ==========
 // Se chegou aqui e não encontrou nenhuma rota, deixa o .htaccess servir arquivos estáticos
 // ou retorna 404 se não for arquivo
