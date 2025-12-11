@@ -104,6 +104,29 @@ INSERT INTO usuarios (nome, email, senha, tipo) VALUES
 INSERT INTO usuarios (nome, email, senha, tipo) VALUES 
 ('Duda', 'testeServidor2@tecfit.com', '123456', 'admin');
 
+CREATE TABLE IF NOT EXISTS vendas (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    nome_cliente VARCHAR(100) NOT NULL,
+    email_cliente VARCHAR(100) NOT NULL,
+    telefone_cliente VARCHAR(20),
+    cpf_cliente VARCHAR(14) NOT NULL,
+    produto_id INT NOT NULL,
+    produto_nome VARCHAR(200) NOT NULL,
+    quantidade INT DEFAULT 1,
+    valor_unitario DECIMAL(10,2) NOT NULL,
+    valor_total DECIMAL(10,2) NOT NULL,
+    forma_pagamento ENUM('cartao_credito', 'cartao_debito', 'pix', 'dinheiro') DEFAULT 'cartao_credito',
+    cartao_mascarado VARCHAR(20),
+    status ENUM('pendente', 'confirmada', 'cancelada', 'entregue') DEFAULT 'confirmada',
+    data_venda TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    observacoes TEXT,
+    FOREIGN KEY (produto_id) REFERENCES produtos(id),
+    INDEX idx_email (email_cliente),
+    INDEX idx_status (status),
+    INDEX idx_data (data_venda),
+    INDEX idx_produto (produto_id)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
 -- -- Planos
 -- INSERT INTO planos (titulo, valor, benficios) VALUES
 -- ('Plano Básico', 99.90, 'Acesso à academia durante o horário comercial; Uso das áreas comuns; Participação em aulas de grupo básicas.'),

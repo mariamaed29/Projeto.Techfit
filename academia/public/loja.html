@@ -273,12 +273,12 @@ fetch('/api/produtos')
         `;
         console.error('Erro:', error);
     });
-
+    
 function comprar(id, nome) {
-    alert(`Você selecionou: ${nome}\n\nFuncionalidade de compra em desenvolvimento!`);
-    // Aqui você pode redirecionar para uma página de checkout
-    // window.location.href = `/checkout?produto_id=${id}`;
+    // Redireciona para página de compra
+    window.location.href = `/comprar?produto_id=${id}`;
 }
+
 </script>
 
 </body>

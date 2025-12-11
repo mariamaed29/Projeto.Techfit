@@ -11,7 +11,8 @@ spl_autoload_register(function ($class) {
     $paths = [
         __DIR__ . '/../controllers/',
         __DIR__ . '/../models/',
-        __DIR__ . '/../core/'
+        __DIR__ . '/../core/',
+        
     ];
     
     foreach ($paths as $path) {
@@ -227,6 +228,64 @@ if (strpos($uri, '/admin') === 0) {
         $controller->renovarAssinatura($_GET['id']);
         exit;
     }
+
+    if ($uri === '/comprar' && $method === 'GET') {
+    require_once __DIR__ . '/../controllers/VendaController.php';
+    $controller = new VendaController();
+    $controller->exibirFormulario();
+    exit;
+}
+
+// Processar compra
+if ($uri === '/comprar/processar' && $method === 'POST') {
+    require_once __DIR__ . '/../controllers/VendaController.php';
+    $controller = new VendaController();
+    $controller->processar();
+    exit;
+}
+
+// Sucesso da compra
+if ($uri === '/compra/sucesso' && $method === 'GET') {
+    require_once __DIR__ . '/../controllers/VendaController.php';
+    $controller = new VendaController();
+    $controller->sucesso();
+    exit;
+}
+
+// Minhas compras (usuário logado)
+if ($uri === '/minhas-compras' && $method === 'GET') {
+    require_once __DIR__ . '/../controllers/VendaController.php';
+    $controller = new VendaController();
+    $controller->minhasCompras();
+    exit;
+}
+
+// === ROTAS ADMIN - VENDAS ===
+
+// Listar vendas
+if ($uri === '/admin/vendas' && $method === 'GET') {
+    require_once __DIR__ . '/../controllers/VendaController.php';
+    $controller = new VendaController();
+    $controller->listarVendas();
+    exit;
+}
+
+// Cancelar venda
+if (preg_match('#^/admin/vendas/cancelar$#', $uri) && $method === 'GET') {
+    require_once __DIR__ . '/../controllers/VendaController.php';
+    $controller = new VendaController();
+    $id = $_GET['id'] ?? 0;
+    $controller->cancelarVenda($id);
+    exit;
+}
+
+// Atualizar status da venda
+if (preg_match('#^/admin/vendas/status/(\d+)$#', $uri, $matches) && $method === 'POST') {
+    require_once __DIR__ . '/../controllers/VendaController.php';
+    $controller = new VendaController();
+    $controller->atualizarStatus($matches[1]);
+    exit;
+}
 }
 
 // ========== 404 ==========
