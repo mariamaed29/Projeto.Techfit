@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Gráfico</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+
+<body>
+<h2>Usuários por mês</h2>
+
+<canvas id="grafico" width="400" height="200"></canvas>
+
+<script>
+function carregarDados() {
+    fetch("http://localhost/techfit_php/public/index.php?controller=relatorio&action=graficoUsuarios")
+        .then(response => response.json())
+        .then(data => {
+            const labels = data.map(item => "Mês " + item.mes);
+            const valores = data.map(item => item.total);
+
+            atualizarGrafico(labels, valores);
+        });
+}
+
+let grafico;
+
+function atualizarGrafico(labels, valores) {
+
+    if (grafico) {
+        grafico.data.labels = labels;
+        grafico.data.datasets[0].data = valores;
+        grafico.update();
+        return;
+    }
+
+    const ctx = document.getElementById("grafico").getContext("2d");
+
+    grafico = new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: labels,
+            datasets: [{
+                label: "Usuários cadastrados",
+                data: valores
+            }]
+        }
+    });
+}
+
+setInterval(carregarDados, 3000);
+carregarDados();
+</script>
+
+</body>
+</html>

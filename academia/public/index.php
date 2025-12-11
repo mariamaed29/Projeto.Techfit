@@ -227,8 +227,12 @@ if (strpos($uri, '/admin') === 0) {
         $controller->renovarAssinatura($_GET['id']);
         exit;
     }
+if ($_GET['controller'] === 'admin' && $_GET['action'] === 'graficosUsuario') {
+    $controller = new RelatorioController();
+    $controller->graficoUsuarios();
+    exit;
 }
-
+}
 // ========== 404 ==========
 // Se chegou aqui e não encontrou nenhuma rota, deixa o .htaccess servir arquivos estáticos
 // ou retorna 404 se não for arquivo
