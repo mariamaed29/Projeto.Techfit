@@ -1,12 +1,12 @@
 /* ===========================
-   VARIÁVEIS DE CORES E ESTILO
+   VARIÃVEIS DE CORES E ESTILO
 =========================== */
 :root {
-  --azul: #007bff;          /* cor primária */
+  --azul: #007bff;          /* cor primÃ¡ria */
   --preto: #000000;
   --cinza: #2c2c2c;
   --branco: #ffffff;
-  --verde: #a6ff00;         /* destaque secundário */
+  --verde: #a6ff00;         /* destaque secundÃ¡rio */
   --fundo: #22262A;
   --radius: 16px;
   --shadow: 0 8px 32px rgba(0, 0, 0, 0.25);
@@ -31,14 +31,14 @@ h2, h3, h4 {
 /* ===========================
    NAVBAR
 =========================== *//* ===========================
-   VARIÁVEIS DE CORES E ESTILO
+   VARIÃVEIS DE CORES E ESTILO
 =========================== */
 :root {
-  --azul: #007bff;          /* cor primária */
+  --azul: #007bff;          /* cor primÃ¡ria */
   --preto: #000000;
   --cinza: #2c2c2c;
   --branco: #ffffff;
-  --verde: #a6ff00;         /* destaque secundário */
+  --verde: #a6ff00;         /* destaque secundÃ¡rio */
   --fundo: #22262A;
   --radius: 16px;
   --shadow: 0 8px 32px rgba(0, 0, 0, 0.25);
@@ -130,7 +130,7 @@ h2, h3, h4 {
 }
 
 /* ===========================
-   BOTÕES
+   BOTÃ•ES
 =========================== */
 .btn-success {
   background-color: var(--verde);
@@ -147,7 +147,7 @@ h2, h3, h4 {
 }
 
 /* ===========================
-   SEÇÃO HISTÓRIA
+   SEÃ‡ÃƒO HISTÃ“RIA
 =========================== */
 .historia {
   display: flex;
@@ -267,7 +267,7 @@ p {
 }
 
 /* ===========================
-   BOTÕES
+   BOTÃ•ES
 =========================== */
 .btn-success {
   background-color: var(--verde);
@@ -282,7 +282,7 @@ p {
 }
 
 /* ===========================
-   SEÇÃO HISTÓRIA
+   SEÃ‡ÃƒO HISTÃ“RIA
 =========================== */
 .historia {
   display: flex;
@@ -369,7 +369,7 @@ p{
 } 
 
 ection.container {
-  scroll-margin-top: 80px; /* melhora navegação se tiver menu fixo */
+  scroll-margin-top: 80px; /* melhora navegaÃ§Ã£o se tiver menu fixo */
 }
 
 section h2 {
@@ -398,7 +398,7 @@ section h2 {
   border-color: var();
 } */
 
-/* Ícones
+/* Ãcones
 .card i {
   text-shadow: 0 0 10px var(--azul);
 } */
@@ -411,13 +411,13 @@ section h2 {
   text-shadow: 0 0 6px rgba(166, 255, 0, 0.5);
 }
 
-/* Preço */
+/* PreÃ§o */
 .card strong {
   color: var(--verde, #a6ff00);
   font-size: 1.1rem;
 }
 
-/* Texto secundário */
+/* Texto secundÃ¡rio */
 .card p,
 .card li {
   color: #cfcfcf;

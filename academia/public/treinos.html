@@ -1,60 +1,227 @@
-'<!DOCTYPE html>
-<html lang="en">
-
+<!DOCTYPE html>
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="treinos.css">
-    <title>Document</title>
-
+    <title>TechFit - Treinos</title>
     <link rel="icon" href="https://github.com/mariamaed29/Projeto.Techfit/blob/main/FOTOS/logoNormal.png?raw=true" type="image/x-icon">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <style>
+        :root {
+            --azul: #007bff;
+            --preto: #000000;
+            --cinza: #2c2c2c;
+            --branco: #ffffff;
+            --verde: #a6ff00;
+            --fundo: #22262A;
+            --radius: 16px;
+            --shadow: 0 8px 32px rgba(0, 0, 0, 0.25);
+            --gradiente: linear-gradient(145deg, #1a1e22, #2c3036);
+        }
 
-  <!-- Font Awesome -->
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+        body {
+            background-color: var(--fundo);
+            color: var(--branco);
+            font-family: "Poppins", sans-serif;
+            margin: 0;
+            padding: 0;
+        }
 
-  <!-- Bootstrap -->
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+        h1, h2, h3, h4 {
+            color: var(--verde);
+            font-weight: 600;
+        }
+
+        .navbar a {
+            color: var(--preto) !important;
+            transition: color 0.3s;
+        }
+
+        .navbar a:hover {
+            color: var(--verde) !important;
+        }
+
+        .hero-section {
+            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), 
+                        url('https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=1200') center/cover;
+            height: 400px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            margin-top: 56px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-section::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, rgba(0, 123, 255, 0.2), rgba(166, 255, 0, 0.2));
+            animation: pulse 3s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 0.3; }
+            50% { opacity: 0.6; }
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero-section h1 {
+            font-size: 3.5rem;
+            text-shadow: 0 0 20px var(--verde);
+            margin-bottom: 20px;
+        }
+
+        .hero-section p {
+            font-size: 1.3rem;
+            color: var(--branco);
+        }
+
+        .treino-card {
+            background: var(--gradiente);
+            border: 2px solid transparent;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            padding: 30px;
+            margin-bottom: 30px;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .treino-card::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            border-radius: inherit;
+            padding: 2px;
+            background: linear-gradient(135deg, var(--azul), var(--verde));
+            mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            mask-composite: exclude;
+            -webkit-mask-composite: destination-out;
+            pointer-events: none;
+        }
+
+        .treino-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 0 30px var(--verde);
+            border-color: var(--verde);
+        }
+
+        .treino-icon {
+            font-size: 3rem;
+            color: var(--verde);
+            margin-bottom: 20px;
+            text-shadow: 0 0 15px var(--verde);
+        }
+
+        .treino-card h3 {
+            color: var(--verde);
+            margin-bottom: 15px;
+        }
+
+        .treino-card ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .treino-card li {
+            padding: 8px 0;
+            border-bottom: 1px solid rgba(166, 255, 0, 0.2);
+        }
+
+        .treino-card li:last-child {
+            border-bottom: none;
+        }
+
+        .treino-card li i {
+            color: var(--azul);
+            margin-right: 10px;
+        }
+
+        .btn-treino {
+            background-color: var(--verde);
+            border: none;
+            color: var(--preto);
+            padding: 12px 30px;
+            border-radius: var(--radius);
+            font-weight: 600;
+            transition: all 0.3s;
+            margin-top: 15px;
+        }
+
+        .btn-treino:hover {
+            background-color: #baff3c;
+            transform: scale(1.05);
+            box-shadow: 0 0 20px var(--verde);
+        }
+
+        .categoria-badge {
+            display: inline-block;
+            background: var(--azul);
+            color: var(--branco);
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            margin-bottom: 15px;
+        }
+
+        .section-title {
+            text-align: center;
+            margin: 60px 0 40px;
+            font-size: 2.5rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            text-shadow: 0 0 15px var(--verde);
+        }
+
+        .dificuldade {
+            display: flex;
+            gap: 5px;
+            margin: 10px 0;
+        }
+
+        .dificuldade span {
+            width: 30px;
+            height: 8px;
+            background: rgba(166, 255, 0, 0.3);
+            border-radius: 4px;
+        }
+
+        .dificuldade span.active {
+            background: var(--verde);
+            box-shadow: 0 0 10px var(--verde);
+        }
+
+        @media (max-width: 768px) {
+            .hero-section h1 {
+                font-size: 2rem;
+            }
+
+            .hero-section {
+                height: 300px;
+            }
+        }
+    </style>
 </head>
-
 <body>
-
-    <body class="bg-dark text-light"> 
-
-        <!-- ===== NAVBAR ===== -->
-<<<<<<< HEAD
-        <header>
-            <nav class="navbar navbar-expand-md navbar-light bg-light fixed-top shadow-sm">
-                <div class="container-fluid"> <a class="navbar-brand d-flex align-items-center gap-2" href="#"> <img
-                            src="../../FOTOS/logoNormal.png" alt="Logo" width="40"> <strong>TechFit</strong> </a> <button
-                        class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
-                        <span class="navbar-toggler-icon"></span> </button>
-                    <div class="collapse navbar-collapse" id="navbarCollapse">
-                        <ul class="navbar-nav me-auto mb-2 mb-md-0">
-                            <li class="nav-item"><a class="nav-link active" href="pág.inicial.html"><i
-                                        class="fa-solid fa-house"></i> Início</a></li>
-                            <li class="nav-item"><a class="nav-link" href="planos.html"><i
-                                        class="fa-solid fa-weight-hanging"></i> Planos</a></li>
-                            <li class="nav-item"><a class="nav-link" href="aulas.html"><i
-                                        class="fa-solid fa-person-running"></i> Aulas</a></li>
-                            <!-- <li class="nav-item"><a class="nav-link" href="avaliacao.html"><i class="fa-solid fa-clipboard-check"></i> Avaliação</a></li> -->
-                            <li class="nav-item"><a class="nav-link" href="loja.html"><i
-                                        class="fa-solid fa-cart-shopping"></i> Loja</a></li>
-                            <!-- <li class="nav-item"><a class="nav-link" href="nutrição.html"><i class="fa-solid fa-apple-whole"></i> Nutrição</a></li> -->
-                            <li class="nav-item"><a class="nav-link" href="../../desafios.html"><i
-                                        class="fa-solid fa-calendar-days"></i> Eventos</a></li>
-                        </ul>
-                    </div>
-                </div>
-            </nav>
-        </header>
-=======
-       <header>
+    <!-- NAVBAR -->
+ <header>
     <nav class="navbar navbar-expand-md navbar-light bg-light fixed-top shadow-sm">
       <div class="container-fluid">
         <a class="navbar-brand d-flex align-items-center gap-2" href="#">
           <img src="https://github.com/mariamaed29/Projeto.Techfit/blob/main/FOTOS/logoNormal.png?raw=true" alt="Logo"
             width="40">
-          <strong>TecFit</strong>
+          <strong>TechFit</strong>
         </a>
 
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
@@ -67,7 +234,7 @@
                 Início</a></li>
             <li class="nav-item"><a class="nav-link" href="../../Planos.html"><i class="fa-solid fa-weight-hanging"></i>
                 Planos</a></li>
-            <li class="nav-item"><a class="nav-link" href="#"><i class="fa-solid fa-person-running"></i>
+            <li class="nav-item"><a class="nav-link" href="treinos.html"><i class="fa-solid fa-person-running"></i>
                 Treinos</a></li>
             <li class="nav-item"><a class="nav-link" href="loja.html"><i class="fa-solid fa-cart-shopping"></i> Loja</a>
             </li>
@@ -84,7 +251,190 @@
       </div>
     </nav>
   </header>
->>>>>>> 4c9e142ee44db9cfde25dcb612054762752efea7
-    </body>
 
+    <!-- HERO SECTION -->
+    <section class="hero-section">
+        <div class="hero-content">
+            <h1><i class="fa-solid fa-dumbbell"></i> Treinos TechFit</h1>
+            <p>Transforme seu corpo com nossos programas personalizados</p>
+        </div>
+    </section>
+
+    <!-- TREINOS -->
+    <div class="container my-5">
+        <h2 class="section-title">Escolha seu Treino</h2>
+
+        <div class="row">
+            <!-- Treino 1: Hipertrofia -->
+            <div class="col-md-6 col-lg-4">
+                <div class="treino-card">
+                    <div class="treino-icon">
+                        <i class="fa-solid fa-dumbbell"></i>
+                    </div>
+                    <span class="categoria-badge">FORÇA</span>
+                    <h3>Hipertrofia Avançada</h3>
+                    <div class="dificuldade">
+                        <span class="active"></span>
+                        <span class="active"></span>
+                        <span class="active"></span>
+                        <span></span>
+                        <span></span>
+                    </div>
+                    <p>Treino focado em ganho de massa muscular com técnicas avançadas e periodização.</p>
+                    <ul>
+                        <li><i class="fa-solid fa-clock"></i> 60-75 minutos</li>
+                        <li><i class="fa-solid fa-calendar"></i> 5x por semana</li>
+                        <li><i class="fa-solid fa-fire"></i> Alta intensidade</li>
+                        <li><i class="fa-solid fa-target"></i> Ganho de massa</li>
+                    </ul>
+                    <button class="btn-treino">Iniciar Treino</button>
+                </div>
+            </div>
+
+            <!-- Treino 2: HIIT -->
+            <div class="col-md-6 col-lg-4">
+                <div class="treino-card">
+                    <div class="treino-icon">
+                        <i class="fa-solid fa-bolt"></i>
+                    </div>
+                    <span class="categoria-badge">CARDIO</span>
+                    <h3>HIIT Queima Total</h3>
+                    <div class="dificuldade">
+                        <span class="active"></span>
+                        <span class="active"></span>
+                        <span class="active"></span>
+                        <span class="active"></span>
+                        <span></span>
+                    </div>
+                    <p>Treino intervalado de alta intensidade para queima máxima de gordura.</p>
+                    <ul>
+                        <li><i class="fa-solid fa-clock"></i> 30-45 minutos</li>
+                        <li><i class="fa-solid fa-calendar"></i> 3-4x por semana</li>
+                        <li><i class="fa-solid fa-fire"></i> Muito alta intensidade</li>
+                        <li><i class="fa-solid fa-target"></i> Emagrecimento</li>
+                    </ul>
+                    <button class="btn-treino">Iniciar Treino</button>
+                </div>
+            </div>
+
+            <!-- Treino 3: Funcional -->
+            <div class="col-md-6 col-lg-4">
+                <div class="treino-card">
+                    <div class="treino-icon">
+                        <i class="fa-solid fa-person-running"></i>
+                    </div>
+                    <span class="categoria-badge">FUNCIONAL</span>
+                    <h3>Treino Funcional</h3>
+                    <div class="dificuldade">
+                        <span class="active"></span>
+                        <span class="active"></span>
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </div>
+                    <p>Movimentos funcionais para melhorar mobilidade, força e condicionamento.</p>
+                    <ul>
+                        <li><i class="fa-solid fa-clock"></i> 45-60 minutos</li>
+                        <li><i class="fa-solid fa-calendar"></i> 4x por semana</li>
+                        <li><i class="fa-solid fa-fire"></i> Média intensidade</li>
+                        <li><i class="fa-solid fa-target"></i> Condicionamento</li>
+                    </ul>
+                    <button class="btn-treino">Iniciar Treino</button>
+                </div>
+            </div>
+
+            <!-- Treino 4: Iniciante -->
+            <div class="col-md-6 col-lg-4">
+                <div class="treino-card">
+                    <div class="treino-icon">
+                        <i class="fa-solid fa-seedling"></i>
+                    </div>
+                    <span class="categoria-badge">INICIANTE</span>
+                    <h3>Full Body Starter</h3>
+                    <div class="dificuldade">
+                        <span class="active"></span>
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </div>
+                    <p>Programa completo para iniciantes com foco em aprendizado e adaptação.</p>
+                    <ul>
+                        <li><i class="fa-solid fa-clock"></i> 40-50 minutos</li>
+                        <li><i class="fa-solid fa-calendar"></i> 3x por semana</li>
+                        <li><i class="fa-solid fa-fire"></i> Baixa intensidade</li>
+                        <li><i class="fa-solid fa-target"></i> Condicionamento base</li>
+                    </ul>
+                    <button class="btn-treino">Iniciar Treino</button>
+                </div>
+            </div>
+
+            <!-- Treino 5: CrossFit -->
+            <div class="col-md-6 col-lg-4">
+                <div class="treino-card">
+                    <div class="treino-icon">
+                        <i class="fa-solid fa-fire-flame-curved"></i>
+                    </div>
+                    <span class="categoria-badge">CROSSFIT</span>
+                    <h3>WOD do Dia</h3>
+                    <div class="dificuldade">
+                        <span class="active"></span>
+                        <span class="active"></span>
+                        <span class="active"></span>
+                        <span class="active"></span>
+                        <span class="active"></span>
+                    </div>
+                    <p>Treinos variados e intensos combinando força, cardio e ginástica.</p>
+                    <ul>
+                        <li><i class="fa-solid fa-clock"></i> 60 minutos</li>
+                        <li><i class="fa-solid fa-calendar"></i> 4-5x por semana</li>
+                        <li><i class="fa-solid fa-fire"></i> Extrema intensidade</li>
+                        <li><i class="fa-solid fa-target"></i> Performance atlética</li>
+                    </ul>
+                    <button class="btn-treino">Iniciar Treino</button>
+                </div>
+            </div>
+
+            <!-- Treino 6: Mobilidade -->
+            <div class="col-md-6 col-lg-4">
+                <div class="treino-card">
+                    <div class="treino-icon">
+                        <i class="fa-solid fa-spa"></i>
+                    </div>
+                    <span class="categoria-badge">RECOVERY</span>
+                    <h3>Mobilidade & Yoga</h3>
+                    <div class="dificuldade">
+                        <span class="active"></span>
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </div>
+                    <p>Treino focado em flexibilidade, mobilidade e recuperação muscular.</p>
+                    <ul>
+                        <li><i class="fa-solid fa-clock"></i> 30-45 minutos</li>
+                        <li><i class="fa-solid fa-calendar"></i> 2-3x por semana</li>
+                        <li><i class="fa-solid fa-fire"></i> Baixa intensidade</li>
+                        <li><i class="fa-solid fa-target"></i> Recuperação</li>
+                    </ul>
+                    <button class="btn-treino">Iniciar Treino</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-light py-4 mt-5">
+        <div class="container text-center">
+            <p>&copy; 2024 TechFit. Todos os direitos reservados.</p>
+            <div class="social-icons">
+                <a href="#" class="text-light mx-2"><i class="fa-brands fa-instagram fa-2x"></i></a>
+                <a href="#" class="text-light mx-2"><i class="fa-brands fa-facebook fa-2x"></i></a>
+                <a href="#" class="text-light mx-2"><i class="fa-brands fa-youtube fa-2x"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+</body>
 </html>
