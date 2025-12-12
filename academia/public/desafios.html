@@ -3,9 +3,9 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>TecFit | Dashboard</title>
+  <title>TechFit | Desafios</title>
 
-  <link rel="icon" href="FOTOS/logoNormal.png" type="image/x-icon">
+  <link rel="icon" href="https://github.com/mariamaed29/Projeto.Techfit/blob/main/FOTOS/logoNormal.png?raw=true" type="image/x-icon">
 
   <!-- Font Awesome -->
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
@@ -13,18 +13,281 @@
   <!-- Bootstrap -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
 
-  <!-- CSS personalizado -->
-  <link rel="stylesheet" href="dashboard.css">
+  <style>
+    /* ========== VARIÁVEIS DE COR ========== */
+    :root {
+      --azul: #007bff;
+      --preto: #000000;
+      --cinza: #2c2c2c;
+      --branco: #ffffff;
+      --verde: #a6ff00;
+      --fundo: #22262A;
+      --radius: 16px;
+      --shadow: 0 8px 32px rgba(0, 0, 0, 0.25);
+    }
+
+    /* ========== ESTILO BASE ========== */
+    body {
+      background-color: var(--fundo);
+      color: var(--branco);
+      font-family: "Poppins", sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+
+    h3, h4, h5 {
+      color: var(--verde);
+      font-weight: 600;
+    }
+
+    /* ========== NAVBAR ========== */
+    .navbar a {
+      color: var(--preto) !important;
+      transition: color 0.3s;
+    }
+
+    .navbar a:hover {
+      color: var(--verde) !important;
+    }
+
+    /* ========== CARROSSEL ========== */
+    .carousel-inner img {
+      object-fit: cover;
+      filter: brightness(0.9);
+    }
+
+    .carousel-caption {
+      bottom: 50px;
+    }
+
+    /* ========== CARDS GERAIS ========== */
+    .card {
+      background: linear-gradient(145deg, #1a1e22, #2c3036);
+      border: 2px solid transparent;
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      transition: all 0.3s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 0 25px rgba(166, 255, 0, 0.4);
+      border-color: var(--verde);
+    }
+
+    /* ========== RANKING ========== */
+    #ranking ol {
+      list-style: none;
+      padding: 0;
+    }
+
+    #ranking ol li {
+      background-color: var(--fundo);
+      border-radius: 10px;
+      padding: 15px;
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    #ranking ol li:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 15px var(--verde);
+    }
+
+    #ranking img {
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 3px solid var(--azul);
+    }
+
+    #ranking h5 {
+      color: var(--verde);
+      margin-top: 10px;
+      margin-bottom: 5px;
+    }
+
+    #ranking p {
+      color: var(--branco);
+      margin: 0;
+    }
+
+    /* ========== PROGRESSO ========== */
+    .barra-progresso {
+      height: 25px;
+      width: 100%;
+      overflow: hidden;
+      border-radius: 10px;
+      background-color: rgba(0, 0, 0, 0.5);
+      border: 1px solid var(--azul);
+    }
+
+    #progresso-preenchido {
+      background: linear-gradient(90deg, var(--azul), var(--verde));
+      height: 100%;
+      transition: width 0.5s ease;
+      border-radius: 10px;
+    }
+
+    #nivel {
+      color: var(--verde);
+      font-weight: 600;
+      font-size: 1.1rem;
+    }
+
+    /* ========== MEDALHAS ========== */
+    #medalhas ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    #medalhas img {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      border: 3px solid var(--verde);
+      transition: transform 0.3s;
+      box-shadow: 0 0 15px rgba(166, 255, 0, 0.3);
+    }
+
+    #medalhas img:hover {
+      transform: scale(1.2) rotate(360deg);
+    }
+
+    /* ========== DESAFIOS ========== */
+    #desafios h3 {
+      text-shadow: 0 0 15px var(--verde);
+      font-size: 2rem;
+      margin-bottom: 20px;
+    }
+
+    .cards-container {
+      display: flex;
+      gap: 20px;
+      overflow-x: auto;
+      scroll-behavior: smooth;
+      padding: 20px 0;
+      justify-content: flex-start;
+    }
+
+    .cards-container::-webkit-scrollbar {
+      height: 8px;
+    }
+
+    .cards-container::-webkit-scrollbar-thumb {
+      background: var(--verde);
+      border-radius: 10px;
+    }
+
+    .cards-container .card {
+      min-width: 280px;
+      flex: 0 0 auto;
+      padding: 20px;
+    }
+
+    .cards-container .card h5 {
+      color: var(--verde);
+      margin-bottom: 10px;
+      font-size: 1.1rem;
+    }
+
+    .cards-container .card p {
+      color: var(--branco);
+      margin-bottom: 15px;
+    }
+
+    /* ========== BOTÕES ========== */
+    .btn-success {
+      background-color: var(--verde);
+      border: none;
+      color: var(--preto);
+      font-weight: 600;
+      transition: all 0.3s;
+    }
+
+    .btn-success:hover {
+      background-color: #baff3c;
+      transform: scale(1.05);
+    }
+
+    .btn-primary {
+      background-color: var(--azul);
+      border: none;
+      font-weight: 600;
+      transition: all 0.3s;
+    }
+
+    .btn-primary:hover {
+      background-color: #0056b3;
+      transform: scale(1.05);
+    }
+
+    .btn-warning {
+      background-color: #ffc107;
+      border: none;
+      color: var(--preto);
+      font-weight: 600;
+      transition: all 0.3s;
+    }
+
+    .btn-warning:hover {
+      background-color: #ffb300;
+      transform: scale(1.05);
+    }
+
+    /* ========== PONTOS DESTAQUE ========== */
+    .pontos-destaque {
+      background: linear-gradient(145deg, #1a1e22, #2c3036);
+      border: 2px solid var(--verde);
+      border-radius: var(--radius);
+      padding: 30px;
+      text-align: center;
+      box-shadow: 0 0 30px rgba(166, 255, 0, 0.2);
+    }
+
+    .pontos-destaque h4 {
+      font-size: 1.8rem;
+      margin-bottom: 20px;
+    }
+
+    .pontos-destaque span {
+      color: var(--verde);
+      font-size: 2.5rem;
+      font-weight: 700;
+      text-shadow: 0 0 20px var(--verde);
+    }
+
+    /* ========== FOOTER ========== */
+    footer {
+      background-color: var(--cinza);
+      border-top: 2px solid var(--azul);
+      margin-top: 50px;
+    }
+
+    /* ========== RESPONSIVIDADE ========== */
+    @media (max-width: 768px) {
+      .carousel-inner img {
+        height: 250px;
+      }
+
+      #ranking ol {
+        flex-direction: column;
+      }
+
+      .cards-container .card {
+        min-width: 250px;
+      }
+    }
+  </style>
 </head>
-<body class="body">
+<body>
 
   <!-- ===== NAVBAR ===== -->
   <header>
     <nav class="navbar navbar-expand-md navbar-light bg-light fixed-top shadow-sm">
       <div class="container-fluid">
-        <a class="navbar-brand d-flex align-items-center gap-2" href="#">
-          <img src="https://github.com/mariamaed29/Projeto.Techfit/blob/main/FOTOS/logoNormal.png?raw=true" alt="Logo"
-            width="40">
+        <a class="navbar-brand d-flex align-items-center gap-2" href="pág.inicial.html">
+          <img src="https://github.com/mariamaed29/Projeto.Techfit/blob/main/FOTOS/logoNormal.png?raw=true" alt="Logo" width="40">
           <strong>TechFit</strong>
         </a>
 
@@ -34,54 +297,50 @@
 
         <div class="collapse navbar-collapse" id="navbarCollapse">
           <ul class="navbar-nav me-auto mb-2 mb-md-0">
-            <li class="nav-item"><a class="nav-link active" href="pág.inicial.html"><i class="fa-solid fa-house"></i>
-                Início</a></li>
-            <li class="nav-item"><a class="nav-link" href="../../Planos.html"><i class="fa-solid fa-weight-hanging"></i>
-                Planos</a></li>
-            <li class="nav-item"><a class="nav-link" href="treinos.html"><i class="fa-solid fa-person-running"></i>
-                Treinos</a></li>
-            <li class="nav-item"><a class="nav-link" href="loja.html"><i class="fa-solid fa-cart-shopping"></i> Loja</a>
-            </li>
-            <li class="nav-item"><a class="nav-link" href="#"><i
-                  class="fa-solid fa-calendar-days"></i> Desafios</a>
-                </li>
-            <li class="nav-item">
-              <a class="nav-link" href="/minhas-assinaturas">
-                <i class="fa-solid fa-file-contract"></i> Minhas Assinaturas
-              </a>
-            </li>
+            <li class="nav-item"><a class="nav-link" href="pág.inicial.html"><i class="fa-solid fa-house"></i> Início</a></li>
+            <li class="nav-item"><a class="nav-link" href="../../Planos.html"><i class="fa-solid fa-weight-hanging"></i> Planos</a></li>
+            <li class="nav-item"><a class="nav-link" href="treinos.html"><i class="fa-solid fa-person-running"></i> Treinos</a></li>
+            <li class="nav-item"><a class="nav-link" href="loja.html"><i class="fa-solid fa-cart-shopping"></i> Loja</a></li>
+            <li class="nav-item"><a class="nav-link active" href="desafios.html"><i class="fa-solid fa-calendar-days"></i> Desafios</a></li>
+            <li class="nav-item"><a class="nav-link" href="/minhas-assinaturas"><i class="fa-solid fa-file-contract"></i> Minhas Assinaturas</a></li>
           </ul>
         </div>
       </div>
     </nav>
   </header>
-  <!-- ===== FIM NAVBAR ===== -->
-
 
   <!-- ===== CARROSSEL ===== -->
-  <main id="Cartaz" class="mt-5 pt-4">
-    <div id="carouselAcademia" class="carousel slide" data-bs-ride="carousel" data-bs-interval="3500">
-      <div class="carousel-inner rounded shadow-lg">
+  <main class="mt-5 pt-4">
+    <div id="myCarousel" class="carousel slide" data-bs-ride="carousel">
+      <div class="carousel-inner rounded-4 shadow-lg">
         <div class="carousel-item active">
-          <img src="Novas_img/banner_desafio.png" class="d-block w-100" alt="Desafios">
+          <img src="https://github.com/mariamaed29/Projeto.Techfit/blob/main/Novas_img/banne_luva_tam.png?raw=true" class="d-block w-100" alt="TechFit">
+          <div class="carousel-caption">
+            <a href="../../Planos.html" class="btn btn-success btn-lg">Comece Agora</a>
+          </div>
         </div>
         <div class="carousel-item">
-          <img src="Novas_img/banne_luva_tam.png" class="d-block w-100" alt="Funcional">
+          <img src="https://github.com/mariamaed29/Projeto.Techfit/blob/main/Novas_img/banner_desafio.png?raw=true" class="d-block w-100" alt="Desafios">
+          <div class="carousel-caption">
+            <a href="desafios.html" class="btn btn-success btn-lg">Ver Desafios</a>
+          </div>
         </div>
         <div class="carousel-item">
-          <img src="Novas_img/banner_com_peso.png" class="d-block w-100" alt="Musculação">
+          <img src="https://github.com/mariamaed29/Projeto.Techfit/blob/main/Novas_img/banner_com_peso.png?raw=true" class="d-block w-100" alt="Planos">
+          <div class="carousel-caption">
+            <a href="../../Planos.html" class="btn btn-success btn-lg">Ver Planos</a>
+          </div>
         </div>
       </div>
-      <button class="carousel-control-prev" type="button" data-bs-target="#carouselAcademia" data-bs-slide="prev">
+
+      <button class="carousel-control-prev" type="button" data-bs-target="#myCarousel" data-bs-slide="prev">
         <span class="carousel-control-prev-icon"></span>
       </button>
-      <button class="carousel-control-next" type="button" data-bs-target="#carouselAcademia" data-bs-slide="next">
+      <button class="carousel-control-next" type="button" data-bs-target="#myCarousel" data-bs-slide="next">
         <span class="carousel-control-next-icon"></span>
       </button>
     </div>
   </main>
-  <!-- ===== FIM CARROSSEL ===== -->
-
 
   <!-- ===== DASHBOARD PRINCIPAL ===== -->
   <section class="container my-5">
@@ -89,71 +348,230 @@
 
       <!-- ===== RANKING ===== -->
       <div class="col-12 col-lg-6">
-        <div class="card bg-dark text-white shadow-sm p-4 rounded-4">
+        <div class="card p-4" id="ranking">
           <h3 class="text-center mb-4"><i class="fa-solid fa-ranking-star"></i> Ranking</h3>
-          <ol class="list-unstyled d-flex justify-content-center gap-4 flex-wrap">
-            <li><article><img src="FOTOS/2.png" width="100"><h5>Marcos</h5><p>76 pts</p></article></li>
-            <li><article><img src="FOTOS/1.png" width="100"><h5>Maria Eduarda</h5><p>100 pts</p></article></li>
-            <li><article><img src="FOTOS/3.png" width="100"><h5>Rafael</h5><p>59 pts</p></article></li>
+          <ol class="d-flex justify-content-center gap-4 flex-wrap">
+            <li>
+              <article class="text-center">
+                <img src="https://www.lance.com.br/outros-lances/wp-content/uploads/2025/07/Marcos-Leonardo-5-1.png" alt="Marcos">
+                <h5>Marcos</h5>
+                <p>76 pts</p>
+              </article>
+            </li>
+            <li>
+              <article class="text-center">
+                <img src="https://thumbs.dreamstime.com/b/mulher-idosa-ao-ar-livre-21628297.jpg" alt="Maria Eduarda">
+                <h5>Maria Eduarda</h5>
+                <p><span id="pontos">100</span> pts</p>
+              </article>
+            </li>
+            <li>
+              <article class="text-center">
+                <img src="https://th.bing.com/th/id/R.c61521ca8529ae06d2cdd9f0e0d1cd7e?rik=P62lNzfCVyqycQ&pid=ImgRaw&r=0" alt="Rafael">
+                <h5>Rafael</h5>
+                <p>59 pts</p>
+              </article>
+            </li>
           </ol>
         </div>
       </div>
 
       <!-- ===== PROGRESSO ===== -->
       <div class="col-12 col-lg-6">
-        <div class="card bg-dark text-white shadow-sm p-4 rounded-4 text-center">
+        <div class="card p-4 text-center">
           <h3><i class="fa-solid fa-chart-line"></i> Meu Progresso</h3>
           <div class="info-usuario mt-3">
-            <h5>Maria Eduarda</h5>
-            <p>Total de pontos: <span id="pontos">100</span></p>
-            <p>Aulas concluídas: <span id="aulas">12</span></p>
+            <h5 style="color: var(--azul);">Maria Eduarda</h5>
+            <p>Total de pontos: <strong><span id="pontos2">100</span></strong></p>
+            <p>Aulas concluídas: <strong><span id="aulas">12</span></strong></p>
           </div>
-          <div class="barra-progresso bg-light rounded mt-3">
-            <div id="progresso-preenchido" class="bg-success" style="width: 75%; height: 20px;"></div>
+          <div class="barra-progresso mt-3">
+            <div id="progresso-preenchido" style="width: 75%;"></div>
           </div>
-          <p id="nivel" class="mt-2">Nível: Intermediário</p>
+          <p id="nivel" class="mt-3">Nível: Intermediário</p>
         </div>
       </div>
 
     </div>
   </section>
 
-
   <!-- ===== MEDALHAS ===== -->
   <section id="medalhas" class="container my-5 text-center">
     <h3><i class="fa-solid fa-medal"></i> Minhas Medalhas</h3>
-    <ul class="list-unstyled d-flex justify-content-center gap-4 flex-wrap mt-3">
-      <li><img src="FOTOS/1.png" width="60"></li>
-      <li><img src="FOTOS/2.png" width="60"></li>
-      <li><img src="FOTOS/3.png" width="60"></li>
+    <ul class="d-flex justify-content-center gap-4 flex-wrap mt-4">
+      <li><img src="https://github.com/mariamaed29/Projeto.Techfit/blob/main/FOTOS/1.png?raw=true" alt="Medalha 1"></li>
+      <li><img src="https://github.com/mariamaed29/Projeto.Techfit/blob/main/FOTOS/2.png?raw=true" alt="Medalha 2"></li>
+      <li><img src="https://github.com/mariamaed29/Projeto.Techfit/blob/main/FOTOS/3.png?raw=true" alt="Medalha 3"></li>
     </ul>
   </section>
 
-
   <!-- ===== DESAFIOS ===== -->
-  <section id="desafios" class="container my-5 text-center">
-    <h3><i class="fa-solid fa-dumbbell"></i> Desafios</h3>
+  <section id="desafios" class="container my-5">
+    <h3 class="text-center"><i class="fa-solid fa-dumbbell"></i> Desafios</h3>
 
-    <div class="d-flex justify-content-center gap-3 mt-3">
-      <button class="btn btn-success" id="btnTodos">Todos</button>
-      <button class="btn btn-primary" id="btnMeus">Meus</button>
+    <div class="d-flex justify-content-center gap-3 mt-4 mb-4">
+      <button class="btn btn-success" id="btnTodos">Todos os Desafios</button>
+      <button class="btn btn-primary" id="btnMeus">Meus Desafios</button>
     </div>
 
-    <div id="listaDesafios" class="cards-container mt-4"></div>
+    <div id="listaDesafios" class="cards-container"></div>
 
-    <div class="mt-5 text-center">
-      <h4>💥 Meus Pontos: <span id="pontosUsuario">100</span></h4>
-      <button class="btn btn-warning mt-2" id="btnResgatar">🎁 Resgatar Recompensas</button>
+    <div class="pontos-destaque mt-5">
+      <h4>💎 Meus Pontos Totais</h4>
+      <p><span id="pontosUsuario">100</span></p>
+      <button class="btn btn-warning btn-lg mt-3" id="btnResgatar">
+        <i class="fa-solid fa-gift"></i> Resgatar Recompensas
+      </button>
     </div>
   </section>
 
   <!-- ===== FOOTER ===== -->
-  <footer class="text-center text-light py-4 bg-dark mt-5">
-    <p class="mb-0">© 2025 TecFit | Desenvolvido com 💪 e dedicação</p>
+  <footer class="text-center text-light py-4">
+    <p class="mb-0">© 2024 TechFit | Desenvolvido com 💪 e dedicação</p>
+    <div class="social-icons mt-2">
+      <a href="#" class="text-light mx-2"><i class="fa-brands fa-instagram fa-2x"></i></a>
+      <a href="#" class="text-light mx-2"><i class="fa-brands fa-facebook fa-2x"></i></a>
+      <a href="#" class="text-light mx-2"><i class="fa-brands fa-whatsapp fa-2x"></i></a>
+    </div>
   </footer>
 
   <!-- Scripts -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-  <script src="dashboard.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      // ===== ELEMENTOS =====
+      const pontosEl = document.getElementById("pontos");
+      const pontos2El = document.getElementById("pontos2");
+      const aulasEl = document.getElementById("aulas");
+      const barra = document.getElementById("progresso-preenchido");
+      const nivelEl = document.getElementById("nivel");
+      const pontosUsuario = document.getElementById("pontosUsuario");
+
+      const listaDesafios = document.getElementById("listaDesafios");
+      const btnTodos = document.getElementById("btnTodos");
+      const btnMeus = document.getElementById("btnMeus");
+      const btnResgatar = document.getElementById("btnResgatar");
+
+      // ===== DADOS DO USUÁRIO =====
+      let usuario = JSON.parse(localStorage.getItem("usuarioAcademia")) || {
+        nome: "Maria Eduarda",
+        pontos: 100,
+        aulas: 12,
+        desafios: []
+      };
+
+      // ===== DESAFIOS DISPONÍVEIS =====
+      const desafiosDisponiveis = [
+        { id: 1, nome: "Treinar 5 dias na semana", pontos: 20, icone: "fa-calendar-week" },
+        { id: 2, nome: "Concluir aula de musculação", pontos: 10, icone: "fa-dumbbell" },
+        { id: 3, nome: "Participar de desafio coletivo", pontos: 30, icone: "fa-users" },
+        { id: 4, nome: "Postar treino nas redes sociais", pontos: 15, icone: "fa-share-nodes" },
+        { id: 5, nome: "Fazer avaliação física", pontos: 25, icone: "fa-clipboard-check" },
+        { id: 6, nome: "Treinar cardio por 30 minutos", pontos: 15, icone: "fa-heart-pulse" },
+        { id: 7, nome: "Bater meta de proteína", pontos: 20, icone: "fa-apple-whole" }
+      ];
+
+      // ===== ATUALIZA INTERFACE =====
+      function atualizarTudo() {
+        pontosEl.textContent = usuario.pontos;
+        pontos2El.textContent = usuario.pontos;
+        aulasEl.textContent = usuario.aulas;
+        pontosUsuario.textContent = usuario.pontos;
+
+        const porcentagem = Math.min((usuario.pontos / 100) * 100, 100);
+        barra.style.width = `${porcentagem}%`;
+
+        let nivel = "Iniciante";
+        if (usuario.pontos >= 30 && usuario.pontos < 60) nivel = "Intermediário";
+        else if (usuario.pontos >= 60 && usuario.pontos < 90) nivel = "Avançado";
+        else if (usuario.pontos >= 90) nivel = "Atleta";
+        nivelEl.textContent = `Nível: ${nivel}`;
+
+        localStorage.setItem("usuarioAcademia", JSON.stringify(usuario));
+      }
+
+      // ===== MOSTRAR DESAFIOS =====
+      function mostrarTodosDesafios() {
+        listaDesafios.innerHTML = "";
+        desafiosDisponiveis.forEach(desafio => {
+          const jaAdicionado = usuario.desafios.find(d => d.id === desafio.id);
+          const btnTexto = jaAdicionado ? "✅ Adicionado" : "➕ Adicionar";
+
+          const card = document.createElement("div");
+          card.className = "card p-3 text-center";
+          card.innerHTML = `
+            <i class="fa-solid ${desafio.icone}" style="font-size: 2.5rem; color: var(--verde); margin-bottom: 15px;"></i>
+            <h5>${desafio.nome}</h5>
+            <p style="color: var(--verde); font-weight: 600; font-size: 1.2rem;">+${desafio.pontos} pontos</p>
+            <button class="btn btn-${jaAdicionado ? "secondary" : "success"}" 
+                    ${jaAdicionado ? "disabled" : ""} 
+                    data-id="${desafio.id}">
+              ${btnTexto}
+            </button>
+          `;
+          listaDesafios.appendChild(card);
+        });
+
+        listaDesafios.querySelectorAll("button").forEach(btn => {
+          btn.addEventListener("click", e => {
+            const id = parseInt(e.target.dataset.id);
+            const desafio = desafiosDisponiveis.find(d => d.id === id);
+            usuario.desafios.push({ ...desafio, status: "pendente" });
+            atualizarTudo();
+            mostrarTodosDesafios();
+          });
+        });
+      }
+
+      // ===== MEUS DESAFIOS =====
+      function mostrarMeusDesafios() {
+        listaDesafios.innerHTML = "";
+        if (usuario.desafios.length === 0) {
+          listaDesafios.innerHTML = "<p class='text-center' style='color: var(--branco); font-size: 1.2rem;'>Você ainda não adicionou nenhum desafio.</p>";
+          return;
+        }
+
+        usuario.desafios.forEach(desafio => {
+          const card = document.createElement("div");
+          card.className = "card p-3 text-center";
+          card.innerHTML = `
+            <i class="fa-solid ${desafio.icone}" style="font-size: 2.5rem; color: var(--verde); margin-bottom: 15px;"></i>
+            <h5>${desafio.nome}</h5>
+            <p style="color: ${desafio.status === 'concluído' ? 'var(--verde)' : 'var(--branco)'}; font-weight: 600;">
+              Status: <strong>${desafio.status === 'concluído' ? '✅ Concluído' : '⏳ Pendente'}</strong>
+            </p>
+            ${desafio.status === "pendente"
+              ? `<button class="btn btn-success" data-id="${desafio.id}">Concluir Desafio</button>`
+              : `<button class="btn btn-outline-secondary" disabled>✅ Concluído</button>`
+            }
+          `;
+          listaDesafios.appendChild(card);
+        });
+
+        listaDesafios.querySelectorAll(".btn-success").forEach(btn => {
+          btn.addEventListener("click", e => {
+            const id = parseInt(e.target.dataset.id);
+            const desafio = usuario.desafios.find(d => d.id === id);
+            desafio.status = "concluído";
+            usuario.pontos += desafio.pontos;
+            usuario.aulas += 1;
+            atualizarTudo();
+            mostrarMeusDesafios();
+          });
+        });
+      }
+
+      // ===== EVENTOS =====
+      btnTodos.addEventListener("click", mostrarTodosDesafios);
+      btnMeus.addEventListener("click", mostrarMeusDesafios);
+      btnResgatar.addEventListener("click", () => {
+        window.location.href = "loja.html";
+      });
+
+      // ===== INICIALIZA =====
+      mostrarTodosDesafios();
+      atualizarTudo();
+    });
+  </script>
 </body>
 </html>

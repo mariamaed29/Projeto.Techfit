@@ -188,6 +188,32 @@
     </style>
 </head>
 <body>
+      <header>
+    <nav class="navbar navbar-expand-md navbar-light bg-light fixed-top shadow-sm">
+      <div class="container-fluid">
+        <a class="navbar-brand d-flex align-items-center gap-2" href="pág.inicial.html">
+          <img src="https://github.com/mariamaed29/Projeto.Techfit/blob/main/FOTOS/logoNormal.png?raw=true" alt="Logo" width="40">
+          <strong>TechFit</strong>
+        </a>
+
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarCollapse">
+          <ul class="navbar-nav me-auto mb-2 mb-md-0">
+            <li class="nav-item"><a class="nav-link" href="pág.inicial.html"><i class="fa-solid fa-house"></i> Início</a></li>
+            <li class="nav-item"><a class="nav-link" href="../../Planos.html"><i class="fa-solid fa-weight-hanging"></i> Planos</a></li>
+            <li class="nav-item"><a class="nav-link" href="treinos.html"><i class="fa-solid fa-person-running"></i> Treinos</a></li>
+            <li class="nav-item"><a class="nav-link" href="loja.html"><i class="fa-solid fa-cart-shopping"></i> Loja</a></li>
+            <li class="nav-item"><a class="nav-link active" href="desafios.html"><i class="fa-solid fa-calendar-days"></i> Desafios</a></li>
+            <li class="nav-item"><a class="nav-link" href="/minhas-assinaturas"><i class="fa-solid fa-file-contract"></i> Minhas Assinaturas</a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+  </header>
+  <br>
 
 <div class="container">
     <h1><i class="fa-solid fa-file-contract"></i> Minhas Assinaturas</h1>
