@@ -309,7 +309,7 @@
     <?php endif; ?>
 
     <div style="text-align: center;">
-        <a href="../../public/pág.inicial.html" class="btn-voltar">
+        <a href="/pág.inicial.html" class="btn-voltar">
             <i class="fa-solid fa-home"></i> Voltar para Home
         </a>
     </div>

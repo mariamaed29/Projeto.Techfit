@@ -37,7 +37,7 @@ class AdminController {
             die("Nome e email são obrigatórios! <a href='/admin/usuarios/editar?id=$id'>Voltar</a>");
         }
         
-        // Atualiza com ou sem senha
+
         if ($this->model->editar($id, $nome, $email, $tipo, $senha)) {
             header("Location: /admin/usuarios?msg=editado");
         } else {
@@ -47,7 +47,6 @@ class AdminController {
     }
     
     public function deletarUsuario($id) {
-        // Impede que o admin delete a si mesmo
         if ($id == $_SESSION['user']['id']) {
             die("Você não pode deletar sua própria conta! <a href='/admin/usuarios'>Voltar</a>");
         }

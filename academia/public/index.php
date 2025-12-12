@@ -106,7 +106,6 @@ if ($uri === "/minhas-assinaturas") {
     $controller->minhasAssinaturas();
     exit;
 }
-
 // ========== ROTAS ADMINISTRATIVAS ==========
 if (strpos($uri, '/admin') === 0) {
     // Verifica se é admin
