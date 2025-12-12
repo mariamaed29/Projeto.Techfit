@@ -110,8 +110,7 @@ class ProdutoController {
         }
         exit;
     }
-    
-    // ADMIN: Deletar produto
+// ADMIN: Deletar produto
     public function deletarProduto($id) {
         if (!isset($_SESSION['user']) || $_SESSION['user']['tipo'] !== 'admin') {
             die("Acesso negado! <a href='/Login.html'>Fazer login</a>");
@@ -124,5 +123,6 @@ class ProdutoController {
         }
         exit;
     }
+ 
 }
 ?>

@@ -1,20 +1,18 @@
 RewriteEngine On
 
-# Define o diretório base
-RewriteBase 
-
-# Permite acesso a arquivos reais (CSS, JS, imagens, HTML)
-RewriteCond %{REQUEST_FILENAME} -f
-RewriteRule ^ - [L]
-
 # Redireciona tudo para index.php exceto arquivos existentes
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteRule ^(.*)$ index.php [QSA,L]
 
-# Força UTF-8
-AddDefaultCharset UTF-8
+# Configurações de segurança
+<FilesMatch "\.(php|html)$">
+    Header set X-Content-Type-Options "nosniff"
+    Header set X-Frame-Options "SAMEORIGIN"
+</FilesMatch>
 
 # Desabilita listagem de diretórios
 Options -Indexes
 
+# Configuração de charset
+AddDefaultCharset UTF-8

@@ -95,21 +95,58 @@ class VendaController {
         include __DIR__ . '/../views/minhasCompras.php';
     }
     
-    // ADMIN: Lista todas as vendas
+    // ADMIN: Lista todas as vendas com filtros
     public function listarVendas() {
         if (!isset($_SESSION['user']) || $_SESSION['user']['tipo'] !== 'admin') {
             die("Acesso negado! <a href='/Login.html'>Fazer login</a>");
         }
         
+        // Busca todas as vendas do banco
         $vendas = $this->model->buscarTodas();
+        
+        // Aplicar filtros se existirem
+        if (!empty($_GET['status'])) {
+            $status = $_GET['status'];
+            $vendas = array_filter($vendas, function($v) use ($status) {
+                return $v['status'] === $status;
+            });
+        }
+        
+        if (!empty($_GET['cliente'])) {
+            $cliente = strtolower($_GET['cliente']);
+            $vendas = array_filter($vendas, function($v) use ($cliente) {
+                return strpos(strtolower($v['nome_cliente']), $cliente) !== false ||
+                       strpos(strtolower($v['email_cliente']), $cliente) !== false;
+            });
+        }
+        
+        if (!empty($_GET['data_inicio'])) {
+            $data_inicio = $_GET['data_inicio'];
+            $vendas = array_filter($vendas, function($v) use ($data_inicio) {
+                return date('Y-m-d', strtotime($v['data_venda'])) >= $data_inicio;
+            });
+        }
+        
+        if (!empty($_GET['data_fim'])) {
+            $data_fim = $_GET['data_fim'];
+            $vendas = array_filter($vendas, function($v) use ($data_fim) {
+                return date('Y-m-d', strtotime($v['data_venda'])) <= $data_fim;
+            });
+        }
+        
+        // Reindexar array após filtros
+        $vendas = array_values($vendas);
+        
         include __DIR__ . '/../views/admin/listaVendas.php';
     }
     
     // ADMIN: Cancelar venda
-    public function cancelarVenda($id) {
+    public function cancelarVenda() {
         if (!isset($_SESSION['user']) || $_SESSION['user']['tipo'] !== 'admin') {
             die("Acesso negado! <a href='/Login.html'>Fazer login</a>");
         }
+        
+        $id = $_GET['id'] ?? 0;
         
         if ($this->model->cancelar($id)) {
             header("Location: /admin/vendas?msg=cancelada");
@@ -120,10 +157,15 @@ class VendaController {
     }
     
     // ADMIN: Atualizar status
-    public function atualizarStatus($id) {
+    public function atualizarStatus() {
         if (!isset($_SESSION['user']) || $_SESSION['user']['tipo'] !== 'admin') {
             die("Acesso negado! <a href='/Login.html'>Fazer login</a>");
         }
+        
+        // Extrai o ID da URL
+        $url = $_SERVER['REQUEST_URI'];
+        preg_match('/\/admin\/vendas\/status\/(\d+)/', $url, $matches);
+        $id = $matches[1] ?? 0;
         
         $status = $_POST['status'] ?? 'confirmada';
         

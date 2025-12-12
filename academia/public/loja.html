@@ -9,14 +9,13 @@
 
     <title>Loja TechFit</title>
 
-    <title>Loja TecFit</title>
   <header>
     <nav class="navbar navbar-expand-md navbar-light bg-light fixed-top shadow-sm">
       <div class="container-fluid">
         <a class="navbar-brand d-flex align-items-center gap-2" href="#">
           <img src="https://github.com/mariamaed29/Projeto.Techfit/blob/main/FOTOS/logoNormal.png?raw=true" alt="Logo"
             width="40">
-          <strong>TecFit</strong>
+          <strong>TechFit</strong>
         </a>
 
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
@@ -25,7 +24,7 @@
 
         <div class="collapse navbar-collapse" id="navbarCollapse">
           <ul class="navbar-nav me-auto mb-2 mb-md-0">
-            <li class="nav-item"><a class="nav-link active" href="#historia"><i class="fa-solid fa-house"></i>
+            <li class="nav-item"><a class="nav-link active" href="../public/pág.inicial.html"><i class="fa-solid fa-house"></i>
                 Início</a></li>
             <li class="nav-item"><a class="nav-link" href="../../Planos.html"><i class="fa-solid fa-weight-hanging"></i>
                 Planos</a></li>
@@ -275,10 +274,15 @@ fetch('/api/produtos')
     });
     
 function comprar(id, nome) {
-    // Redireciona para página de compra
-    window.location.href = `/comprar?produto_id=${id}`;
+    window.location.href = `comprar.php?produto_id=${id}`;
 }
-
+// Carrega produtos
+fetch('/api/produtos')
+    .then(res => res.json())
+    .then(produtos => {
+        // Seu código para exibir produtos
+        // Use: /comprar/index?produto_id=${produto.id}
+    });
 </script>
 
 </body>

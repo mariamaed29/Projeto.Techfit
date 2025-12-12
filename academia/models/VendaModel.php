@@ -12,6 +12,10 @@ class VendaModel {
         try {
             $this->conn->begin_transaction();
             
+            // Log para debug
+            error_log("=== INICIANDO CADASTRO DE VENDA ===");
+            error_log("Dados recebidos: " . print_r($dados, true));
+            
             // Verifica produto e estoque
             $stmt = $this->conn->prepare("SELECT id, nome, preco, estoque FROM produtos WHERE id = ? AND ativo = 1");
             $stmt->bind_param("i", $dados['produto_id']);
@@ -23,9 +27,10 @@ class VendaModel {
             }
             
             $produto = $result->fetch_assoc();
+            error_log("Produto encontrado: " . print_r($produto, true));
             
             if ($produto['estoque'] < $dados['quantidade']) {
-                throw new Exception('Estoque insuficiente');
+                throw new Exception('Estoque insuficiente. Disponível: ' . $produto['estoque']);
             }
             
             $valor_total = $produto['preco'] * $dados['quantidade'];
@@ -37,50 +42,84 @@ class VendaModel {
                 $cartao_mascarado = '****' . substr($cartao_limpo, -4);
             }
             
+            // Prepara dados para inserção
+            $nome_cliente = $dados['nome'];
+            $email_cliente = $dados['email'];
+            $telefone_cliente = $dados['telefone'];
+            $cpf_cliente = $dados['cpf'];
+            $produto_id = $dados['produto_id'];
+            $produto_nome = $produto['nome'];
+            $quantidade = $dados['quantidade'];
+            $valor_unitario = $produto['preco'];
+            $forma_pagamento = $dados['forma_pagamento'];
+            $status = 'confirmada';
+            
+            // Log dos dados que serão inseridos
+            error_log("Preparando INSERT com os dados:");
+            error_log("Nome: $nome_cliente");
+            error_log("Email: $email_cliente");
+            error_log("Produto: $produto_nome (ID: $produto_id)");
+            error_log("Quantidade: $quantidade");
+            error_log("Valor unitário: $valor_unitario");
+            error_log("Valor total: $valor_total");
+            
             // Insere a venda
-            $stmt = $this->conn->prepare("
-                INSERT INTO vendas (
-                    nome_cliente, email_cliente, telefone_cliente, cpf_cliente,
-                    produto_id, produto_nome, quantidade, valor_unitario, valor_total,
-                    forma_pagamento, cartao_mascarado, status
-                ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 'confirmada')
-            ");
+            $sql = "INSERT INTO vendas (
+                nome_cliente, email_cliente, telefone_cliente, cpf_cliente,
+                produto_id, produto_nome, quantidade, valor_unitario, valor_total,
+                forma_pagamento, cartao_mascarado, status
+            ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+            
+            $stmt = $this->conn->prepare($sql);
+            
+            if (!$stmt) {
+                throw new Exception('Erro ao preparar statement: ' . $this->conn->error);
+            }
             
             $stmt->bind_param(
-                "ssssisiddss",
-                $dados['nome'],
-                $dados['email'],
-                $dados['telefone'],
-                $dados['cpf'],
-                $dados['produto_id'],
-                $produto['nome'],
-                $dados['quantidade'],
-                $produto['preco'],
+                "ssssisiddsss",
+                $nome_cliente,
+                $email_cliente,
+                $telefone_cliente,
+                $cpf_cliente,
+                $produto_id,
+                $produto_nome,
+                $quantidade,
+                $valor_unitario,
                 $valor_total,
-                $dados['forma_pagamento'],
-                $cartao_mascarado
+                $forma_pagamento,
+                $cartao_mascarado,
+                $status
             );
             
             if (!$stmt->execute()) {
-                throw new Exception('Erro ao cadastrar venda');
+                throw new Exception('Erro ao executar INSERT: ' . $stmt->error);
             }
             
             $venda_id = $stmt->insert_id;
+            error_log("Venda inserida com ID: $venda_id");
             
             // Atualiza o estoque
             $stmt = $this->conn->prepare("UPDATE produtos SET estoque = estoque - ? WHERE id = ?");
-            $stmt->bind_param("ii", $dados['quantidade'], $dados['produto_id']);
+            $stmt->bind_param("ii", $quantidade, $produto_id);
             
             if (!$stmt->execute()) {
-                throw new Exception('Erro ao atualizar estoque');
+                throw new Exception('Erro ao atualizar estoque: ' . $stmt->error);
             }
+            
+            error_log("Estoque atualizado. Linhas afetadas: " . $stmt->affected_rows);
             
             // Se estoque zerou, desativa o produto
             $stmt = $this->conn->prepare("UPDATE produtos SET ativo = 0 WHERE id = ? AND estoque = 0");
-            $stmt->bind_param("i", $dados['produto_id']);
+            $stmt->bind_param("i", $produto_id);
             $stmt->execute();
             
+            if ($stmt->affected_rows > 0) {
+                error_log("Produto desativado (estoque zerou)");
+            }
+            
             $this->conn->commit();
+            error_log("=== VENDA CADASTRADA COM SUCESSO ===");
             
             return [
                 'success' => true, 
@@ -91,7 +130,8 @@ class VendaModel {
             
         } catch (Exception $e) {
             $this->conn->rollback();
-            error_log("Erro na venda: " . $e->getMessage());
+            error_log("ERRO na venda: " . $e->getMessage());
+            error_log("Stack trace: " . $e->getTraceAsString());
             return ['success' => false, 'message' => $e->getMessage()];
         }
     }
@@ -143,7 +183,11 @@ class VendaModel {
             ");
             $stmt->execute();
             $result = $stmt->get_result();
-            return $result->fetch_all(MYSQLI_ASSOC);
+            $vendas = $result->fetch_all(MYSQLI_ASSOC);
+            
+            error_log("Total de vendas encontradas: " . count($vendas));
+            
+            return $vendas;
         } catch (Exception $e) {
             error_log("Erro ao buscar vendas: " . $e->getMessage());
             return [];

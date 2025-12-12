@@ -202,12 +202,30 @@
             font-size: 0.9rem;
             margin-top: 5px;
         }
+
+        .alert {
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+
+        .alert-info {
+            background: rgba(0, 123, 255, 0.2);
+            border: 1px solid #007bff;
+            color: #fff;
+        }
     </style>
 </head>
 <body>
 
 <div class="compra-container">
     <h1><i class="fa-solid fa-shopping-cart"></i> Finalizar Compra</h1>
+
+    <?php if (isset($_GET['erro'])): ?>
+        <div class="alert alert-info">
+            <strong>⚠️ Erro:</strong> <?= htmlspecialchars($_GET['erro']) ?>
+        </div>
+    <?php endif; ?>
 
     <div class="produto-info">
         <?php if ($produto['imagem']): ?>
@@ -225,23 +243,24 @@
         </div>
     </div>
 
-    <form action="/comprar/processar" method="post" id="formCompra">
+    <!-- ATENÇÃO: Action corrigida para /comprar/processar -->
+    <form action="/comprar/processar" method="POST" id="formCompra" onsubmit="return validarForm()">
         <input type="hidden" name="produto_id" value="<?= $produto['id'] ?>">
         <input type="hidden" name="preco_unitario" id="preco_unitario" value="<?= $produto['preco'] ?>">
         
         <div class="form-section">
             <h3><i class="fa-solid fa-user"></i> Dados Pessoais</h3>
-            <input type="text" name="nome" placeholder="Nome completo" required>
-            <input type="email" name="email" placeholder="Email" required>
-            <input type="tel" name="telefone" placeholder="Telefone" required>
-            <input type="text" name="cpf" placeholder="CPF" maxlength="14" required>
+            <input type="text" name="nome" id="nome" placeholder="Nome completo" required>
+            <input type="email" name="email" id="email" placeholder="Email" required>
+            <input type="tel" name="telefone" id="telefone" placeholder="Telefone (opcional)">
+            <input type="text" name="cpf" id="cpf" placeholder="CPF" maxlength="14" required>
         </div>
 
         <div class="form-section">
             <h3><i class="fa-solid fa-box"></i> Quantidade</h3>
             <div class="quantidade-control">
                 <button type="button" onclick="diminuir()"><i class="fa-solid fa-minus"></i></button>
-                <input type="number" name="quantidade" id="quantidade" value="1" min="1" max="<?= $produto['estoque'] ?>" readonly>
+                <input type="number" name="quantidade" id="quantidade" value="1" min="1" max="<?= $produto['estoque'] ?>" readonly required>
                 <button type="button" onclick="aumentar()"><i class="fa-solid fa-plus"></i></button>
             </div>
         </div>
@@ -257,8 +276,8 @@
 
             <div id="dadosCartao">
                 <input type="text" name="cartao" id="cartao" placeholder="Número do Cartão" maxlength="19">
-                <input type="text" name="digito" placeholder="CVV" maxlength="4">
-                <input type="month" name="validade" placeholder="Validade (MM/AA)">
+                <input type="text" name="digito" id="digito" placeholder="CVV" maxlength="4">
+                <input type="month" name="validade" id="validade" placeholder="Validade (MM/AA)">
             </div>
         </div>
 
@@ -279,8 +298,44 @@
 const maxEstoque = <?= $produto['estoque'] ?>;
 const precoUnitario = parseFloat(<?= $produto['preco'] ?>);
 
+// Validação do formulário
+function validarForm() {
+    const nome = document.getElementById('nome').value.trim();
+    const email = document.getElementById('email').value.trim();
+    const cpf = document.getElementById('cpf').value.replace(/\D/g, '');
+    const quantidade = parseInt(document.getElementById('quantidade').value);
+    const forma = document.getElementById('forma_pagamento').value;
+    
+    if (!nome || !email || !cpf) {
+        alert('Por favor, preencha todos os campos obrigatórios!');
+        return false;
+    }
+    
+    if (cpf.length !== 11) {
+        alert('CPF inválido! Deve conter 11 dígitos.');
+        return false;
+    }
+    
+    if (quantidade < 1 || quantidade > maxEstoque) {
+        alert('Quantidade inválida!');
+        return false;
+    }
+    
+    // Validar cartão se necessário
+    if (forma === 'cartao_credito' || forma === 'cartao_debito') {
+        const cartao = document.getElementById('cartao').value.replace(/\D/g, '');
+        if (!cartao || cartao.length < 13) {
+            alert('Por favor, preencha os dados do cartão!');
+            return false;
+        }
+    }
+    
+    console.log('Formulário válido, enviando...');
+    return true;
+}
+
 // Máscara para CPF
-document.querySelector('input[name="cpf"]').addEventListener('input', function(e) {
+document.getElementById('cpf').addEventListener('input', function(e) {
     let value = e.target.value.replace(/\D/g, '');
     value = value.replace(/(\d{3})(\d)/, '$1.$2');
     value = value.replace(/(\d{3})(\d)/, '$1.$2');

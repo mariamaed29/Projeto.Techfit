@@ -75,6 +75,21 @@ INSERT INTO produtos (nome, descricao, preco, imagem, estoque) VALUES
 ('Luvas de Treino', 'Luvas acolchoadas para proteção durante treinos', 39.90, 'https://via.placeholder.com/300x200?text=Luvas', 60),
 ('Camiseta TecFit', 'Camiseta dry-fit para treinos', 49.90, 'https://via.placeholder.com/300x200?text=Camiseta', 80);
 
+CREATE TABLE IF NOT EXISTS pedidos (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    produto_id INT NOT NULL,
+    produto_nome VARCHAR(255) NOT NULL,
+    quantidade INT NOT NULL,
+    preco_unitario DECIMAL(10,2) NOT NULL,
+    total DECIMAL(10,2) NOT NULL,
+    forma_pagamento VARCHAR(50) NOT NULL,
+    endereco VARCHAR(255) NOT NULL,
+    cep VARCHAR(10) NOT NULL,
+    status VARCHAR(50) DEFAULT 'pendente',
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (produto_id) REFERENCES produtos(id)
+);
+
 -- -- Tabela de produtos
 -- CREATE TABLE IF NOT EXISTS produtos (
 --     id INT AUTO_INCREMENT PRIMARY KEY,
